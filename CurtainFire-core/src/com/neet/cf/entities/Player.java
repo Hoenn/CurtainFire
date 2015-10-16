@@ -28,7 +28,7 @@ public class Player
 	private float stateTime;
 	private boolean moving=false;
 	private float turnTimeCounter;
-	private float turnTime= 1/16f;
+	private final float turnTime= 1/16f;
 		
 	public Player()
 	{
