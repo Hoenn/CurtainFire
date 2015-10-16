@@ -82,7 +82,6 @@ public class Player
 		currentFrame = idleFrames[direction];
 
 		position = new Vector2(0, 0);
-
 	}
 	public void draw(Batch sb)
 	{
@@ -97,13 +96,11 @@ public class Player
 		else
 			currentFrame = idleFrames[direction];
 		
-		
 		sb.draw(currentFrame, position.x, position.y);
 	}
 	public void update(float delta)
 	{	
 		updateMove(delta);
-		//Keep Player on Grid		
 	}
 	public void updateMove(float delta)
 	{
@@ -147,7 +144,6 @@ public class Player
 					overflowY = position.y - destVector.y;
 				}
 			}
-
 		}
 		if (!moving)
 		{
@@ -175,7 +171,8 @@ public class Player
 								/ (TILE_WIDTH * (delta / MOVE_TIME))));
 					}
 
-				} else if (overflowY != 0 && destVector.y != position.y)
+				} 
+				else if (overflowY != 0 && destVector.y != position.y)
 				{
 					if (Math.abs(overflowY) > 0.001f)
 						updateMove(delta * (overflowY
@@ -186,13 +183,13 @@ public class Player
 				//Moving should be done by now, round off player's position
 				position.x = Math.round(position.x*TILE_WIDTH)/TILE_WIDTH;
 				position.y = Math.round(position.y*TILE_WIDTH)/TILE_WIDTH;
-
-
 			}
 		}
 	}
 	public void handleMove()
 	{
+		//If not facing in the direction pressed then face that direction
+		//If that direction is held for 1/16s while facing correctly then allow movement
 		if(!moving)
 		{
 			if(Gdx.input.isKeyJustPressed(Keys.W) && direction!=UP)
@@ -264,21 +261,17 @@ public class Player
 						setDirection(RIGHT);
 					}					
 			}
-		}
-		
-		
+		}	
 	}
 	public void setDirection(int dir)
 	{
 		direction=dir;
 		currentFrame=idleFrames[dir];
 	}
-
-
+	
 	public Vector2 getPosition()
 	{
 		return position;
 	}
-	
 
 }
