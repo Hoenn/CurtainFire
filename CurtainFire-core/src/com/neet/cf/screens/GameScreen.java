@@ -16,7 +16,8 @@ public class GameScreen implements Screen
 {
 	private TiledMap currentMap;
 	private final int BACKGROUND_LAYER=2;
-	private final int FOREGROUND_LAYER=3;
+	private final int MIDDLEGROUND_LAYER=3;
+	private final int FOREGROUND_LAYER=4;
 	
 	
 	private OrthogonalTiledMapRenderer renderer;
@@ -42,7 +43,7 @@ public class GameScreen implements Screen
 
 		//Render Order: BG -> Player, Sprites -> FG
 		//Object Layer will be turned into Sprites, render then
-		renderer.render(new int[]{BACKGROUND_LAYER});
+		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
 		
 		//camera.position.set(player.getX(), player.getY(), 0);
 	    //camera.update();

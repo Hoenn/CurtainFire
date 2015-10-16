@@ -15,14 +15,19 @@
    eJxjYBgFo2AUDHXAyISfTy3z0OmBMm8UDA4AAEMcAB8=
   </data>
  </layer>
- <layer name="Background" width="20" height="20">
+ <layer name="Low" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJwTZ2BgEB/Fo3gUj+JRTDPMjoRBfA0kPJTNAwCdxCP6
   </data>
  </layer>
- <layer name="Foreground" width="20" height="20">
+ <layer name="Middle" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzLkNgDAQRFG3ZDBHijlMagOG/ivhB9vAZiDtl14ywThnWdbf82jQIqCTvceAUfk3IWLGglX2DQm78i+j4MCJS/aKG4/yz/pGLyoHBm0=
+   eJxjYBgFo2AUDHVgCMRGQGwMxCZAbEqheY5A7ATEzkDsAsSuFJoXCMRBQBwMxCFAHAoVD4PSERSaPwoGBgAAWa8EnA==
+  </data>
+ </layer>
+ <layer name="High" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDFdgBsTmQGxBJfPcgNgdiD2oZB4IhFPRrFFAXwAA1okB0g==
   </data>
  </layer>
 </map>
