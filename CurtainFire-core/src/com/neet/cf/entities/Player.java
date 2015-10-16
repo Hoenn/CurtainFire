@@ -101,7 +101,7 @@ public class Player
 		sb.draw(currentFrame, position.x, position.y);
 	}
 	public void update(float delta)
-	{		
+	{	
 		updateMove(delta);
 		//Keep Player on Grid		
 	}
@@ -186,6 +186,8 @@ public class Player
 				//Moving should be done by now, round off player's position
 				position.x = Math.round(position.x*TILE_WIDTH)/TILE_WIDTH;
 				position.y = Math.round(position.y*TILE_WIDTH)/TILE_WIDTH;
+
+
 			}
 		}
 	}
