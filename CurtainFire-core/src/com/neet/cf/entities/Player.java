@@ -29,7 +29,6 @@ public class Player
 	private boolean moving=false;
 	private float turnTimeCounter;
 	private final float turnTime= 1/16f;
-	private int pochey;
 		
 	public Player()
 	{
