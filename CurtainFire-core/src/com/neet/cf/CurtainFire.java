@@ -16,9 +16,6 @@ import com.neet.cf.screens.GameScreen;
 public class CurtainFire extends Game {
 	public static AssetManager manager;
 	public static BitmapFont font;
-	
-
-
 	@Override
 	public void create()
 	{
