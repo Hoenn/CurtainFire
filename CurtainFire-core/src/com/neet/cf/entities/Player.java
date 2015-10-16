@@ -22,8 +22,6 @@ public class Player
 	private final int TILE_WIDTH=16;
 	public int direction;
 	private final int UP=0, LEFT=1, DOWN=2, RIGHT=3;
-	private Texture texture;
-	private TextureRegion[] frames;
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
 	private TextureRegion[] idleFrames = new TextureRegion[4];
 	private TextureRegion currentFrame;
@@ -31,14 +29,13 @@ public class Player
 	private boolean moving=false;
 	private float turnTimeCounter;
 	private float turnTime= 1/16f;
-	
 		
 	public Player()
 	{
-		texture = CurtainFire.manager.get("player.png");
+		Texture texture = CurtainFire.manager.get("player.png");
 		TextureRegion[][] temp = TextureRegion.split(texture, 16, 20);
 
-		frames = new TextureRegion[temp.length* temp[0].length];
+		TextureRegion[] frames = new TextureRegion[temp.length* temp[0].length];
 		int z =0;
 		for(int r = 0; r<temp.length; r++)
 		{
@@ -104,28 +101,32 @@ public class Player
 		sb.draw(currentFrame, position.x, position.y);
 	}
 	public void update(float delta)
-	{
-		
-		
-			updateMove(delta);
-
-
-		//Keep Player on Grid
-	
-		
+	{		
+		updateMove(delta);
+		//Keep Player on Grid		
 	}
 	public void updateMove(float delta)
 	{
 		float overflowX = 0, overflowY = 0;
 		if (moving)
 		{
+			//If moving in x direction
 			if (moveVector.x != 0)
 			{
+				//modify position with moveVector+- direction
+				//use TILE_WIDTH * delta/MOVE_TIME to make this 
+				//movement gradual
 				position.x += moveVector.x * TILE_WIDTH * (delta / MOVE_TIME);
 				if ((moveVector.x < 0 && position.x <= destVector.x)
 						|| (moveVector.x > 0 && position.x >= destVector.x))
 				{
+					//If moved too far or too little find difference
+					//store as overflowX
+					//Major movement is done, only small overflow adjustment now
 					moving = false;
+					//Cannot be activating if moving, moveVector
+					//will only be set in the handleMove method called
+					//each frame
 					if(!isDown(BUTTON_A)&&moveVector.x==-1)
 						moveVector.x=0;
 					else if(!isDown(BUTTON_D)&&moveVector.x==1)
@@ -150,21 +151,26 @@ public class Player
 		}
 		if (!moving)
 		{
-			
-			
-			
+			//If there is a moveVector present			
 			if (moveVector.x != 0 || moveVector.y != 0)
 			{
+				//set move to true which will revert to top loop
 				moving = true;
-				destVector.x = Math.round(
-						(position.x + moveVector.x * TILE_WIDTH) / 16) * 16;
-				destVector.y = Math.round(
-						(position.y + moveVector.y * TILE_WIDTH) / 16) * 16;
-
+				//create a destination using moveVector.x/y +-
+				//Use rounding to ensure position's float values don't
+				//allow destVect to become an incorrect tile
+				//create rough point, round it, divide by 16, multiply 16, 
+				//this will guarantee the number as a factor of 16
+				destVector.x = Math.round((position.x + moveVector.x * TILE_WIDTH) / TILE_WIDTH) * TILE_WIDTH;
+				destVector.y = Math.round((position.y + moveVector.y * TILE_WIDTH) / TILE_WIDTH) * TILE_WIDTH;
+				
+				//If there is an overFlow
 				if (overflowX != 0 && destVector.x != position.x)
 				{
+					//If that overFlow is somewhat substantial
 					if (Math.abs(overflowX) > 0.001f)
 					{
+						//move using the overflow
 						updateMove(delta * (overflowX
 								/ (TILE_WIDTH * (delta / MOVE_TIME))));
 					}
@@ -176,6 +182,8 @@ public class Player
 								/ (TILE_WIDTH * (delta / MOVE_TIME))));
 
 				}
+				
+				//Moving should be done by now, round off player's position
 				position.x = Math.round(position.x*TILE_WIDTH)/TILE_WIDTH;
 				position.y = Math.round(position.y*TILE_WIDTH)/TILE_WIDTH;
 
