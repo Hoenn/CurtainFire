@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="tileset.png" trans="ff00ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="257" name="animatedTileset" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="animatedTileset.png" trans="ff00ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="513" name="specialTileset" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="specialTileset.png" trans="ff00ff" width="64" height="64"/>
+ </tileset>
+ <objectgroup name="Objects"/>
+ <layer name="Special" width="20" height="20" opacity="0.9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDHXAyISfTy3z0OmBMm8UDA4AAEMcAB8=
+  </data>
+ </layer>
+ <layer name="Background" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwTZ2BgEB/Fo3gUj+JRTDPMjoRBfA0kPJTNAwCdxCP6
+  </data>
+ </layer>
+ <layer name="Foreground" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzLkNgDAQRFG3ZDBHijlMagOG/ivhB9vAZiDtl14ywThnWdbf82jQIqCTvceAUfk3IWLGglX2DQm78i+j4MCJS/aKG4/yz/pGLyoHBm0=
+  </data>
+ </layer>
+</map>
