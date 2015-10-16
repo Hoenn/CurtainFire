@@ -30,6 +30,7 @@ public class Player
 	private float turnTimeCounter;
 	private final float turnTime= 1/16f;
 	private int hi;
+	private int bi;
 		
 	public Player()
 	{
