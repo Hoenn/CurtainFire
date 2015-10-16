@@ -18,7 +18,6 @@ public class Player
 	private Vector2 position= new Vector2(0,0);
 	private Vector2 destVector = new Vector2(0, 0);
 	private Vector2 moveVector= new Vector2(0,0);
-	private float currentTime = 0;
 	private final float MOVE_TIME= 0.35f;
 	private final int TILE_WIDTH=16;
 	public int direction;
@@ -28,7 +27,6 @@ public class Player
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
 	private TextureRegion[] idleFrames = new TextureRegion[4];
 	
-	private Animation currentAnimation;
 	private TextureRegion currentFrame;
 	private float stateTime;
 	private boolean moving=false;
@@ -84,8 +82,8 @@ public class Player
 		walks.add(DOWN, new Animation(MOVE_TIME/2, downWalk));
 		walks.add(RIGHT,new Animation(MOVE_TIME/2, rightWalk));
 		
-		currentAnimation = walks.get(UP);
-		currentFrame = idleFrames[UP];
+		direction=UP;
+		currentFrame = idleFrames[direction];
 		position = new Vector2(0, 0);
 
 	}
@@ -96,7 +94,7 @@ public class Player
 		if(moving)
 		{
 			stateTime += Gdx.graphics.getDeltaTime();         
-			currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+			currentFrame = walks.get(direction).getKeyFrame(stateTime, true);
 		}
 		else
 			currentFrame = idleFrames[direction];
@@ -264,14 +262,9 @@ public class Player
 	public void setDirection(int dir)
 	{
 		direction=dir;
-		currentAnimation=walks.get(dir);
 		currentFrame=idleFrames[dir];
 	}
-	public float calculateAlpha() {
-	    currentTime += Gdx.graphics.getDeltaTime();
-	    return currentTime/MOVE_TIME;
-	}
-	
+
 	public Vector2 getPosition()
 	{
 		return position;
