@@ -26,7 +26,6 @@ public class Player
 	private TextureRegion[] frames;
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
 	private TextureRegion[] idleFrames = new TextureRegion[4];
-	
 	private TextureRegion currentFrame;
 	private float stateTime;
 	private boolean moving=false;
@@ -84,6 +83,7 @@ public class Player
 		
 		direction=UP;
 		currentFrame = idleFrames[direction];
+
 		position = new Vector2(0, 0);
 
 	}
@@ -95,6 +95,7 @@ public class Player
 		{
 			stateTime += Gdx.graphics.getDeltaTime();         
 			currentFrame = walks.get(direction).getKeyFrame(stateTime, true);
+
 		}
 		else
 			currentFrame = idleFrames[direction];
@@ -264,6 +265,7 @@ public class Player
 		direction=dir;
 		currentFrame=idleFrames[dir];
 	}
+
 
 	public Vector2 getPosition()
 	{
