@@ -51,7 +51,7 @@ public class Player
 		TextureRegion[] rightWalk= new TextureRegion[4];
 		int k = 0;
 		for(int j =0; j<3; j++)
-		{
+		{ 
 			upWalk[k] = frames[j];
 			leftWalk[k] = frames[j+3];
 			TextureRegion mirror = new TextureRegion(frames[j+3]);
