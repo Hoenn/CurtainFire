@@ -15,17 +15,17 @@ import static com.neet.cf.handlers.GameInput.*;
 
 public class Player
 {
-	private Vector2 position= new Vector2(0,0);
-	private Vector2 destVector = new Vector2(0, 0);
-	private Vector2 moveVector= new Vector2(0,0);
-	private final float MOVE_TIME= 0.35f;
+	private Vector2 position, destVector, moveVector;	
+	private final float RUNSPEED = 0.20f;
+	private final float WALKSPEED = 0.39f;
+	private float MOVE_TIME= WALKSPEED;
 	private final int TILE_WIDTH=16;
 	public int direction;
 	private final int UP=0, LEFT=1, DOWN=2, RIGHT=3;
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
 	private TextureRegion[] idleFrames = new TextureRegion[4];
 	private TextureRegion currentFrame;
-	private float stateTime;
+	private float currentFrameTime;
 	private boolean moving=false;
 	private float turnTimeCounter;
 	private final float turnTime= 1/16f;
@@ -82,6 +82,8 @@ public class Player
 		currentFrame = idleFrames[direction];
 
 		position = new Vector2(0, 0);
+		destVector = new Vector2(0, 0);
+		moveVector = new Vector2(0,0);
 	}
 	public void draw(Batch sb)
 	{
@@ -89,9 +91,8 @@ public class Player
 		
 		if(moving)
 		{
-			stateTime += Gdx.graphics.getDeltaTime();         
-			currentFrame = walks.get(direction).getKeyFrame(stateTime, true);
-
+			currentFrameTime += Gdx.graphics.getDeltaTime();         
+			currentFrame = walks.get(direction).getKeyFrame(currentFrameTime, true);
 		}
 		else
 			currentFrame = idleFrames[direction];
@@ -196,6 +197,10 @@ public class Player
 	{
 		//If not facing in the direction pressed then face that direction
 		//If that direction is held for 1/16s while facing correctly then allow movement
+		if(isDown(BUTTON_SPACE))
+			MOVE_TIME=RUNSPEED;
+		else
+			MOVE_TIME=WALKSPEED;
 		if(!moving)
 		{
 			if(Gdx.input.isKeyJustPressed(Keys.W) && direction!=UP)
@@ -207,6 +212,7 @@ public class Player
 			{
 				
 					turnTimeCounter+=Gdx.graphics.getDeltaTime();
+					
 					if(turnTimeCounter>turnTime)
 					{
 						turnTimeCounter=0;
@@ -223,7 +229,6 @@ public class Player
 			}
 			else if(isDown(BUTTON_A))
 			{
-				
 					turnTimeCounter+=Gdx.graphics.getDeltaTime();
 					if(turnTimeCounter>turnTime)
 					{
