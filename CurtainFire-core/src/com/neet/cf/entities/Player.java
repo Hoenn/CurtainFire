@@ -71,6 +71,7 @@ public class Player
 		runs.add(DOWN, new Animation(Arrays.copyOfRange(runFrames, 6, 9), RUN_ANI_SPEED,true));
 		runs.add(RIGHT, new Animation(mirrorTextureRegionsY(Arrays.copyOfRange(runFrames, 3, 6)), RUN_ANI_SPEED, true));
 		
+		//Initialize Player facing upwards
 		direction=UP;
 		currentFrame = idleFrames[direction];
 
