@@ -9,6 +9,8 @@ public class Animation
 	private float delay;
 	private int currentFrame;
 	private int timesPlayed;
+	private boolean cycleFlip;
+	private boolean flipper;
 	
 	public Animation(){}
 	
@@ -19,6 +21,12 @@ public class Animation
 	public Animation(TextureRegion[] frames, float delay)
 	{
 		setFrames(frames, delay);
+	}
+	public Animation(TextureRegion[] frames, float delay, boolean cycleFlip)
+	{
+		setFrames(frames, delay);
+		this.cycleFlip= cycleFlip;
+		flipper=true;
 	}
 	public void setFrames(TextureRegion[] frames, float delay)
 	{
@@ -39,10 +47,28 @@ public class Animation
 	public void step()
 	{
 		time-=delay;
-		currentFrame++;
-		if(currentFrame==frames.length)
+		if(cycleFlip)
 		{
-			currentFrame=0;
+			if(flipper)
+			{
+				currentFrame++;
+				if(currentFrame==frames.length-1)
+					flipper=false;
+			}
+			else
+			{
+				currentFrame--;
+				if(currentFrame==0)
+					flipper=true;
+			}			
+		}
+		else
+		{
+			currentFrame++;
+			if(currentFrame==frames.length)
+			{
+				currentFrame=0;
+			}
 		}
 		timesPlayed++;
 	}
