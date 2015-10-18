@@ -100,11 +100,17 @@ public class Player
 	}
 	public void update(float delta)
 	{	
-		updateMove(delta);
+		if(moveVector.x!=0||moveVector.y!=0)
+			updateMove(delta);
+		//Occupy initial position and final position
+		//else
+			//Occupy final position only
 	}
 	public void updateMove(float delta)
 	{
 		float overflowX = 0, overflowY = 0;
+		
+
 		if (moving)
 		{
 			//If moving in x direction
@@ -169,7 +175,7 @@ public class Player
 						//move using the overflow
 						updateMove(delta * (overflowX
 								/ (TILE_WIDTH * (delta / MOVE_TIME))));
-					}
+					}				
 
 				} 
 				else if (overflowY != 0 && destVector.y != position.y)
