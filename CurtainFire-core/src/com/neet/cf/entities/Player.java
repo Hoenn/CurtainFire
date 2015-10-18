@@ -23,6 +23,7 @@ public class Player
 	public int direction;
 	private final int UP=0, LEFT=1, DOWN=2, RIGHT=3;
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
+	private ArrayList<Animation> runs = new ArrayList<Animation>();
 	private TextureRegion[] idleFrames = new TextureRegion[4];
 	private TextureRegion currentFrame;
 	private float currentFrameTime;
@@ -35,16 +36,14 @@ public class Player
 		Texture texture = CurtainFire.manager.get("player.png");
 		TextureRegion[][] temp = TextureRegion.split(texture, 16, 20);
 
-		TextureRegion[] frames = new TextureRegion[temp.length* temp[0].length];
+		TextureRegion[] frames = new TextureRegion[temp[0].length];
 		int z =0;
-		for(int r = 0; r<temp.length; r++)
+		for(int r = 0; r<temp[0].length; r++)
 		{
-			for(int c = 0; c<temp[0].length; c++)
-			{
-				frames[z] = temp[r][c];
+				frames[z] = temp[0][r];
 				z++;
-			}
 		}
+		
 		
 		TextureRegion[] upWalk = new TextureRegion[4];
 		TextureRegion[] downWalk= new TextureRegion[4];
@@ -78,6 +77,38 @@ public class Player
 		walks.add(DOWN, new Animation(MOVE_TIME/2, downWalk));
 		walks.add(RIGHT,new Animation(MOVE_TIME/2, rightWalk));
 		
+		TextureRegion[] runFrames = new TextureRegion[temp[0].length];
+		z=0;
+		for(int r =0; r<temp[0].length; r++)
+		{
+			runFrames[z] =temp[1][r];
+			z++;
+		}
+		TextureRegion[] upRun = new TextureRegion[4];
+		TextureRegion[] downRun= new TextureRegion[4];
+		TextureRegion[] leftRun= new TextureRegion[4];
+		TextureRegion[] rightRun= new TextureRegion[4];
+		k=0;
+		for(int j=0; j<3;j++)
+		{
+			upRun[k] = runFrames[j];
+			leftRun[k] = runFrames[j+3];
+			TextureRegion mirror = new TextureRegion(runFrames[j+3]);
+			mirror.flip(true, false);
+			rightRun[k] = mirror;
+			downRun[k] = runFrames[j+6];
+			k++;
+		}
+		upRun[3]=upRun[1];
+		leftRun[3]=leftRun[1];
+		downRun[3]=downRun[1];
+		rightRun[3]=rightRun[1];
+		runs.add(UP, new Animation(RUNSPEED/2, upRun));
+		runs.add(LEFT, new Animation(RUNSPEED/2, leftRun));
+		runs.add(DOWN, new Animation(RUNSPEED/2, downRun));
+		runs.add(RIGHT, new Animation(RUNSPEED/2, rightRun));
+		
+		
 		direction=UP;
 		currentFrame = idleFrames[direction];
 
@@ -91,8 +122,14 @@ public class Player
 		
 		if(moving)
 		{
-			currentFrameTime += Gdx.graphics.getDeltaTime();         
-			currentFrame = walks.get(direction).getKeyFrame(currentFrameTime, true);
+			currentFrameTime += Gdx.graphics.getDeltaTime();
+			if(MOVE_TIME==RUNSPEED)
+			{
+				currentFrame = runs.get(direction).getKeyFrame(currentFrameTime, true);
+
+			}
+			else
+				currentFrame = walks.get(direction).getKeyFrame(currentFrameTime, true);
 		}
 		else
 			currentFrame = idleFrames[direction];
