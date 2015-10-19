@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.Animation;
+import com.neet.cf.screens.GameScreen;
 
 import static com.neet.cf.handlers.GameInput.*;
 
@@ -76,6 +77,7 @@ public class Player
 		currentFrame = idleFrames[direction];
 
 		position = new Vector2(0, 0);
+		GameScreen.setPosition(position.x, position.y);
 		destVector = new Vector2(0, 0);
 		moveVector = new Vector2(0,0);
 	}
