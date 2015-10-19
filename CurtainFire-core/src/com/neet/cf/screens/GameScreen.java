@@ -17,7 +17,7 @@ public class GameScreen implements Screen
 {
 	private TiledMap currentMap;
 	private static int currentMapHeight;
-	private int currentMapWidth;
+	private static int currentMapWidth;
 	private final int BACKGROUND_LAYER=2;
 	private final int MIDDLEGROUND_LAYER=3;
 	private final int FOREGROUND_LAYER=4;
@@ -36,32 +36,56 @@ public class GameScreen implements Screen
 		currentMapWidth = props.get("width", Integer.class);
 		camera = new OrthographicCamera();
 		renderer = new OrthogonalTiledMapRenderer(currentMap);
-		player = new Player();
 		masterMap = new OverworldGrid(currentMapWidth,currentMapHeight);
 		TiledMapTileLayer specialLayer = (TiledMapTileLayer) currentMap.getLayers().get("Special");
-		for(int y=0; y<currentMapHeight; y++)
+		
+		for(int i=0; i<currentMapWidth; i++)
 		{
-			for(int x =0; x<currentMapWidth; x++)
+			for(int j=0; j<currentMapHeight; j++)
 			{
-				Cell c = specialLayer.getCell(x, y);
+				Cell c = specialLayer.getCell(i, j);
 				if(c!=null)
 				{
-					masterMap.setPos(x, currentMapHeight-1-y, 1);
+					masterMap.setPos(j,i, 1);
 				}
 				else
-					masterMap.setPos(x, currentMapHeight-1-y, 0);
-				System.out.print(masterMap.getPos(x, y));
+				{
+					masterMap.setPos(j,i, 0);
+				}
 			}
+		}
+		player = new Player();
+
+		
+				
+	}
+	public static boolean isOpen(int x, int y)
+	{
+		return masterMap.getPos(x, y)==0;
+	}
+	public static void printMap()
+	{
+		for(int i=0; i<currentMapWidth; i++)
+		{
+			for(int j=0;j<currentMapHeight; j++)
+				System.out.print(masterMap.getPos(i, j));
+			
 			System.out.println();
 		}
-		
 	}
-	public static void setPosition(float x, float y)
+	public static void addToMap(int x, int y) 
 	{
-		int TILE_WIDTH=16;
-		int a = Math.round(x*TILE_WIDTH)/TILE_WIDTH;
-		int b = Math.round(y*TILE_WIDTH)/TILE_WIDTH;
-		masterMap.setPos(a, currentMapHeight-1-b, 1);
+		try
+		{
+			if(masterMap.getPos(x, y)==0)
+				masterMap.setPos(x, y, 1);
+			else
+				throw new Exception("Occupied Space");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public void render(float delta)

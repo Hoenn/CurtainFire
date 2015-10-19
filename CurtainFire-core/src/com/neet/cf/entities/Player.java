@@ -31,6 +31,8 @@ public class Player
 	private TextureRegion[] idleFrames = new TextureRegion[4];
 	private TextureRegion currentFrame;
 	private boolean moving=false;
+	private int gridX;
+	private int gridY;
 	private float turnTimeCounter;
 	private final float turnTime= 1/16f;
 		
@@ -77,7 +79,10 @@ public class Player
 		currentFrame = idleFrames[direction];
 
 		position = new Vector2(0, 0);
-		GameScreen.setPosition(position.x, position.y);
+		gridX = (int) position.x;
+		gridY = (int) position.y;
+		GameScreen.addToMap(gridX,gridY);
+		
 		destVector = new Vector2(0, 0);
 		moveVector = new Vector2(0,0);
 	}
@@ -117,9 +122,8 @@ public class Player
 	{	
 		if(moveVector.x!=0||moveVector.y!=0)
 			updateMove(delta);
-		//Occupy initial position and final position
-		//else
-			//Occupy final position only
+		
+			
 	}
 	public void updateMove(float delta)
 	{
@@ -171,6 +175,7 @@ public class Player
 			//If there is a moveVector present			
 			if (moveVector.x != 0 || moveVector.y != 0)
 			{
+				
 				//set move to true which will revert to top loop
 				moving = true;
 				//create a destination using moveVector.x/y +-
@@ -219,6 +224,7 @@ public class Player
 		{
 			if(Gdx.input.isKeyJustPressed(Keys.W) && direction!=UP)
 			{
+				
 				setDirection(UP);
 				turnTimeCounter=0;
 			}
@@ -231,7 +237,9 @@ public class Player
 					{
 						turnTimeCounter=0;
 						if(moveVector.y==0)
+						{
 							moveVector.y=1;
+						}
 						setDirection(UP);
 					}					
 			}
@@ -248,7 +256,9 @@ public class Player
 					{
 						turnTimeCounter=0;
 						if(moveVector.x==0)
+						{
 							moveVector.x=-1;
+						}
 						setDirection(LEFT);
 					}					
 			}
@@ -265,7 +275,9 @@ public class Player
 					{
 						turnTimeCounter=0;
 						if(moveVector.y==0)
+						{
 							moveVector.y=-1;
+						}
 						setDirection(DOWN);
 					}					
 			}
@@ -282,7 +294,9 @@ public class Player
 					{
 						turnTimeCounter=0;
 						if(moveVector.x==0)
+						{
 							moveVector.x=1;
+						}
 						setDirection(RIGHT);
 					}					
 			}

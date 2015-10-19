@@ -12,10 +12,10 @@ public class OverworldGrid
 	}
 	public int getPos(int x, int y)
 	{
-		return grid[y][x];
+		return grid[height-1-x][y];
 	}
 	public void setPos(int x, int y, int set)
 	{
-		 grid[y][x]=set;
+		 grid[height-1-x][y]=set;
 	}
 }
