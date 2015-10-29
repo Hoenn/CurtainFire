@@ -1,5 +1,7 @@
 package com.neet.cf.screens;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -29,7 +31,7 @@ public class GameScreen implements Screen
 	private Player player;
 	@Override
 	public void show()
-	{
+	{		
 		currentMap = CurtainFire.manager.get("map001.tmx");
 		MapProperties props = currentMap.getProperties();
 		currentMapHeight = props.get("height", Integer.class);
@@ -56,12 +58,16 @@ public class GameScreen implements Screen
 		}
 		player = new Player();
 
-		
 				
 	}
 	public static boolean isOpen(int x, int y)
 	{
-		return masterMap.getPos(x, y)==0;
+		if(x<0||x>=currentMapWidth)
+			return false;
+		if(y<0||y>=currentMapHeight)
+			return false;
+		
+		return masterMap.getPos(y, x)==0;
 	}
 	public static void printMap()
 	{

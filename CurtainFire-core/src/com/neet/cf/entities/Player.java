@@ -81,7 +81,6 @@ public class Player
 		position = new Vector2(0, 0);
 		gridX = (int) position.x;
 		gridY = (int) position.y;
-		GameScreen.addToMap(gridX,gridY);
 		
 		destVector = new Vector2(0, 0);
 		moveVector = new Vector2(0,0);
@@ -119,99 +118,118 @@ public class Player
 		sb.draw(currentFrame, position.x, position.y);
 	}
 	public void update(float delta)
-	{	
-		if(moveVector.x!=0||moveVector.y!=0)
-			updateMove(delta);
-		
-			
-	}
-	public void updateMove(float delta)
-	{
-		float overflowX = 0, overflowY = 0;
-		
+	{		
 
-		if (moving)
+		if(moving)
 		{
-			//If moving in x direction
-			if (moveVector.x != 0)
+			System.out.println("Grid X: "+gridX);
+			System.out.println("Grid Y: "+gridY);
+
+			System.out.println(GameScreen.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y));
+			if(GameScreen.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y))
 			{
-				//modify position with moveVector+- direction
-				//use TILE_WIDTH * delta/MOVE_TIME to make this 
-				//movement gradual
-				position.x += moveVector.x * TILE_WIDTH * (delta / MOVE_TIME);
-				if ((moveVector.x < 0 && position.x <= destVector.x)
-						|| (moveVector.x > 0 && position.x >= destVector.x))
+				if(moveVector.x!=0)
 				{
-					//If moved too far or too little find difference
-					//store as overflowX
-					//Major movement is done, only small overflow adjustment now
-					moving = false;
-					//Cannot be activating if moving, moveVector
-					//will only be set in the handleMove method called
-					//each frame
-					if(!isDown(BUTTON_A)&&moveVector.x==-1)
-						moveVector.x=0;
-					else if(!isDown(BUTTON_D)&&moveVector.x==1)
-						moveVector.x=0;
-					overflowX = position.x - destVector.x;
-				}
-			} else if (moveVector.y != 0)
-			{
-				position.y += moveVector.y * TILE_WIDTH * (delta / MOVE_TIME);
-				if ((moveVector.y < 0 && position.y <= destVector.y)
-						|| (moveVector.y > 0 && position.y >= destVector.y))
-				{
-					moving = false;
-					if(!isDown(BUTTON_W)&&moveVector.y==1)
-						moveVector.y=0;
-					else if(!isDown(BUTTON_S)&&moveVector.y==-1)
-						moveVector.y=0;
-					overflowY = position.y - destVector.y;
-				}
-			}
-		}
-		if (!moving)
-		{
-			//If there is a moveVector present			
-			if (moveVector.x != 0 || moveVector.y != 0)
-			{
-				
-				//set move to true which will revert to top loop
-				moving = true;
-				//create a destination using moveVector.x/y +-
-				//Use rounding to ensure position's float values don't
-				//allow destVect to become an incorrect tile
-				//create rough point, round it, divide by 16, multiply 16, 
-				//this will guarantee the number as a factor of 16
-				destVector.x = Math.round((position.x + moveVector.x * TILE_WIDTH) / TILE_WIDTH) * TILE_WIDTH;
-				destVector.y = Math.round((position.y + moveVector.y * TILE_WIDTH) / TILE_WIDTH) * TILE_WIDTH;
-				
-				//If there is an overFlow
-				if (overflowX != 0 && destVector.x != position.x)
-				{
-					//If that overFlow is somewhat substantial
-					if (Math.abs(overflowX) > 0.001f)
+					
+					if(moveVector.x>0)
 					{
-						//move using the overflow
-						updateMove(delta * (overflowX
-								/ (TILE_WIDTH * (delta / MOVE_TIME))));
-					}				
-
-				} 
-				else if (overflowY != 0 && destVector.y != position.y)
-				{
-					if (Math.abs(overflowY) > 0.001f)
-						updateMove(delta * (overflowY
-								/ (TILE_WIDTH * (delta / MOVE_TIME))));
-
+						position.x += TILE_WIDTH*(delta/MOVE_TIME);
+						if(position.x>=destVector.x)
+						{
+							position.x=destVector.x;
+							gridX+=1;
+							if(isDown(BUTTON_D))
+							{
+								moveVector.x=1;
+								moving=true;
+								destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
+							}
+							else
+							{	moving=false;
+								moveVector.x=0;
+								destVector=null;
+							}
+						}
+					}
+					else if(moveVector.x<0)
+					{
+						position.x -= TILE_WIDTH*(delta/MOVE_TIME);
+						if(position.x<=destVector.x)
+						{
+							position.x=destVector.x;
+							System.out.println(gridX);
+							gridX-=1;
+							if(isDown(BUTTON_A))
+							{
+								moveVector.x=-1;
+								moving=true;
+								destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
+							}
+							else
+							{	moving=false;
+								moveVector.x=0;
+								destVector=null;
+							}
+						}
+					}
 				}
-				
-				//Moving should be done by now, round off player's position
-				position.x = Math.round(position.x*TILE_WIDTH)/TILE_WIDTH;
-				position.y = Math.round(position.y*TILE_WIDTH)/TILE_WIDTH;
+				else if (moveVector.y!=0)
+				{
+					if(moveVector.y>0)
+					{
+						position.y += TILE_WIDTH*(delta/MOVE_TIME);
+						if(position.y>=destVector.y)
+						{
+							position.y=destVector.y;
+							gridY+=1;
+							if(isDown(BUTTON_W))
+							{
+								moveVector.y=1;
+								moving=true;
+								destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
+							}
+							else
+							{	moving=false;
+								moveVector.y=0;
+								destVector=null;
+							}
+						}
+					}
+					else if(moveVector.y<0)
+					{
+						position.y -=TILE_WIDTH*(delta/MOVE_TIME);
+						if(position.y<=destVector.y)
+						{
+							gridY-=1;
+							position.y=destVector.y;
+							if(isDown(BUTTON_S))
+							{
+								moveVector.y=-1;
+								moving=true;
+								destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
+							}
+							else
+							{	moving=false;
+								moveVector.y=0;
+								destVector=null;
+							}
+							
+						}
+					}
+				}
 			}
+			else
+			{
+				moving=false;
+				moveVector.x=0;
+				moveVector.y=0;
+			}
+			System.out.println("Grid X: "+gridX);
+			System.out.println("Grid Y: "+gridY);
 		}
+	
 	}
+	
 	public void handleMove()
 	{
 		//If not facing in the direction pressed then face that direction
@@ -239,6 +257,8 @@ public class Player
 						if(moveVector.y==0)
 						{
 							moveVector.y=1;
+							moving=true;
+							destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
 						}
 						setDirection(UP);
 					}					
@@ -258,6 +278,9 @@ public class Player
 						if(moveVector.x==0)
 						{
 							moveVector.x=-1;
+							moving=true;
+							destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
+
 						}
 						setDirection(LEFT);
 					}					
@@ -277,6 +300,9 @@ public class Player
 						if(moveVector.y==0)
 						{
 							moveVector.y=-1;
+							moving=true;
+							destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
+
 						}
 						setDirection(DOWN);
 					}					
@@ -296,6 +322,8 @@ public class Player
 						if(moveVector.x==0)
 						{
 							moveVector.x=1;
+							moving=true;
+							destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
 						}
 						setDirection(RIGHT);
 					}					
