@@ -121,7 +121,6 @@ public class Player
 	{		
 		if(moving)
 		{
-			System.out.println(GameScreen.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y));
 			if(GameScreen.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y))
 			{
 				if(moveVector.x!=0)
@@ -151,7 +150,6 @@ public class Player
 						if(position.x<=destVector.x)
 						{
 							position.x=destVector.x;
-							System.out.println(gridX);
 							gridX-=1;
 							if(isDown(BUTTON_A))
 							{
