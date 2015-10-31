@@ -335,10 +335,15 @@ public class Player
 						destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
 						break;
 		}
+		GameScreen.handleGrass(gridX+(int)moveVector.x, gridY+(int)moveVector.y);
 	}
 	public Vector2 getPosition()
 	{
 		return position;
+	}
+	public Vector2 getGridPos()
+	{
+		return new Vector2(gridX, gridY);
 	}
 
 }
