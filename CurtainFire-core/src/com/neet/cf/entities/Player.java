@@ -119,13 +119,8 @@ public class Player
 	}
 	public void update(float delta)
 	{		
-
 		if(moving)
 		{
-			System.out.println("Grid X: "+gridX);
-			System.out.println("Grid Y: "+gridY);
-
-			System.out.println(GameScreen.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y));
 			if(GameScreen.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y))
 			{
 				if(moveVector.x!=0)
@@ -140,9 +135,7 @@ public class Player
 							gridX+=1;
 							if(isDown(BUTTON_D))
 							{
-								moveVector.x=1;
-								moving=true;
-								destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
+								startMove(RIGHT);
 							}
 							else
 							{	moving=false;
@@ -157,13 +150,10 @@ public class Player
 						if(position.x<=destVector.x)
 						{
 							position.x=destVector.x;
-							System.out.println(gridX);
 							gridX-=1;
 							if(isDown(BUTTON_A))
 							{
-								moveVector.x=-1;
-								moving=true;
-								destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
+								startMove(LEFT);
 							}
 							else
 							{	moving=false;
@@ -184,9 +174,7 @@ public class Player
 							gridY+=1;
 							if(isDown(BUTTON_W))
 							{
-								moveVector.y=1;
-								moving=true;
-								destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
+								startMove(UP);
 							}
 							else
 							{	moving=false;
@@ -204,9 +192,7 @@ public class Player
 							position.y=destVector.y;
 							if(isDown(BUTTON_S))
 							{
-								moveVector.y=-1;
-								moving=true;
-								destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
+								startMove(DOWN);
 							}
 							else
 							{	moving=false;
@@ -224,8 +210,6 @@ public class Player
 				moveVector.x=0;
 				moveVector.y=0;
 			}
-			System.out.println("Grid X: "+gridX);
-			System.out.println("Grid Y: "+gridY);
 		}
 	
 	}
@@ -256,9 +240,7 @@ public class Player
 						turnTimeCounter=0;
 						if(moveVector.y==0)
 						{
-							moveVector.y=1;
-							moving=true;
-							destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
+							startMove(UP);
 						}
 						setDirection(UP);
 					}					
@@ -277,9 +259,7 @@ public class Player
 						turnTimeCounter=0;
 						if(moveVector.x==0)
 						{
-							moveVector.x=-1;
-							moving=true;
-							destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
+							startMove(LEFT);
 
 						}
 						setDirection(LEFT);
@@ -299,10 +279,7 @@ public class Player
 						turnTimeCounter=0;
 						if(moveVector.y==0)
 						{
-							moveVector.y=-1;
-							moving=true;
-							destVector = new Vector2(position.x, position.y+(int)moveVector.y*TILE_WIDTH);
-
+							startMove(DOWN);
 						}
 						setDirection(DOWN);
 					}					
@@ -321,9 +298,7 @@ public class Player
 						turnTimeCounter=0;
 						if(moveVector.x==0)
 						{
-							moveVector.x=1;
-							moving=true;
-							destVector = new Vector2(position.x+(int)moveVector.x*TILE_WIDTH, position.y);
+							startMove(RIGHT);
 						}
 						setDirection(RIGHT);
 					}					
@@ -335,10 +310,40 @@ public class Player
 		direction=dir;
 		currentFrame=idleFrames[dir];
 	}
-	
+	private void startMove(int dir)
+	{
+		switch(dir)
+		{
+			case UP:
+						moveVector.y = 1;
+						moving = true;
+						destVector = new Vector2(position.x,position.y + (int) moveVector.y * TILE_WIDTH);
+						break;
+			case LEFT:
+						moveVector.x = -1;
+						moving = true;
+						destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
+						break;
+			case DOWN:
+						moveVector.y = -1;
+						moving = true;
+						destVector = new Vector2(position.x, position.y + (int) moveVector.y * TILE_WIDTH);
+						break;
+			case RIGHT:
+						moveVector.x = 1;
+						moving = true;
+						destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
+						break;
+		}
+		GameScreen.handleGrass(gridX+(int)moveVector.x, gridY+(int)moveVector.y);
+	}
 	public Vector2 getPosition()
 	{
 		return position;
+	}
+	public Vector2 getGridPos()
+	{
+		return new Vector2(gridX, gridY);
 	}
 
 }

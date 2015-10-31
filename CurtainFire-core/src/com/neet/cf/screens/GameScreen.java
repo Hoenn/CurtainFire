@@ -1,6 +1,6 @@
 package com.neet.cf.screens;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -8,27 +8,43 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.entities.Player;
 import com.neet.cf.handlers.OverworldGrid;
 
 public class GameScreen implements Screen
 {
-	private TiledMap currentMap;
+	private static TiledMap currentMap;
 	private static int currentMapHeight;
 	private static int currentMapWidth;
-	private final int BACKGROUND_LAYER=2;
+	private final int BACKGROUND_LAYER=1;
 	private final int MIDDLEGROUND_LAYER=3;
 	private final int FOREGROUND_LAYER=4;
+	
+	private final String ANIMATIONFRAMES_LAYER="animatedTileset";
+	private Array<StaticTiledMapTile> flowerTiles;
+	private static Array<TiledMapTile> grassTiles = new Array<TiledMapTile>();
+	private static TiledMapTile staticGrass;
+	private static TiledMapTile staticCutGrass;
+	private static Cell currentGrass;
+	private static Cell currentGrassFloor;	
+	float elapsedTimeSinceAnimation = 0.0f;
+	private static int currentAnimationFrame =0;
+	private static boolean animating = false;
 	
 	private static OverworldGrid masterMap;
 	
 	private OrthogonalTiledMapRenderer renderer;
 	private OrthographicCamera camera;
-	private Player player;
+	private static Player player;
 	@Override
 	public void show()
 	{		
@@ -56,9 +72,144 @@ public class GameScreen implements Screen
 				}
 			}
 		}
+		//Get a copy of the non animated grass tile
+		Iterator<TiledMapTile> tiles = currentMap.getTileSets().getTileSet("tileset").iterator();
+		boolean found = false;
+		while(!found&&tiles.hasNext())
+		{
+			TiledMapTile tile = tiles.next();
+			if(tile.getProperties().containsKey("GRASS"))
+			{
+				if(staticGrass==null)
+				{
+					found=true;
+					staticGrass=tile;
+				}
+			}
+			
+		}
+		//Make an animated tile out of the flower tile frames
+		//Gather frames for grass animation
+		flowerTiles = new Array<StaticTiledMapTile>();
+		tiles = currentMap.getTileSets().getTileSet("animatedTileset").iterator();
+		while(tiles.hasNext())
+		{
+			TiledMapTile tile = tiles.next();
+
+			if(tile.getProperties().containsKey("FLOWER"))
+			{
+				flowerTiles.add((StaticTiledMapTile)tile);
+			}
+			else if(tile.getProperties().containsKey("GRASS"))
+			{
+				grassTiles.add(tile);
+			}
+		}
+		//SPEED SHOULD BE FINAL
+		AnimatedTiledMapTile animatedTile = new AnimatedTiledMapTile(1/2f, flowerTiles);
+		TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("Low");
+		for(int x = 0; x<layer.getWidth(); x++)
+			for(int y =0; y<layer.getHeight(); y++)
+			{
+				Cell cell = layer.getCell(x, y);
+				if(cell!=null&&cell.getTile().getProperties().containsKey("FLOWER"))
+				{
+					cell.setTile(animatedTile);
+				}
+			}
+		
 		player = new Player();
 
 				
+	}
+	@Override
+	public void render(float delta)
+	{
+		handleInput();
+		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		renderer.setView(camera);
+
+		
+		AnimatedTiledMapTile.updateAnimationBaseTime();
+		
+		if(currentGrass!=null )
+		{
+
+			if(animating)
+			{
+				elapsedTimeSinceAnimation += Gdx.graphics.getDeltaTime();
+		        	if(elapsedTimeSinceAnimation > 1/10f){
+		        		updateGrassAnimation();
+		        		elapsedTimeSinceAnimation = 0.0f;
+		        	}
+			}
+
+		}
+		
+		//Render Order: BG -> Player, Sprites -> FG
+		//Object Layer will be turned into Sprites, render then
+		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
+		
+		//camera.position.set(player.getX(), player.getY(), 0);
+	    //camera.update();
+
+		renderer.getBatch().begin();
+		player.draw(renderer.getBatch());
+		renderer.getBatch().end();
+		
+		renderer.render(new int[]{FOREGROUND_LAYER});
+	}
+	private void updateGrassAnimation()
+	 {
+		if (currentAnimationFrame >= grassTiles.size)
+		{
+			//End of animation
+			animating=false;
+			currentAnimationFrame=0;
+			return;
+		}
+	
+		TiledMapTile newTile = grassTiles.get(currentAnimationFrame);
+		if(currentAnimationFrame == 0)
+			currentGrassFloor.setTile(newTile);
+		else
+			currentGrass.setTile(newTile);
+		
+		currentAnimationFrame++;
+	 }
+	    
+	public static void setGrassAnimation(int x, int y)
+	{
+		TiledMapTileLayer lower = (TiledMapTileLayer) currentMap.getLayers().get("Low");
+		TiledMapTileLayer upper = (TiledMapTileLayer) currentMap.getLayers().get("High");
+		Cell target = new Cell();
+		upper.setCell(x, y, target);
+		currentGrass=target;
+		
+		Cell targetLower = new Cell();
+		targetLower.setTile(staticGrass);
+		targetLower.getTile().getProperties().put("GRASS", null);
+		lower.setCell(x, y, targetLower);
+		
+		animating = true;
+		currentAnimationFrame=0;
+		currentGrassFloor = targetLower;
+	}
+	public static void replaceGrassTile(int x, int y)
+	{
+		TiledMapTileLayer lower = (TiledMapTileLayer) currentMap.getLayers().get("Low");
+		TiledMapTileLayer upper = (TiledMapTileLayer) currentMap.getLayers().get("High");
+		Cell target = new Cell();
+		upper.setCell(x, y, target);
+		target.setTile(null);
+		
+		currentGrass=null;
+		
+		Cell targetLower = new Cell();
+		targetLower.setTile(staticGrass);
+		targetLower.getTile().getProperties().put("GRASS", null);
+		lower.setCell(x, y, targetLower);
 	}
 	public static boolean isOpen(int x, int y)
 	{
@@ -66,8 +217,24 @@ public class GameScreen implements Screen
 			return false;
 		if(y<0||y>=currentMapHeight)
 			return false;
-		
+
 		return masterMap.getPos(y, x)==0;
+	}
+	public static void handleGrass(int x, int y)
+	{
+		TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("Low");
+		Cell targetCell = layer.getCell(x, y);
+		Vector2 grid = player.getGridPos();
+		Cell currentCell = layer.getCell((int)grid.x,(int) grid.y);
+		if(currentCell!=null && currentCell.getTile().getProperties().containsKey("GRASS"))
+		{		
+			replaceGrassTile((int) grid.x,(int)grid.y);
+		}
+		if(targetCell!=null &&targetCell.getTile().getProperties().containsKey("GRASS"))
+		{
+			setGrassAnimation(x, y);
+		}
+		
 	}
 	public static void printMap()
 	{
@@ -93,27 +260,7 @@ public class GameScreen implements Screen
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public void render(float delta)
-	{
-		handleInput();
-		Gdx.gl.glClearColor(0,0,0,1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		renderer.setView(camera);
 
-		//Render Order: BG -> Player, Sprites -> FG
-		//Object Layer will be turned into Sprites, render then
-		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
-		
-		//camera.position.set(player.getX(), player.getY(), 0);
-	    //camera.update();
-
-		renderer.getBatch().begin();
-		player.draw(renderer.getBatch());
-		renderer.getBatch().end();
-		
-		renderer.render(new int[]{FOREGROUND_LAYER});
-	}
 	private void handleInput()
 	{
 		player.handleMove();
