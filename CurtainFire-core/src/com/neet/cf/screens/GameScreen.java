@@ -2,6 +2,8 @@ package com.neet.cf.screens;
 
 import java.util.Iterator;
 
+import static com.neet.cf.util.CFVars.*;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -25,15 +27,12 @@ public class GameScreen implements Screen
 	private static TiledMap currentMap;
 	private static int currentMapHeight;
 	private static int currentMapWidth;
-	private final int BACKGROUND_LAYER=1;
-	private final int MIDDLEGROUND_LAYER=3;
-	private final int FOREGROUND_LAYER=4;
+
 	
-	private final String ANIMATIONFRAMES_LAYER="animatedTileset";
+	private final String ANIMATIONFRAMES="animatedTileset";
 	private Array<StaticTiledMapTile> flowerTiles;
 	private static Array<TiledMapTile> grassTiles = new Array<TiledMapTile>();
 	private static TiledMapTile staticGrass;
-	private static TiledMapTile staticCutGrass;
 	private static Cell currentGrass;
 	private static Cell currentGrassFloor;	
 	float elapsedTimeSinceAnimation = 0.0f;
@@ -53,9 +52,10 @@ public class GameScreen implements Screen
 		currentMapHeight = props.get("height", Integer.class);
 		currentMapWidth = props.get("width", Integer.class);
 		camera = new OrthographicCamera();
+		camera.zoom = 0.5f;
 		renderer = new OrthogonalTiledMapRenderer(currentMap);
 		masterMap = new OverworldGrid(currentMapWidth,currentMapHeight);
-		TiledMapTileLayer specialLayer = (TiledMapTileLayer) currentMap.getLayers().get("Special");
+		TiledMapTileLayer specialLayer = (TiledMapTileLayer) currentMap.getLayers().get(SPECIAL_LAYER);
 		
 		for(int i=0; i<currentMapWidth; i++)
 		{
@@ -91,7 +91,7 @@ public class GameScreen implements Screen
 		//Make an animated tile out of the flower tile frames
 		//Gather frames for grass animation
 		flowerTiles = new Array<StaticTiledMapTile>();
-		tiles = currentMap.getTileSets().getTileSet("animatedTileset").iterator();
+		tiles = currentMap.getTileSets().getTileSet(ANIMATIONFRAMES).iterator();
 		while(tiles.hasNext())
 		{
 			TiledMapTile tile = tiles.next();
@@ -106,8 +106,8 @@ public class GameScreen implements Screen
 			}
 		}
 		//SPEED SHOULD BE FINAL
-		AnimatedTiledMapTile animatedTile = new AnimatedTiledMapTile(1/2f, flowerTiles);
-		TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("Low");
+		AnimatedTiledMapTile animatedTile = new AnimatedTiledMapTile(FLOWER_ANIMATION_SPEED , flowerTiles);
+		TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get(BACKGROUND_LAYER);
 		for(int x = 0; x<layer.getWidth(); x++)
 			for(int y =0; y<layer.getHeight(); y++)
 			{
@@ -139,7 +139,7 @@ public class GameScreen implements Screen
 			if(animating)
 			{
 				elapsedTimeSinceAnimation += Gdx.graphics.getDeltaTime();
-		        	if(elapsedTimeSinceAnimation > 1/10f){
+		        	if(elapsedTimeSinceAnimation > GRASS_ANIMATION_SPEED){
 		        		updateGrassAnimation();
 		        		elapsedTimeSinceAnimation = 0.0f;
 		        	}
@@ -147,12 +147,12 @@ public class GameScreen implements Screen
 
 		}
 		
-		//Render Order: BG -> Player, Sprites -> FG
+		//Render Order: BG -> Player, Sprites -> FGd
 		//Object Layer will be turned into Sprites, render then
 		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
 		
-		//camera.position.set(player.getX(), player.getY(), 0);
-	    //camera.update();
+		camera.position.set(player.getPosition().x, player.getPosition().y, 0);
+		camera.update();
 
 		renderer.getBatch().begin();
 		player.draw(renderer.getBatch());
@@ -181,8 +181,8 @@ public class GameScreen implements Screen
 	    
 	public static void setGrassAnimation(int x, int y)
 	{
-		TiledMapTileLayer lower = (TiledMapTileLayer) currentMap.getLayers().get("Low");
-		TiledMapTileLayer upper = (TiledMapTileLayer) currentMap.getLayers().get("High");
+		TiledMapTileLayer lower = (TiledMapTileLayer) currentMap.getLayers().get(BACKGROUND_LAYER);
+		TiledMapTileLayer upper = (TiledMapTileLayer) currentMap.getLayers().get(FOREGROUND_LAYER);
 		Cell target = new Cell();
 		upper.setCell(x, y, target);
 		currentGrass=target;
@@ -198,8 +198,8 @@ public class GameScreen implements Screen
 	}
 	public static void replaceGrassTile(int x, int y)
 	{
-		TiledMapTileLayer lower = (TiledMapTileLayer) currentMap.getLayers().get("Low");
-		TiledMapTileLayer upper = (TiledMapTileLayer) currentMap.getLayers().get("High");
+		TiledMapTileLayer lower = (TiledMapTileLayer) currentMap.getLayers().get(BACKGROUND_LAYER);
+		TiledMapTileLayer upper = (TiledMapTileLayer) currentMap.getLayers().get(FOREGROUND_LAYER);
 		Cell target = new Cell();
 		upper.setCell(x, y, target);
 		target.setTile(null);
@@ -222,7 +222,7 @@ public class GameScreen implements Screen
 	}
 	public static void handleGrass(int x, int y)
 	{
-		TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get("Low");
+		TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get(BACKGROUND_LAYER);
 		Cell targetCell = layer.getCell(x, y);
 		Vector2 grid = player.getGridPos();
 		Cell currentCell = layer.getCell((int)grid.x,(int) grid.y);

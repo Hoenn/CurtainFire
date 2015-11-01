@@ -18,8 +18,8 @@ import static com.neet.cf.handlers.GameInput.*;
 public class Player
 {
 	private Vector2 position, destVector, moveVector;	
-	private final float RUNSPEED = 0.20f;
-	private final float WALKSPEED = 0.39f;
+	private final float RUNSPEED = 0.18f;
+	private final float WALKSPEED = 0.36f;
 	private float MOVE_TIME= WALKSPEED;
 	private final int TILE_WIDTH=16;
 	public int direction;
