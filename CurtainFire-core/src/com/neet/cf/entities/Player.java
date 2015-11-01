@@ -2,7 +2,7 @@ package com.neet.cf.entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import static com.neet.cf.util.CFVars.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -21,7 +21,7 @@ public class Player
 	private final float RUNSPEED = 0.18f;
 	private final float WALKSPEED = 0.36f;
 	private float MOVE_TIME= WALKSPEED;
-	private final int TILE_WIDTH=16;
+	
 	public int direction;
 	private final int UP=0, LEFT=1, DOWN=2, RIGHT=3;
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
@@ -30,6 +30,7 @@ public class Player
 	private ArrayList<Animation> runs = new ArrayList<Animation>();
 	private TextureRegion[] idleFrames = new TextureRegion[4];
 	private TextureRegion currentFrame;
+	
 	private boolean moving=false;
 	private int gridX;
 	private int gridY;

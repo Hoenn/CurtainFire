@@ -28,14 +28,13 @@ public class GameScreen implements Screen
 	private static int currentMapHeight;
 	private static int currentMapWidth;
 
-	
 	private final String ANIMATIONFRAMES="animatedTileset";
 	private Array<StaticTiledMapTile> flowerTiles;
 	private static Array<TiledMapTile> grassTiles = new Array<TiledMapTile>();
 	private static TiledMapTile staticGrass;
 	private static Cell currentGrass;
 	private static Cell currentGrassFloor;	
-	float elapsedTimeSinceAnimation = 0.0f;
+	private float elapsedTimeSinceAnimation = 0.0f;
 	private static int currentAnimationFrame =0;
 	private static boolean animating = false;
 	
@@ -105,7 +104,6 @@ public class GameScreen implements Screen
 				grassTiles.add(tile);
 			}
 		}
-		//SPEED SHOULD BE FINAL
 		AnimatedTiledMapTile animatedTile = new AnimatedTiledMapTile(FLOWER_ANIMATION_SPEED , flowerTiles);
 		TiledMapTileLayer layer = (TiledMapTileLayer) currentMap.getLayers().get(BACKGROUND_LAYER);
 		for(int x = 0; x<layer.getWidth(); x++)
