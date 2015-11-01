@@ -22,8 +22,10 @@ import com.neet.cf.CurtainFire;
 import com.neet.cf.entities.Player;
 import com.neet.cf.handlers.OverworldGrid;
 
-public class GameScreen implements Screen
+public class OverWorld implements Screen
 {
+	private CurtainFire cf;
+	
 	private static TiledMap currentMap;
 	private static int currentMapHeight;
 	private static int currentMapWidth;
@@ -43,6 +45,10 @@ public class GameScreen implements Screen
 	private OrthogonalTiledMapRenderer renderer;
 	private OrthographicCamera camera;
 	private static Player player;
+	public OverWorld(CurtainFire game)
+	{
+		cf=game;
+	}
 	@Override
 	public void show()
 	{		

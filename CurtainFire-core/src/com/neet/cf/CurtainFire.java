@@ -6,12 +6,10 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.neet.cf.handlers.GameInput;
 import com.neet.cf.handlers.GameInputProcessor;
-import com.neet.cf.screens.GameScreen;
+import com.neet.cf.screens.MainMenuScreen;
 
 public class CurtainFire extends Game {
 	public static AssetManager manager;
@@ -26,8 +24,9 @@ public class CurtainFire extends Game {
 		manager.finishLoading();
 		Gdx.input.setInputProcessor(new GameInputProcessor());
 		
-		setScreen(new GameScreen());
+		setScreen(new MainMenuScreen(this));
 	}
+
 	@Override
 	public void dispose()
 	{

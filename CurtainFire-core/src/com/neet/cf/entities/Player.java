@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.Animation;
-import com.neet.cf.screens.GameScreen;
+import com.neet.cf.screens.OverWorld;
 
 import static com.neet.cf.handlers.GameInput.*;
 
@@ -122,7 +122,7 @@ public class Player
 	{		
 		if(moving)
 		{
-			if(GameScreen.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y))
+			if(OverWorld.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y))
 			{
 				if(moveVector.x!=0)
 				{
@@ -336,7 +336,7 @@ public class Player
 						destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
 						break;
 		}
-		GameScreen.handleGrass(gridX+(int)moveVector.x, gridY+(int)moveVector.y);
+		OverWorld.handleGrass(gridX+(int)moveVector.x, gridY+(int)moveVector.y);
 	}
 	public Vector2 getPosition()
 	{
