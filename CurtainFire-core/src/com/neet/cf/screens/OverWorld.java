@@ -155,11 +155,11 @@ public class OverWorld implements Screen
 		//Render Order: BG -> Player, Sprites -> FGd
 		//Object Layer will be turned into Sprites, render then
 		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
-		float lerp = 0.05f;
+
 		
 		Vector3 position = camera.position;
-		position.x += (player.getPosition().x - position.x) * lerp;
-		position.y += (player.getPosition().y - position.y) * lerp;
+		position.x += (player.getPosition().x - position.x) * OVERWORLDCAMERA_LERP;
+		position.y += (player.getPosition().y - position.y) *OVERWORLDCAMERA_LERP;
 		camera.position.set(position);
 		
 		
