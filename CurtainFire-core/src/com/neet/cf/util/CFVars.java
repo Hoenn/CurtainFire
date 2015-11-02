@@ -1,6 +1,5 @@
 package com.neet.cf.util;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class CFVars
 {	
@@ -11,6 +10,5 @@ public class CFVars
 	public final static float GRASS_ANIMATION_SPEED= 0.1818f;
 	public final static float FLOWER_ANIMATION_SPEED = 0.5f;
 	public static final int TILE_WIDTH = 16;
-	public static final BitmapFont font = new BitmapFont();
 	
 }
