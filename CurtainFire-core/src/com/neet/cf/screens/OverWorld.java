@@ -17,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.entities.Player;
@@ -154,8 +155,14 @@ public class OverWorld implements Screen
 		//Render Order: BG -> Player, Sprites -> FGd
 		//Object Layer will be turned into Sprites, render then
 		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
+		float lerp = 0.05f;
 		
-		camera.position.set(player.getPosition().x, player.getPosition().y, 0);
+		Vector3 position = camera.position;
+		position.x += (player.getPosition().x - position.x) * lerp;
+		position.y += (player.getPosition().y - position.y) * lerp;
+		camera.position.set(position);
+		
+		
 		camera.update();
 
 		renderer.getBatch().begin();

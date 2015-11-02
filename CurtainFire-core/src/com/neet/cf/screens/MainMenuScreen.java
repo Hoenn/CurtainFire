@@ -38,7 +38,7 @@ public class MainMenuScreen implements Screen
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		font.draw(batch, "Hello World", 200, 200);
+		font.draw(batch, "Press Z", 300, 300);
 		batch.end();
 		
 	}
@@ -47,6 +47,7 @@ public class MainMenuScreen implements Screen
 		if(isDown(BUTTON_Z))
 		{
 			cf.setScreen(new OverWorld(cf));
+			
 		}
 	}
 	@Override
@@ -80,7 +81,7 @@ public class MainMenuScreen implements Screen
 	@Override
 	public void dispose()
 	{
-
+		
 	}
 
 }
