@@ -114,7 +114,9 @@ public class Player
 			}
 		}
 		else
+		{
 			currentFrame = idleFrames[direction];
+		}
 		
 		sb.draw(currentFrame, position.x, position.y);
 	}
