@@ -36,7 +36,7 @@ public class OverWorld implements Screen
 	private static TiledMapTile staticGrass;
 	private static Cell currentGrass;
 	private static Cell currentGrassFloor;	
-	private float elapsedTimeSinceAnimation = 0.0f;
+	private static float elapsedTimeSinceAnimation = 0.0f;
 	private static int currentAnimationFrame =0;
 	private static boolean animating = false;
 	
@@ -170,6 +170,7 @@ public class OverWorld implements Screen
 		{
 			//End of animation
 			animating=false;
+			elapsedTimeSinceAnimation=0;
 			currentAnimationFrame=0;
 			return;
 		}
@@ -198,6 +199,7 @@ public class OverWorld implements Screen
 		
 		animating = true;
 		currentAnimationFrame=0;
+		elapsedTimeSinceAnimation=0;
 		currentGrassFloor = targetLower;
 	}
 	public static void replaceGrassTile(int x, int y)
