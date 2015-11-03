@@ -10,6 +10,6 @@ public class CFVars
 	public static final float GRASS_ANIMATION_SPEED= 0.1818f;
 	public static final  float FLOWER_ANIMATION_SPEED = 0.5f;
 	public static final int TILE_WIDTH = 16;
-	public static final float OVERWORLDCAMERA_LERP = 0.03f;
+	public static final float OVERWORLDCAMERA_LERP = 0.1f;
 	
 }

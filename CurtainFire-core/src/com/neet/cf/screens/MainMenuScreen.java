@@ -10,44 +10,35 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.neet.cf.CurtainFire;
+import com.neet.cf.handlers.GameScreenManager;
 
-public class MainMenuScreen implements Screen
+public class MainMenuScreen extends GameScreen
 {
 	private OrthographicCamera camera;
-	private CurtainFire cf;
-	private SpriteBatch batch;
     private BitmapFont font;
-	public MainMenuScreen(CurtainFire game)
+    private SpriteBatch batch;
+	public MainMenuScreen(GameScreenManager gsm)
 	{
-		cf=game;
-		batch = new SpriteBatch();    
+		super(gsm);
+
+		batch = new SpriteBatch();
 		font = new BitmapFont();
 	}
 	@Override
-	public void show()
+	public void render()
 	{
-		camera = new OrthographicCamera();
-		camera.zoom=0.5f;
-	}
-
-	@Override
-	public void render(float delta)
-	{
-
-		handleInput();
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		font.draw(batch, "Press Z", 300, 300);
+		batch.setColor(Color.WHITE);
+		font.draw(batch,"Press Z", 300, 300);
 		batch.end();
-		
 	}
 	public void handleInput()
 	{
 		if(isDown(BUTTON_Z))
 		{
-			cf.setScreen(new OverWorld(cf));
-			
+			gsm.setScreen(gsm.OVERWORLD);	
 		}
 	}
 	@Override
@@ -70,7 +61,10 @@ public class MainMenuScreen implements Screen
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
+	public void show()
+	{
+	}
 	@Override
 	public void hide()
 	{
@@ -83,5 +77,12 @@ public class MainMenuScreen implements Screen
 	{
 		
 	}
+	@Override
+	public void update(float dt)
+	{
+		handleInput();
+		
+	}
+
 
 }

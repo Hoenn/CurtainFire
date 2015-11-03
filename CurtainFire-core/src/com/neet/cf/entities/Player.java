@@ -98,7 +98,6 @@ public class Player
 	}
 	public void draw(Batch sb)
 	{
-		update(Gdx.graphics.getDeltaTime());
 		
 		if(moving)
 		{

@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -22,10 +23,11 @@ import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.entities.Player;
 import com.neet.cf.handlers.GameInput;
+import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.OverworldGrid;
 import com.neet.cf.screens.TransitionScreen.TransitionType;
 
-public class OverWorld implements Screen
+public class OverWorld extends GameScreen
 {
 	private CurtainFire cf;
 	
@@ -45,18 +47,16 @@ public class OverWorld implements Screen
 	private static OverworldGrid masterMap;
 	
 	private OrthogonalTiledMapRenderer renderer;
-	private OrthographicCamera camera;
 	private static Player player;
-	public OverWorld(CurtainFire game)
+	public OverWorld(GameScreenManager gsm)
 	{
-		cf=game;
+		super(gsm);
 		player = new Player();
 		currentMap = CurtainFire.manager.get("map001.tmx");
 		MapProperties props = currentMap.getProperties();
 		currentMapHeight = props.get("height", Integer.class);
 		currentMapWidth = props.get("width", Integer.class);
-		camera = new OrthographicCamera();
-		camera.zoom = 0.5f;
+
 		renderer = new OrthogonalTiledMapRenderer(currentMap);
 		masterMap = new OverworldGrid(currentMapWidth,currentMapHeight);
 		TiledMapTileLayer specialLayer = (TiledMapTileLayer) currentMap.getLayers().get(SPECIAL_LAYER);
@@ -121,24 +121,32 @@ public class OverWorld implements Screen
 				}
 			}
 		
-		
 
 	}
 	@Override
-	public void show()
-	{		
-				
+	public void update(float dt)
+	{
+		handleInput();
+		player.update(Gdx.graphics.getDeltaTime());
+		
+		
 	}
 	@Override
-	public void render(float delta)
+	public void render()
 	{
 
-		handleInput();
+	
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	
-		renderer.setView(camera);
+		renderer.setView(cam);
 
 		
+		Vector3 position = cam.position;
+		position.x += (player.getPosition().x - position.x) * OVERWORLDCAMERA_LERP;
+		position.y += (player.getPosition().y - position.y) *OVERWORLDCAMERA_LERP;
+		cam.position.set(position);
+		cam.update();
+
 		AnimatedTiledMapTile.updateAnimationBaseTime();
 		
 		if(currentGrass!=null )
@@ -158,23 +166,16 @@ public class OverWorld implements Screen
 		//Render Order: BG -> Player, Sprites -> FGd
 		//Object Layer will be turned into Sprites, render then
 		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
+	
+		//renderer.getBatch().begin();
+		sb.setProjectionMatrix(cam.combined);	
 
-		
-		Vector3 position = camera.position;
-		position.x += (player.getPosition().x - position.x) * OVERWORLDCAMERA_LERP;
-		position.y += (player.getPosition().y - position.y) *OVERWORLDCAMERA_LERP;
-		camera.position.set(position);
-		
-		
-		camera.update();
-
-		renderer.getBatch().begin();	
-			player.draw(renderer.getBatch());
-		renderer.getBatch().end();
+		sb.begin();
+		player.draw(sb);
+		sb.end();
 		
 		renderer.render(new int[]{FOREGROUND_LAYER});
-		}
-	
+	}
 	private void updateGrassAnimation()
 	 {
 		if (currentAnimationFrame >= grassTiles.size)
@@ -278,21 +279,15 @@ public class OverWorld implements Screen
 		}
 	}
 
-	private void handleInput()
+	public void handleInput()
 	{
 		if(GameInput.isDown(GameInput.BUTTON_R))
 		{
-			cf.setScreen(new TransitionScreen(cf, this, TransitionType.FadeOut));
+			gsm.transitionScreens(this, gsm.START, TransitionType.RectUp);
 		}
 		player.handleMove();
 	}
-	@Override
-	public void resize(int width, int height)
-	{
-		camera.viewportWidth=width;
-		camera.viewportHeight=height;
-		camera.update();
-	}
+
 
 	@Override
 	public void pause()
@@ -317,6 +312,11 @@ public class OverWorld implements Screen
 		//currentMap.dispose();
 		//renderer.dispose();
 
+	}
+	@Override
+	public void show()
+	{		
+				
 	}
 
 }
