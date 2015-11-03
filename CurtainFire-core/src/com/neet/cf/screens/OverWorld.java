@@ -21,7 +21,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.entities.Player;
+import com.neet.cf.handlers.GameInput;
 import com.neet.cf.handlers.OverworldGrid;
+import com.neet.cf.screens.TransitionScreen.TransitionType;
 
 public class OverWorld implements Screen
 {
@@ -30,7 +32,6 @@ public class OverWorld implements Screen
 	private static TiledMap currentMap;
 	private static int currentMapHeight;
 	private static int currentMapWidth;
-
 	private final String ANIMATIONFRAMES="animatedTileset";
 	private Array<StaticTiledMapTile> flowerTiles;
 	private static Array<TiledMapTile> grassTiles = new Array<TiledMapTile>();
@@ -49,10 +50,7 @@ public class OverWorld implements Screen
 	public OverWorld(CurtainFire game)
 	{
 		cf=game;
-	}
-	@Override
-	public void show()
-	{		
+		player = new Player();
 		currentMap = CurtainFire.manager.get("map001.tmx");
 		MapProperties props = currentMap.getProperties();
 		currentMapHeight = props.get("height", Integer.class);
@@ -123,16 +121,21 @@ public class OverWorld implements Screen
 				}
 			}
 		
-		player = new Player();
+		
 
+	}
+	@Override
+	public void show()
+	{		
 				
 	}
 	@Override
 	public void render(float delta)
 	{
+
 		handleInput();
 		Gdx.gl.glClearColor(0,0,0,1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	
 		renderer.setView(camera);
 
 		
@@ -165,12 +168,13 @@ public class OverWorld implements Screen
 		
 		camera.update();
 
-		renderer.getBatch().begin();
-		player.draw(renderer.getBatch());
+		renderer.getBatch().begin();	
+			player.draw(renderer.getBatch());
 		renderer.getBatch().end();
 		
 		renderer.render(new int[]{FOREGROUND_LAYER});
-	}
+		}
+	
 	private void updateGrassAnimation()
 	 {
 		if (currentAnimationFrame >= grassTiles.size)
@@ -276,6 +280,10 @@ public class OverWorld implements Screen
 
 	private void handleInput()
 	{
+		if(GameInput.isDown(GameInput.BUTTON_R))
+		{
+			cf.setScreen(new TransitionScreen(cf, this, TransitionType.FadeOut));
+		}
 		player.handleMove();
 	}
 	@Override
@@ -289,7 +297,6 @@ public class OverWorld implements Screen
 	@Override
 	public void pause()
 	{
-		
 	}
 
 	@Override
@@ -307,8 +314,8 @@ public class OverWorld implements Screen
 	@Override
 	public void dispose()
 	{
-		currentMap.dispose();
-		renderer.dispose();
+		//currentMap.dispose();
+		//renderer.dispose();
 
 	}
 
