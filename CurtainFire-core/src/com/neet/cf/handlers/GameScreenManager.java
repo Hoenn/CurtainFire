@@ -13,10 +13,10 @@ public class GameScreenManager
 	
 	private GameScreen[] gameScreens;
 	
-	public final int NUMSTATES=3;
+	public final int NUMSTATES=2;
 	public final int START=0;
 	public final int OVERWORLD = 1;
-	public final int TRANSITION=2;
+
 	
 	private int currentScreen;
 	
