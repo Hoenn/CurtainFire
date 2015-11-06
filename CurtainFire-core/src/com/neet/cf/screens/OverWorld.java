@@ -53,6 +53,8 @@ public class OverWorld extends GameScreen
 	{
 		super(gsm);
 		player = new Player();
+		cam.position.set(new Vector3(player.getPosition(), 0));
+		cam.update();
 		currentMap = CurtainFire.manager.get("map001.tmx");
 		MapProperties props = currentMap.getProperties();
 		currentMapHeight = props.get("height", Integer.class);
