@@ -130,9 +130,7 @@ public class OverWorld extends GameScreen
 	public void update(float dt)
 	{
 		handleInput();
-		player.update(Gdx.graphics.getDeltaTime());
-		
-		
+		player.update(Gdx.graphics.getDeltaTime());	
 	}
 	@Override
 	public void render()
@@ -184,16 +182,18 @@ public class OverWorld extends GameScreen
 			animating=false;
 			elapsedTimeSinceAnimation=0;
 			currentAnimationFrame=0;
-			return;
+			
 		}
-	
-		TiledMapTile newTile = grassTiles.get(currentAnimationFrame);
-		if(currentAnimationFrame == 0)
-			currentGrassFloor.setTile(newTile);
 		else
-			currentGrass.setTile(newTile);
-		
-		currentAnimationFrame++;
+		{
+			TiledMapTile newTile = grassTiles.get(currentAnimationFrame);
+			if(currentAnimationFrame == 0)
+				currentGrassFloor.setTile(newTile);
+			else
+				currentGrass.setTile(newTile);
+			
+			currentAnimationFrame++;
+		}
 	 }
 	    
 	public static void setGrassAnimation(int x, int y)
