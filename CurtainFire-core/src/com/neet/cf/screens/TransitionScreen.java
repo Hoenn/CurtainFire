@@ -8,34 +8,21 @@ import com.badlogic.gdx.math.Rectangle;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameInput;
 import com.neet.cf.handlers.GameScreenManager;
+import com.neet.cf.handlers.Transition;
 
 public class TransitionScreen extends GameScreen
 {
-	public enum TransitionType {
-		RectUp, FadeIn, Flash
-	}
-	private TransitionType currentTransition;
-	private CurtainFire cf;
-	private Color transitionColor;
-	private OrthographicCamera camera;
+
 	private int nextScreen;
 	private GameScreen prevScreen;
-	private ShapeRenderer sr;
-	private Rectangle growingRectangle;
-	private float rectangleTimer = 0f;
-	private boolean done = false;
-	private float rectangleTick = .05f;
-	public TransitionScreen(GameScreenManager gsm, GameScreen p, int s, TransitionType ct)
+	private Transition transition;
+	public TransitionScreen(GameScreenManager gsm, GameScreen p, int s, Transition t)
 	{
 		
 		super(gsm);
-		p.render();
 		nextScreen=s;
 		prevScreen=p;
-		currentTransition = ct;
-		transitionColor = new Color(0,0,0,0);
-		sr = new ShapeRenderer();
-		growingRectangle = new Rectangle(0, 0, CurtainFire.width, 16);
+		transition = t;
 		
 	}
 
@@ -43,38 +30,13 @@ public class TransitionScreen extends GameScreen
 	public void update(float delta)
 	{
 		prevScreen.render();
-
-		if(done)
+		transition.update(delta);
+		if(transition.isComplete())
+		{
+			transition.dispose();
 			gsm.setScreen(nextScreen);
-		switch(currentTransition)
-		{
-			case RectUp: 	rectUp(delta);
-							break;
-			case FadeIn:
-							break;
-			case Flash:
-							break;
-		}	
-		
-	}
-	private void rectUp(float delta)
-	{
-	
-		if(growingRectangle.getHeight()>=CurtainFire.height+16)
-		{
-			done=true;
 		}
 		
-		rectangleTimer+=delta;
-		if(rectangleTimer>rectangleTick)
-		{
-			growingRectangle.height+=16;
-			rectangleTimer=0;
-		}
-		sr.begin(ShapeType.Filled);
-		sr.setColor(new Color(0,0,0,0));
-		sr.rect(growingRectangle.x, growingRectangle.y, growingRectangle.width, growingRectangle.height);
-		sr.end();
 		
 	}
 	@Override

@@ -5,7 +5,6 @@ import com.neet.cf.screens.GameScreen;
 import com.neet.cf.screens.MainMenuScreen;
 import com.neet.cf.screens.OverWorld;
 import com.neet.cf.screens.TransitionScreen;
-import com.neet.cf.screens.TransitionScreen.TransitionType;
 
 public class GameScreenManager 
 {
@@ -48,7 +47,7 @@ public class GameScreenManager
 		if(screen==OVERWORLD) return new OverWorld(this);
 		return null;
 	}
-	public void transitionScreens(GameScreen currentScreen, int nextScreen, TransitionType t)
+	public void transitionScreens(GameScreen currentScreen, int nextScreen, Transition t)
 	{
 		CurtainFire.currentScreen= new TransitionScreen(this, currentScreen, nextScreen, t);
 		currentGameScreen = CurtainFire.currentScreen;

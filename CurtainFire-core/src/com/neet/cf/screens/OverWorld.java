@@ -26,7 +26,8 @@ import com.neet.cf.entities.Player;
 import com.neet.cf.handlers.GameInput;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.OverworldGrid;
-import com.neet.cf.screens.TransitionScreen.TransitionType;
+import com.neet.cf.handlers.Transition;
+import com.neet.cf.handlers.Transition.TransitionType;
 
 public class OverWorld extends GameScreen
 {
@@ -283,7 +284,7 @@ public class OverWorld extends GameScreen
 	{
 		if(GameInput.isDown(GameInput.BUTTON_R))
 		{
-			gsm.transitionScreens(this, gsm.START, TransitionType.RectUp);
+			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.RectDown));
 		}
 		player.handleMove();
 	}
@@ -311,7 +312,6 @@ public class OverWorld extends GameScreen
 	{
 		//currentMap.dispose();
 		//renderer.dispose();
-
 	}
 	@Override
 	public void show()
