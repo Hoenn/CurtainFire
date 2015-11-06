@@ -1,12 +1,5 @@
 package com.neet.cf.screens;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Rectangle;
-import com.neet.cf.CurtainFire;
-import com.neet.cf.handlers.GameInput;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
 

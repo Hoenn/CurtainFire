@@ -1,14 +1,11 @@
 package com.neet.cf.handlers;
 
-import static com.neet.cf.util.CFVars.TILE_WIDTH;
+import static com.neet.cf.util.CFVars.*;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
-import com.neet.cf.CurtainFire;
 
 
 public class Transition
@@ -33,13 +30,13 @@ public class Transition
 		{
 			case RectUp:
 				tick=0.05f;
-				shape = new Rectangle(0, 0, CurtainFire.width, TILE_WIDTH);
+				shape = new Rectangle(0, 0, SCREEN_WIDTH, TILE_WIDTH);
 				break;
 	
 			case RectDown:
 				tick=0.05f;
-				shape = new Rectangle(0, CurtainFire.height - TILE_WIDTH,
-							CurtainFire.width, TILE_WIDTH);
+				shape = new Rectangle(0, SCREEN_HEIGHT - TILE_WIDTH,
+							SCREEN_WIDTH, TILE_WIDTH);
 				break;
 		}
 		
@@ -67,7 +64,7 @@ public class Transition
 		if(timer>=tick)
 		{	
 			shape.height+=TILE_WIDTH;
-			if(shape.height>CurtainFire.height)
+			if(shape.height>SCREEN_HEIGHT)
 				complete=true;
 			timer=0;
 		}

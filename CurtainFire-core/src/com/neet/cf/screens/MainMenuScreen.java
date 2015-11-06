@@ -3,18 +3,14 @@ package com.neet.cf.screens;
 import static com.neet.cf.handlers.GameInput.*;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameScreenManager;
 
 public class MainMenuScreen extends GameScreen
 {
-	private OrthographicCamera camera;
     private BitmapFont font;
     private SpriteBatch batch;
 	public MainMenuScreen(GameScreenManager gsm)
