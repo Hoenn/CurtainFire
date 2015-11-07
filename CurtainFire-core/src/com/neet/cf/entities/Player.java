@@ -18,9 +18,9 @@ import static com.neet.cf.handlers.GameInput.*;
 public class Player
 {
 	private Vector2 position, destVector, moveVector;	
-	private final float RUNSPEED = 0.18f;
-	private final float WALKSPEED = 0.36f;
-	private float MOVE_TIME= WALKSPEED;
+	private final float RUN_TIME = 0.18f;
+	private final float WALK_TIME = 0.36f;
+	private float MOVE_TIME= WALK_TIME;
 	
 	public int direction;
 	private final int UP=0, LEFT=1, DOWN=2, RIGHT=3;
@@ -100,7 +100,7 @@ public class Player
 	{
 		if(moving)
 		{
-			if(MOVE_TIME==RUNSPEED)
+			if(MOVE_TIME==RUN_TIME)
 			{
 				currentFrame = runs.get(direction).getFrame();
 				runs.get(direction).update(Gdx.graphics.getDeltaTime());
@@ -220,9 +220,9 @@ public class Player
 		//If not facing in the direction pressed then face that direction
 		//If that direction is held for 1/16s while facing correctly then allow movement
 		if(isDown(BUTTON_SPACE))
-			MOVE_TIME=RUNSPEED;
+			MOVE_TIME=RUN_TIME;
 		else
-			MOVE_TIME=WALKSPEED;
+			MOVE_TIME=WALK_TIME;
 		if(!moving)
 		{
 			if(Gdx.input.isKeyJustPressed(Keys.W) && direction!=UP)
