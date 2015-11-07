@@ -34,6 +34,7 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.finishLoading();
 		font = new BitmapFont();
 		Gdx.input.setInputProcessor(new GameInputProcessor());
+		
 		sb = new SpriteBatch();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, width/2, height/2);

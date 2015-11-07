@@ -58,6 +58,7 @@ public class OverWorld extends GameScreen
 		currentMapWidth = props.get("width", Integer.class);
 
 		renderer = new OrthogonalTiledMapRenderer(currentMap);
+
 		masterMap = new OverworldGrid(currentMapWidth,currentMapHeight);
 		TiledMapTileLayer specialLayer = (TiledMapTileLayer) currentMap.getLayers().get(SPECIAL_LAYER);
 		
@@ -137,8 +138,8 @@ public class OverWorld extends GameScreen
 		renderer.setView(cam);
 	
 		Vector3 position = cam.position;
-		position.x += (player.getPosition().x - position.x) * OVERWORLDCAMERA_LERP;
-		position.y += (player.getPosition().y - position.y) *OVERWORLDCAMERA_LERP;
+		position.x=player.getPosition().x;
+		position.y=player.getPosition().y;
 		cam.position.set(position);
 		cam.update();
 
