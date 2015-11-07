@@ -31,6 +31,7 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.load("player.png", Texture.class);
 		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		manager.load("map001.tmx", TiledMap.class);
+		manager.load("flowerIsland.tmx", TiledMap.class);
 		manager.finishLoading();
 		font = new BitmapFont();
 		Gdx.input.setInputProcessor(new GameInputProcessor());

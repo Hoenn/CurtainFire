@@ -34,13 +34,13 @@ public class OverWorld extends GameScreen
 	private static int currentMapWidth;
 	private final String ANIMATIONFRAMES="animatedTileset";
 	private Array<StaticTiledMapTile> flowerTiles;
-	private static Array<TiledMapTile> grassTiles = new Array<TiledMapTile>();
+	private static Array<TiledMapTile> grassTiles;
 	private static TiledMapTile staticGrass;
 	private static Cell currentGrass;
 	private static Cell currentGrassFloor;	
 	private static float elapsedTimeSinceAnimation = 0.0f;
 	private static int currentAnimationFrame =0;
-	private static boolean animating = false;
+	private static boolean animating;
 	
 	private static OverworldGrid masterMap;
 	
@@ -52,7 +52,11 @@ public class OverWorld extends GameScreen
 		player = new Player();
 		cam.position.set(new Vector3(player.getPosition(), 0));
 		cam.update();
-		currentMap = CurtainFire.manager.get("map001.tmx");
+		changeMap("map001.tmx");
+	}
+	public void changeMap(String mapPath)
+	{
+		currentMap = CurtainFire.manager.get(mapPath);
 		MapProperties props = currentMap.getProperties();
 		currentMapHeight = props.get("height", Integer.class);
 		currentMapWidth = props.get("width", Integer.class);
@@ -96,6 +100,7 @@ public class OverWorld extends GameScreen
 		//Make an animated tile out of the flower tile frames
 		//Gather frames for grass animation
 		flowerTiles = new Array<StaticTiledMapTile>();
+		grassTiles =   new Array<TiledMapTile>();
 		tiles = currentMap.getTileSets().getTileSet(ANIMATIONFRAMES).iterator();
 		while(tiles.hasNext())
 		{
@@ -283,6 +288,12 @@ public class OverWorld extends GameScreen
 		{
 			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.RectDown));
 		}
+		if(GameInput.isDown(GameInput.BUTTON_F))
+		{
+			changeMap("flowerIsland.tmx");
+		}
+		if(GameInput.isDown(GameInput.BUTTON_NUM_1))
+				changeMap("map001.tmx");
 		player.handleMove();
 	}
 

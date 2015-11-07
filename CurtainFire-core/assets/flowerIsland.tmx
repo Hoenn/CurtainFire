@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="tileset.png" trans="ff00ff" width="256" height="256"/>
+  <tile id="6">
+   <properties>
+    <property name="GRASS" value="0"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="FLOWER" value="0"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="257" name="animatedTileset" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="animatedTileset.png" trans="ff00ff" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="FLOWER" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="FLOWER" value="2"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="FLOWER" value="3"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="FLOWER" value="4"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="FLOWER" value="5"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="GRASS" value="1"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="GRASS" value="2"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="GRASS" value="3"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="GRASS" value="4"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="GRASS" value="5"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="513" name="specialTileset" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="specialTileset.png" trans="ff00ff" width="64" height="64"/>
+ </tileset>
+ <objectgroup name="Object Layer 1"/>
+ <layer name="Low" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJyVk8sNACAIQ7sFK7D/hF4NoR8OHIx9FBssAEWqzTnh+quE2/SKn8w2s7pzvXrRsnmUPuGuniqn6al6qdyTDNM3K0/ny/bJ5XnhXDbuD7D9cfv/ABCFGzE=
+  </data>
+ </layer>
+ <layer name="Special" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+ <layer name="Middle" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+ <layer name="High" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDCQAAAOEAAE=
+  </data>
+ </layer>
+</map>
