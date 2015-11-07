@@ -247,7 +247,7 @@ public class Player
 					}					
 			}
 
-			if(Gdx.input.isKeyJustPressed(Keys.A) && direction!=LEFT)
+			else if(Gdx.input.isKeyJustPressed(Keys.A) && direction!=LEFT)
 			{
 				setDirection(LEFT);
 				turnTimeCounter=0;
@@ -266,7 +266,7 @@ public class Player
 						setDirection(LEFT);
 					}					
 			}
-			if(Gdx.input.isKeyJustPressed(Keys.S) && direction!=DOWN)
+			else if(Gdx.input.isKeyJustPressed(Keys.S) && direction!=DOWN)
 			{
 				setDirection(DOWN);
 				turnTimeCounter=0;
@@ -285,7 +285,7 @@ public class Player
 						setDirection(DOWN);
 					}					
 			}
-			if(Gdx.input.isKeyJustPressed(Keys.D) && direction!=RIGHT)
+			else if(Gdx.input.isKeyJustPressed(Keys.D) && direction!=RIGHT)
 			{
 				setDirection(RIGHT);
 				turnTimeCounter=0;
