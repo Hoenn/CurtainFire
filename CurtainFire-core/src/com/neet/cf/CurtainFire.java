@@ -29,6 +29,7 @@ public class CurtainFire extends ApplicationAdapter {
 	{
 		manager = new AssetManager();
 		manager.load("player.png", Texture.class);
+		manager.load("guy.png", Texture.class);
 		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		manager.load("map001.tmx", TiledMap.class);
 		manager.load("flowerIsland.tmx", TiledMap.class);

@@ -69,7 +69,7 @@
  <tileset firstgid="513" name="specialTileset" tilewidth="16" tileheight="16" tilecount="16">
   <image source="specialTileset.png" trans="ff00ff" width="64" height="64"/>
  </tileset>
- <objectgroup name="Object Layer 1"/>
+ <objectgroup name="Objects"/>
  <layer name="Low" width="15" height="15">
   <data encoding="base64" compression="zlib">
    eJyVk8sNACAIQ7sFK7D/hF4NoR8OHIx9FBssAEWqzTnh+quE2/SKn8w2s7pzvXrRsnmUPuGuniqn6al6qdyTDNM3K0/ny/bJ5XnhXDbuD7D9cfv/ABCFGzE=

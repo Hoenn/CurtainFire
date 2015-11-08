@@ -1,12 +1,22 @@
 package com.neet.cf.screens;
 
-import java.util.Iterator;
+import static com.neet.cf.util.CFVars.BACKGROUND_LAYER;
+import static com.neet.cf.util.CFVars.FLOWER_ANIMATION_SPEED;
+import static com.neet.cf.util.CFVars.FOREGROUND_LAYER;
+import static com.neet.cf.util.CFVars.GRASS_ANIMATION_SPEED;
+import static com.neet.cf.util.CFVars.MIDDLEGROUND_LAYER;
+import static com.neet.cf.util.CFVars.SPECIAL_LAYER;
+import static com.neet.cf.util.CFVars.TILE_WIDTH;
 
-import static com.neet.cf.util.CFVars.*;
+import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -14,10 +24,12 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
+import com.neet.cf.entities.NPC;
 import com.neet.cf.entities.Player;
 import com.neet.cf.handlers.GameInput;
 import com.neet.cf.handlers.GameScreenManager;
@@ -33,6 +45,7 @@ public class OverWorld extends GameScreen
 	private static int currentMapHeight;
 	private static int currentMapWidth;
 	private final String ANIMATIONFRAMES="animatedTileset";
+	private Array<NPC> NPCList;
 	private Array<StaticTiledMapTile> flowerTiles;
 	private static Array<TiledMapTile> grassTiles;
 	private static TiledMapTile staticGrass;
@@ -65,15 +78,16 @@ public class OverWorld extends GameScreen
 
 		masterMap = new OverworldGrid(currentMapWidth,currentMapHeight);
 		TiledMapTileLayer specialLayer = (TiledMapTileLayer) currentMap.getLayers().get(SPECIAL_LAYER);
-		
 		for(int i=0; i<currentMapWidth; i++)
 		{
 			for(int j=0; j<currentMapHeight; j++)
 			{
+				//Create collision
 				Cell c = specialLayer.getCell(i, j);
 				if(c!=null)
 				{
-					masterMap.setPos(j,i, 1);
+					//Add collidable to master map
+					masterMap.setPos(j,i, 1);		
 				}
 				else
 				{
@@ -81,6 +95,21 @@ public class OverWorld extends GameScreen
 				}
 			}
 		}
+		
+		NPCList = new Array<NPC>();
+		MapLayer objLayer= currentMap.getLayers().get("Objects");
+		MapObjects moList = objLayer.getObjects();
+		for(MapObject mo: moList)
+		{
+			MapProperties properties = mo.getProperties();
+			if(properties.containsKey("BATTLE"))
+			{
+				String imgPath = (String) properties.get("SPRITE");
+				Rectangle rect = ((RectangleMapObject)mo).getRectangle();
+				NPCList.add(new NPC(imgPath,rect.x, rect.y));//send scripts too
+			}
+		}
+		
 		//Get a copy of the non animated grass tile
 		Iterator<TiledMapTile> tiles = currentMap.getTileSets().getTileSet("tileset").iterator();
 		boolean found = false;
@@ -172,10 +201,15 @@ public class OverWorld extends GameScreen
 		sb.setProjectionMatrix(cam.combined);	
 
 		sb.begin();
+		for(NPC n: NPCList)
+		{
+			n.render(sb);
+		}
 		player.draw(sb);
 		sb.end();
 		
 		renderer.render(new int[]{FOREGROUND_LAYER});
+	
 	}
 	private void updateGrassAnimation()
 	 {
