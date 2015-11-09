@@ -5,6 +5,7 @@ import java.util.Arrays;
 import static com.neet.cf.util.CFVars.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -115,7 +116,10 @@ public class Player
 		{
 			currentFrame = idleFrames[direction];
 		}
-		
+		Color c = sb.getColor();
+		sb.setColor(new Color(0,0,0, 0.8f));
+		sb.draw(currentFrame, position.x+2, position.y+2, 0, 0, 16, 10, 1.2f, 1.9f,0);
+		sb.setColor(c);
 		sb.draw(currentFrame, position.x, position.y);
 	}
 	public void update(float delta)
