@@ -29,9 +29,7 @@ public class TransitionScreen extends GameScreen
 		{
 			transition.dispose();
 			gsm.setScreen(nextScreen);
-		}
-		
-		
+		}		
 	}
 	@Override
 	public void render()

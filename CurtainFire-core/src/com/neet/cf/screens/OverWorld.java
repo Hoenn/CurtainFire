@@ -171,9 +171,10 @@ public class OverWorld extends GameScreen
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	
 		renderer.setView(cam);
 	
+		//+8+10 is to center camera on center of player
 		Vector3 position = cam.position;
-		position.x=player.getPosition().x;
-		position.y=player.getPosition().y;
+		position.x=player.getPosition().x+8;
+		position.y=player.getPosition().y+10;
 		cam.position.set(position);
 		cam.update();
 
@@ -320,7 +321,7 @@ public class OverWorld extends GameScreen
 	{
 		if(GameInput.isDown(GameInput.BUTTON_R))
 		{
-			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.RectUp));
+			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.FourWaySquish));
 
 		}
 		if(GameInput.isDown(GameInput.BUTTON_F))
