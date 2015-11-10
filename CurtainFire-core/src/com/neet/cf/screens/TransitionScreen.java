@@ -2,6 +2,7 @@ package com.neet.cf.screens;
 
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
+import com.neet.cf.handlers.Transition.TransitionType;
 
 public class TransitionScreen extends GameScreen
 {

@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.neet.cf.handlers.GameScreenManager;
+import com.neet.cf.handlers.Transition;
+import com.neet.cf.handlers.Transition.TransitionType;
 
 public class MainMenuScreen extends GameScreen
 {
@@ -34,7 +36,7 @@ public class MainMenuScreen extends GameScreen
 	{
 		if(isDown(BUTTON_Z))
 		{
-			gsm.setScreen(gsm.OVERWORLD);	
+			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut));
 		}
 	}
 	@Override

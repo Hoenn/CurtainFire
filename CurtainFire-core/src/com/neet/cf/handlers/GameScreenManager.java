@@ -52,6 +52,14 @@ public class GameScreenManager
 		CurtainFire.currentScreen= new TransitionScreen(this, currentScreen, nextScreen, t);
 		currentGameScreen = CurtainFire.currentScreen;
 	}
+	//Sets screen to new screen so that it can be constructed and rendered to be the
+	//background for transition.
+	public void setScreen(int screen, Transition t)
+	{
+		setScreen(screen);
+		transitionScreens(CurtainFire.currentScreen, screen, t);
+
+	}
 	public void setScreen(int screen)
 	{
 		if(gameScreens[screen]==null) //If the desired Screen does not exist
