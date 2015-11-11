@@ -32,9 +32,7 @@ import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
 
 public class OverWorld extends GameScreen
-{
-	private CurtainFire cf;
-	
+{	
 	private static TiledMap currentMap;
 	private static int currentMapHeight;
 	private static int currentMapWidth;
