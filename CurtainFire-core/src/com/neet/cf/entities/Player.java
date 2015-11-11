@@ -41,7 +41,7 @@ public class Player
 	public Player()
 	{
 		Texture texture = CurtainFire.manager.get("player.png");
-		TextureRegion[][] temp = TextureRegion.split(texture, 16, 20);
+		TextureRegion[][] temp = TextureRegion.split(texture, SPRITE_WIDTH, SPRITE_HEIGHT);
 
 		TextureRegion[] walkFrames = new TextureRegion[temp[0].length];
 		int i =0;

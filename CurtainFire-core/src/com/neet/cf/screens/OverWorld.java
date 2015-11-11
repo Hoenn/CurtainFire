@@ -1,12 +1,6 @@
 package com.neet.cf.screens;
 
-import static com.neet.cf.util.CFVars.BACKGROUND_LAYER;
-import static com.neet.cf.util.CFVars.FLOWER_ANIMATION_SPEED;
-import static com.neet.cf.util.CFVars.FOREGROUND_LAYER;
-import static com.neet.cf.util.CFVars.GRASS_ANIMATION_SPEED;
-import static com.neet.cf.util.CFVars.MIDDLEGROUND_LAYER;
-import static com.neet.cf.util.CFVars.SPECIAL_LAYER;
-import static com.neet.cf.util.CFVars.TILE_WIDTH;
+import static com.neet.cf.util.CFVars.*;
 
 import java.util.Iterator;
 
@@ -46,6 +40,7 @@ public class OverWorld extends GameScreen
 	private static int currentMapWidth;
 	private final String ANIMATIONFRAMES="animatedTileset";
 	private Array<NPC> NPCList;
+	private Array<NPC> tempList;
 	private Array<StaticTiledMapTile> flowerTiles;
 	private static Array<TiledMapTile> grassTiles;
 	private static TiledMapTile staticGrass;
@@ -173,8 +168,8 @@ public class OverWorld extends GameScreen
 	
 		//+8+10 is to center camera on center of player
 		Vector3 position = cam.position;
-		position.x=player.getPosition().x+8;
-		position.y=player.getPosition().y+10;
+		position.x=player.getPosition().x+SPRITE_WIDTH/2;
+		position.y=player.getPosition().y+SPRITE_HEIGHT/2;
 		cam.position.set(position);
 		cam.update();
 
@@ -194,19 +189,26 @@ public class OverWorld extends GameScreen
 
 		}
 		
-		//Render Order: BG -> Player, Sprites -> FGd
+		//Render Order: BG -> NPC/Player/NPC, Sprites -> FGd
 		//Object Layer will be turned into Sprites, render then
 		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
 	
-		//renderer.getBatch().begin();
-		sb.setProjectionMatrix(cam.combined);	
-
-		sb.begin();
+		sb.setProjectionMatrix(cam.combined);
+		sb.begin();	
+		tempList = new Array<NPC>();
 		for(NPC n: NPCList)
 		{
-			n.render(sb);
+			if(n.getGridPos().y>player.getGridPos().y)
+				n.render(sb);
+			else
+				tempList.add(n);
 		}
 		player.draw(sb);
+		//NPC Below player
+		for(NPC n: tempList)
+		{
+			n.render(sb);;
+		}
 		sb.end();
 		
 		renderer.render(new int[]{FOREGROUND_LAYER});
