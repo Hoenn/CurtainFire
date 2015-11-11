@@ -15,6 +15,9 @@ public class CFVars
 	public static float SCREEN_WIDTH;
 	public static float SCREEN_HEIGHT;
 	
+	public static float V_WIDTH;
+	public static float V_HEIGHT;
+	
 	public static final int TILE_WIDTH = 16;
 	
 	public static final int SPRITE_WIDTH = 16;

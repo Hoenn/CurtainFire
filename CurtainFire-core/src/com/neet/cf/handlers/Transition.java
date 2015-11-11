@@ -19,7 +19,8 @@ public class Transition
 	private float timer;
 	private float tick;
 	public enum TransitionType {
-		RectUp, RectDown, SplitOut, VerticalSquish, HorizontalSquish, FourWaySquish
+		RectUp, RectDown, SplitOut, VerticalSquish, HorizontalSquish, 
+		FourWaySquish, VerticalSlices
 	}
 	public Transition(TransitionType t)
 	{
@@ -58,6 +59,9 @@ public class Transition
 				break;
 			case FourWaySquish:
 				fourWaySquish(delta);
+				break;
+			case VerticalSlices:
+				verticalSlices(delta);
 				break;
 		}
 	}
@@ -138,7 +142,7 @@ public class Transition
 		sr.rect(right.x, right.y, right.width, right.height);
 		sr.end();
 	}
-	public void horizontalSquish(float delta)
+	private void horizontalSquish(float delta)
 	{
 		Rectangle bottom = shapes.get(0);
 		Rectangle top = shapes.get(1);
@@ -158,7 +162,7 @@ public class Transition
 		sr.rect(top.x, top.y, top.width, top.height);
 		sr.end();
 	}
-	public void fourWaySquish(float delta)
+	private void fourWaySquish(float delta)
 	{
 		Rectangle left = shapes.get(0);
 		Rectangle right = shapes.get(1);
@@ -184,7 +188,40 @@ public class Transition
 		sr.rect(top.x, top.y, top.width, top.height);
 		sr.end();
 	}
-	public void initialize()
+	private void verticalSlices(float delta)
+	{
+		if(shapes.get(1).y<=0)
+			complete=true;
+		timer+=delta;
+		if(timer>tick)
+		{
+			if(shapes.get(0).y<0)
+			{
+				for(int i = 0; i <shapes.size; i+=2)
+				{
+					shapes.get(i).y+=TILE_WIDTH;
+				}
+			}
+			else
+			{
+				for(int i = 1; i <shapes.size-1; i+=2)
+				{
+					shapes.get(i).y-=TILE_WIDTH;
+				}
+
+			}
+			timer=0;
+		}
+		sr.begin(ShapeType.Filled);
+		sr.setColor(Color.BLACK);
+		for(Rectangle r: shapes)
+		{
+			sr.rect(r.x, r.y, r.width, r.height);
+		}
+		sr.end();
+		
+	}
+	private void initialize()
 	{
 		switch(type)
 		{
@@ -228,6 +265,25 @@ public class Transition
 				shapes.add(new Rectangle(0, -SCREEN_HEIGHT/2, SCREEN_WIDTH, SCREEN_HEIGHT/2));
 				//Top
 				shapes.add(new Rectangle(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT/2));
+				break;
+			case VerticalSlices:
+				tick=0.02f;
+				//Upscales so independent of actual screen size
+				float rectWidth= SCREEN_WIDTH/(V_WIDTH/TILE_WIDTH);
+				for(int i = 0; i<=TILE_WIDTH; i++)
+				{
+					System.out.println(rectWidth);
+					//For even iterations
+					if(i%2==0)
+					{
+						shapes.add(new Rectangle(i*rectWidth, -SCREEN_HEIGHT, rectWidth, SCREEN_HEIGHT));
+					}
+					else //For odd iterations
+					{
+						shapes.add(new Rectangle(i*rectWidth, SCREEN_HEIGHT, rectWidth, SCREEN_HEIGHT));
+					}
+						
+				}
 				break;
 				
 		}

@@ -30,6 +30,8 @@ public class CurtainFire extends ApplicationAdapter {
 	{
 		CFVars.SCREEN_WIDTH=width;
 		CFVars.SCREEN_HEIGHT=height;
+		CFVars.V_WIDTH=V_WIDTH;
+		CFVars.V_HEIGHT=V_HEIGHT;
 	}
 	@Override
 	public void create()

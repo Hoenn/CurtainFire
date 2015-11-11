@@ -321,7 +321,7 @@ public class OverWorld extends GameScreen
 	{
 		if(GameInput.isDown(GameInput.BUTTON_R))
 		{
-			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.FourWaySquish));
+			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.VerticalSlices));
 
 		}
 		if(GameInput.isDown(GameInput.BUTTON_F))
