@@ -13,17 +13,24 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.neet.cf.handlers.GameInputProcessor;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.screens.GameScreen;
+import com.neet.cf.util.CFVars;
 
 public class CurtainFire extends ApplicationAdapter {
 	public static AssetManager manager;
 	public static BitmapFont font;
 	public static GameScreen currentScreen;
-	public static float height=480;
-	public static float width = 640;
+	public static final float V_WIDTH = 240;
+	public static final float V_HEIGHT =192;
+
 	public static GameScreenManager gsm;
 	private SpriteBatch sb;
 	private OrthographicCamera cam;
 	private OrthographicCamera hudCam;
+	public CurtainFire(float width, float height)
+	{
+		CFVars.SCREEN_WIDTH=width;
+		CFVars.SCREEN_HEIGHT=height;
+	}
 	@Override
 	public void create()
 	{
@@ -39,7 +46,7 @@ public class CurtainFire extends ApplicationAdapter {
 		
 		sb = new SpriteBatch();
 		cam = new OrthographicCamera();
-		cam.setToOrtho(false, width/2, height/2);
+		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		hudCam = new OrthographicCamera();
 		
 		gsm = new GameScreenManager(this);

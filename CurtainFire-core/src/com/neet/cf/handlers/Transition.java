@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class Transition
 {
+	private static float LRAdjustment = TILE_WIDTH*1.27f;
 	private ShapeRenderer sr;
 	private boolean complete;
 	private TransitionType type;
@@ -166,8 +167,8 @@ public class Transition
 		timer+=delta;
 		if(timer>=tick)
 		{
-			left.x+=(TILE_WIDTH*1.35f);
-			right.x-=(TILE_WIDTH*1.35f);
+			left.x+=(LRAdjustment);
+			right.x-=(LRAdjustment);
 			bottom.y+=TILE_WIDTH;
 			top.y-=TILE_WIDTH;
 			if(bottom.y>=0)
