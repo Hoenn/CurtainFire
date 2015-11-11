@@ -272,7 +272,6 @@ public class Transition
 				float rectWidth= SCREEN_WIDTH/(V_WIDTH/TILE_WIDTH);
 				for(int i = 0; i<=TILE_WIDTH; i++)
 				{
-					System.out.println(rectWidth);
 					//For even iterations
 					if(i%2==0)
 					{
