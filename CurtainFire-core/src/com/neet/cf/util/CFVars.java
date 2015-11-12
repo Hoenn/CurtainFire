@@ -1,6 +1,6 @@
 package com.neet.cf.util;
 
-import com.neet.cf.CurtainFire;
+import com.badlogic.gdx.graphics.Color;
 
 public class CFVars
 {	
@@ -22,5 +22,22 @@ public class CFVars
 	
 	public static final int SPRITE_WIDTH = 16;
 	public static final int SPRITE_HEIGHT= 20;
+	
+	public static Color DEFAULT_SB_COLOR;
+	public static final Color DEFAULT_SHADOW_COLOR = new Color(0,0,0,0.8f);
+	
+	public enum Direction
+	{
+		UP(0), LEFT(1), DOWN(2), RIGHT(3);
+		private int numRep;
+		Direction(int numRep)
+		{
+			this.numRep = numRep;
+		}
+		public int num()
+		{
+			return numRep;
+		}
+	}
 	
 }

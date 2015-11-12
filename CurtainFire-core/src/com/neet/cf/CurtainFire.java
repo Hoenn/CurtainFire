@@ -38,7 +38,7 @@ public class CurtainFire extends ApplicationAdapter {
 	{
 		manager = new AssetManager();
 		manager.load("player.png", Texture.class);
-		manager.load("guy.png", Texture.class);
+		manager.load("boyscout.png", Texture.class);
 		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		manager.load("map001.tmx", TiledMap.class);
 		manager.load("flowerIsland.tmx", TiledMap.class);
@@ -47,6 +47,7 @@ public class CurtainFire extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(new GameInputProcessor());
 		
 		sb = new SpriteBatch();
+		CFVars.DEFAULT_SB_COLOR=sb.getColor();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		hudCam = new OrthographicCamera();

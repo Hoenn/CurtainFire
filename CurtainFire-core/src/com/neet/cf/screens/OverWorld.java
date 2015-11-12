@@ -30,6 +30,7 @@ import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.OverworldGrid;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
+import com.neet.cf.util.CFVars;
 
 public class OverWorld extends GameScreen
 {	
@@ -97,9 +98,11 @@ public class OverWorld extends GameScreen
 			MapProperties properties = mo.getProperties();
 			if(properties.containsKey("BATTLE"))
 			{
-				String imgPath = (String) properties.get("SPRITE");
+				String imgPath = ((String) properties.get("SPRITE"))+".png";
+				String direction = (String) properties.get("DIRECTION");
+				int dir = CFVars.Direction.valueOf(Direction.class, direction).num();
 				Rectangle rect = ((RectangleMapObject)mo).getRectangle();
-				NPCList.add(new NPC(imgPath,rect.x, rect.y));//send scripts too
+				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir));//send scripts too
 			}
 		}
 		
