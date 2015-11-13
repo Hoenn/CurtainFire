@@ -199,7 +199,7 @@ public class OverWorld extends GameScreen
 		tempList = new Array<NPC>();
 		for(NPC n: NPCList)
 		{
-			if(n.getGridPos().y>player.getGridPos().y)
+			if(n.getGridPos().y>=player.getGridPos().y)
 				n.render(sb);
 			else
 				tempList.add(n);
