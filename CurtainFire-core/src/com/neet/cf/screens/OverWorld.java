@@ -167,7 +167,6 @@ public class OverWorld extends GameScreen
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	
 		renderer.setView(cam);
 	
-		//+8+10 is to center camera on center of player
 		Vector3 position = cam.position;
 		position.x=player.getPosition().x+SPRITE_WIDTH/2;
 		position.y=player.getPosition().y+SPRITE_HEIGHT/2;
@@ -191,7 +190,6 @@ public class OverWorld extends GameScreen
 		}
 		
 		//Render Order: BG -> NPC/Player/NPC, Sprites -> FGd
-		//Object Layer will be turned into Sprites, render then
 		renderer.render(new int[]{BACKGROUND_LAYER, MIDDLEGROUND_LAYER});
 	
 		sb.setProjectionMatrix(cam.combined);
@@ -205,7 +203,7 @@ public class OverWorld extends GameScreen
 				tempList.add(n);
 		}
 		player.draw(sb);
-		//NPC Below player
+		//NPCs Below player
 		for(NPC n: tempList)
 		{
 			n.render(sb);;

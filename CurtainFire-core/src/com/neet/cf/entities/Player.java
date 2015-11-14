@@ -24,7 +24,7 @@ public class Player
 	private float MOVE_TIME= WALK_TIME;
 	
 	public int direction;
-	private final int UP=0, LEFT=1, DOWN=2, RIGHT=3;
+	private int UP, LEFT, DOWN, RIGHT;
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
 	private final float WALK_ANI_SPEED = 0.195f;
 	private final float RUN_ANI_SPEED = 0.1f;
@@ -50,6 +50,11 @@ public class Player
 				walkFrames[i] = temp[0][j];		
 				i++;
 		}
+		UP= Direction.UP.num();
+		LEFT=Direction.LEFT.num();
+		DOWN = Direction.DOWN.num();
+		RIGHT = Direction.RIGHT.num();
+		
 		
 		walks.add(UP, new Animation(Arrays.copyOfRange(walkFrames, 0, 3), WALK_ANI_SPEED, true));
 		walks.add(LEFT, new Animation(Arrays.copyOfRange(walkFrames, 3, 6), WALK_ANI_SPEED, true));
@@ -316,28 +321,26 @@ public class Player
 	}
 	private void startMove(int dir)
 	{
-		switch(dir)
+		if (dir == UP)
 		{
-			case UP:
-						moveVector.y = 1;
-						moving = true;
-						destVector = new Vector2(position.x,position.y + (int) moveVector.y * TILE_WIDTH);
-						break;
-			case LEFT:
-						moveVector.x = -1;
-						moving = true;
-						destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
-						break;
-			case DOWN:
-						moveVector.y = -1;
-						moving = true;
-						destVector = new Vector2(position.x, position.y + (int) moveVector.y * TILE_WIDTH);
-						break;
-			case RIGHT:
-						moveVector.x = 1;
-						moving = true;
-						destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
-						break;
+			moveVector.y = 1;
+			moving = true;
+			destVector = new Vector2(position.x,position.y + (int) moveVector.y * TILE_WIDTH);
+		} else if (dir == LEFT)
+		{
+			moveVector.x = -1;
+			moving = true;
+			destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
+		} else if (dir == DOWN)
+		{
+			moveVector.y = -1;
+			moving = true;
+			destVector = new Vector2(position.x, position.y + (int) moveVector.y * TILE_WIDTH);
+		} else if (dir == RIGHT)
+		{
+			moveVector.x = 1;
+			moving = true;
+			destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
 		}
 		OverWorld.handleGrass(gridX+(int)moveVector.x, gridY+(int)moveVector.y);
 	}
