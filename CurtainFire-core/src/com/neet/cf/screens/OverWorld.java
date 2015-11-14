@@ -57,8 +57,7 @@ public class OverWorld extends GameScreen
 	{
 		super(gsm);
 		player = new Player();
-		cam.position.set(new Vector3(player.getPosition(), 0));
-		cam.update();
+		cameraFollowPlayer();
 		changeMap("map001.tmx");
 	}
 	public void changeMap(String mapPath)
@@ -157,6 +156,7 @@ public class OverWorld extends GameScreen
 	@Override
 	public void update(float dt)
 	{
+		cameraFollowPlayer();
 		handleInput();
 		player.update(Gdx.graphics.getDeltaTime());	
 	}
@@ -167,12 +167,6 @@ public class OverWorld extends GameScreen
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	
 		renderer.setView(cam);
 	
-		Vector3 position = cam.position;
-		position.x=player.getPosition().x+SPRITE_WIDTH/2;
-		position.y=player.getPosition().y+SPRITE_HEIGHT/2;
-		cam.position.set(position);
-		cam.update();
-
 		AnimatedTiledMapTile.updateAnimationBaseTime();
 		
 		if(currentGrass!=null )
@@ -334,7 +328,15 @@ public class OverWorld extends GameScreen
 		player.handleMove();
 	}
 
+	private void cameraFollowPlayer()
+	{
+		Vector3 position = cam.position;
+		position.x=player.getPosition().x+SPRITE_WIDTH/2;
+		position.y=player.getPosition().y+SPRITE_HEIGHT/2;
+		cam.position.set(position);
+		cam.update();
 
+	}
 	@Override
 	public void pause()
 	{
