@@ -9,11 +9,11 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public GwtApplicationConfiguration getConfig () {
-                return new GwtApplicationConfiguration(480, 320);
+                return new GwtApplicationConfiguration(720, 576);
         }
 
         @Override
         public ApplicationListener getApplicationListener () {
-                return new CurtainFire();
+                return new CurtainFire(720, 576);
         }
 }

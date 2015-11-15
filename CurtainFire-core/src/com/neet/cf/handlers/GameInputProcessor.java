@@ -13,18 +13,18 @@ public class GameInputProcessor extends InputAdapter
 		{	
 		
 			//Movement
-			case Keys.W:
-				GameInput.setKey(GameInput.BUTTON_W, true);
+			case Keys.UP:
+				GameInput.setKey(GameInput.BUTTON_UP, true);
 					break;
-			case Keys.A:
-				GameInput.setKey(GameInput.BUTTON_A, true);
+			case Keys.DOWN:
+				GameInput.setKey(GameInput.BUTTON_DOWN, true);
 					break;
-			case Keys.S:
-				GameInput.setKey(GameInput.BUTTON_S, true);
+			case Keys.RIGHT:
+				GameInput.setKey(GameInput.BUTTON_RIGHT, true);
 					break;
-			case Keys.D:
-				GameInput.setKey(GameInput.BUTTON_D, true);
-					break;
+			case Keys.LEFT:
+				GameInput.setKey(GameInput.BUTTON_LEFT, true);
+					break;	
 					
 			//Actions
 			case Keys.SPACE:
@@ -60,20 +60,7 @@ public class GameInputProcessor extends InputAdapter
 			case Keys.NUM_5:
 				GameInput.setKey(GameInput.BUTTON_NUM_5, true);
 					break;
-					
-			//Rotation
-			case Keys.UP:
-				GameInput.setKey(GameInput.BUTTON_UP, true);
-					break;
-			case Keys.DOWN:
-				GameInput.setKey(GameInput.BUTTON_DOWN, true);
-					break;
-			case Keys.RIGHT:
-				GameInput.setKey(GameInput.BUTTON_RIGHT, true);
-					break;
-			case Keys.LEFT:
-				GameInput.setKey(GameInput.BUTTON_LEFT, true);
-					break;	
+				
 					
 			//Menu related
 			case Keys.ESCAPE:
@@ -89,18 +76,18 @@ public class GameInputProcessor extends InputAdapter
 		switch(keyCode)
 		{	
 			//Movement
-			case Keys.W:
-				GameInput.setKey(GameInput.BUTTON_W, false);
+			case Keys.UP:
+				GameInput.setKey(GameInput.BUTTON_UP, false);
 					break;
-			case Keys.A:
-				GameInput.setKey(GameInput.BUTTON_A, false);
+			case Keys.DOWN:
+				GameInput.setKey(GameInput.BUTTON_DOWN, false);
 					break;
-			case Keys.S:
-				GameInput.setKey(GameInput.BUTTON_S, false);
+			case Keys.RIGHT:
+				GameInput.setKey(GameInput.BUTTON_RIGHT, false);
 					break;
-			case Keys.D:
-				GameInput.setKey(GameInput.BUTTON_D, false);
-					break;
+			case Keys.LEFT:
+				GameInput.setKey(GameInput.BUTTON_LEFT, false);
+					break;	
 					
 			//Actions
 			case Keys.SPACE:
@@ -136,20 +123,6 @@ public class GameInputProcessor extends InputAdapter
 			case Keys.NUM_5:
 				GameInput.setKey(GameInput.BUTTON_NUM_5, false);
 					break;
-					
-			//Rotation
-			case Keys.UP:
-				GameInput.setKey(GameInput.BUTTON_UP, false);
-					break;
-			case Keys.DOWN:
-				GameInput.setKey(GameInput.BUTTON_DOWN, false);
-					break;
-			case Keys.RIGHT:
-				GameInput.setKey(GameInput.BUTTON_RIGHT, false);
-					break;
-			case Keys.LEFT:
-				GameInput.setKey(GameInput.BUTTON_LEFT, false);
-					break;	
 					
 			//Menu related
 			case Keys.ESCAPE:

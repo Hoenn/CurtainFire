@@ -23,7 +23,7 @@ public class Player
 	private final float WALK_TIME = 0.36f;
 	private float MOVE_TIME= WALK_TIME;
 	
-	public int direction;
+	private int direction;
 	private int UP, LEFT, DOWN, RIGHT;
 	private ArrayList<Animation> walks = new ArrayList<Animation>();
 	private final float WALK_ANI_SPEED = 0.195f;
@@ -142,7 +142,7 @@ public class Player
 						{
 							position.x=destVector.x;
 							gridX+=1;
-							if(isDown(BUTTON_D))
+							if(isDown(BUTTON_RIGHT))
 							{
 								startMove(RIGHT);
 							}
@@ -160,7 +160,7 @@ public class Player
 						{
 							position.x=destVector.x;
 							gridX-=1;
-							if(isDown(BUTTON_A))
+							if(isDown(BUTTON_LEFT))
 							{
 								startMove(LEFT);
 							}
@@ -181,7 +181,7 @@ public class Player
 						{
 							position.y=destVector.y;
 							gridY+=1;
-							if(isDown(BUTTON_W))
+							if(isDown(BUTTON_UP))
 							{
 								startMove(UP);
 							}
@@ -199,7 +199,7 @@ public class Player
 						{
 							gridY-=1;
 							position.y=destVector.y;
-							if(isDown(BUTTON_S))
+							if(isDown(BUTTON_DOWN))
 							{
 								startMove(DOWN);
 							}
@@ -233,13 +233,13 @@ public class Player
 			MOVE_TIME=WALK_TIME;
 		if(!moving)
 		{
-			if(Gdx.input.isKeyJustPressed(Keys.W) && direction!=UP)
+			if(Gdx.input.isKeyJustPressed(Keys.UP) && direction!=UP)
 			{
 				
 				setDirection(UP);
 				turnTimeCounter=0;
 			}
-			else if(isDown(BUTTON_W))
+			else if(isDown(BUTTON_UP))
 			{
 				
 					turnTimeCounter+=Gdx.graphics.getDeltaTime();
@@ -255,12 +255,12 @@ public class Player
 					}					
 			}
 
-			else if(Gdx.input.isKeyJustPressed(Keys.A) && direction!=LEFT)
+			else if(Gdx.input.isKeyJustPressed(Keys.LEFT) && direction!=LEFT)
 			{
 				setDirection(LEFT);
 				turnTimeCounter=0;
 			}
-			else if(isDown(BUTTON_A))
+			else if(isDown(BUTTON_LEFT))
 			{
 					turnTimeCounter+=Gdx.graphics.getDeltaTime();
 					if(turnTimeCounter>turnTime)
@@ -274,12 +274,12 @@ public class Player
 						setDirection(LEFT);
 					}					
 			}
-			else if(Gdx.input.isKeyJustPressed(Keys.S) && direction!=DOWN)
+			else if(Gdx.input.isKeyJustPressed(Keys.DOWN) && direction!=DOWN)
 			{
 				setDirection(DOWN);
 				turnTimeCounter=0;
 			}
-			else if(isDown(BUTTON_S))
+			else if(isDown(BUTTON_DOWN))
 			{
 				
 					turnTimeCounter+=Gdx.graphics.getDeltaTime();
@@ -293,12 +293,12 @@ public class Player
 						setDirection(DOWN);
 					}					
 			}
-			else if(Gdx.input.isKeyJustPressed(Keys.D) && direction!=RIGHT)
+			else if(Gdx.input.isKeyJustPressed(Keys.RIGHT) && direction!=RIGHT)
 			{
 				setDirection(RIGHT);
 				turnTimeCounter=0;
 			}
-			else if(isDown(BUTTON_D))
+			else if(isDown(BUTTON_RIGHT))
 			{
 				
 					turnTimeCounter+=Gdx.graphics.getDeltaTime();
@@ -343,6 +343,27 @@ public class Player
 			destVector = new Vector2(position.x + (int) moveVector.x * TILE_WIDTH, position.y);
 		}
 		OverWorld.handleGrass(gridX+(int)moveVector.x, gridY+(int)moveVector.y);
+	}
+	public Vector2 getPositionFacing()
+	{
+		Vector2 target = getGridPos();
+		if(direction==UP)
+		{
+			target.y++;
+		}
+		if(direction==LEFT)
+		{
+			target.x--;
+		}
+		if(direction==DOWN)
+		{
+			target.y--;
+		}
+		if(direction==RIGHT)
+		{
+			target.x++;
+		}
+		return target;
 	}
 	public Vector2 getPosition()
 	{

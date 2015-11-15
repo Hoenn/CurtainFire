@@ -317,7 +317,6 @@ public class OverWorld extends GameScreen
 		if(GameInput.isDown(GameInput.BUTTON_R))
 		{
 			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.VerticalSlices));
-
 		}
 		if(GameInput.isDown(GameInput.BUTTON_F))
 		{
@@ -325,9 +324,22 @@ public class OverWorld extends GameScreen
 		}
 		if(GameInput.isDown(GameInput.BUTTON_NUM_1))
 				changeMap("map001.tmx");
+		if(GameInput.isDown(GameInput.BUTTON_Z))
+		{
+			playerInteract();
+		}
 		player.handleMove();
 	}
-
+	private void playerInteract()
+	{
+		Vector2 targetGridPos = player.getPositionFacing();
+		for(NPC npc: NPCList)
+		{
+			if(npc.getGridPos().equals(targetGridPos))
+				npc.setDefeated();
+		}
+		
+	}
 	private void cameraFollowPlayer()
 	{
 		Vector3 position = cam.position;

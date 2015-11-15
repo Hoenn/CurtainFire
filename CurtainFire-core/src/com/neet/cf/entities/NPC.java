@@ -1,22 +1,21 @@
 package com.neet.cf.entities;
 
-import static com.neet.cf.util.CFVars.SPRITE_HEIGHT;
-import static com.neet.cf.util.CFVars.SPRITE_WIDTH;
+import static com.neet.cf.util.CFVars.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.neet.cf.CurtainFire;
-import com.neet.cf.handlers.Animation;
 import com.neet.cf.util.CFVars;
 
 public class NPC
 {
 	private Vector2 gridPos;
 	private Vector2 position;
+	private Color currentColor;
+	private boolean defeated;
 	private TextureRegion currentFrame;
 	public NPC(String imgPath, float x, float y, int direction)
 	{
@@ -33,18 +32,28 @@ public class NPC
 		else
 			idleFrame = new TextureRegion(temp[0][direction]);
 	
+		currentColor = DEFAULT_SB_COLOR;
+		defeated=false;
 		currentFrame = idleFrame;
 		
 		position = new Vector2(x, y);
 		gridPos = new Vector2(x/CFVars.TILE_WIDTH, y/CFVars.TILE_WIDTH);
 	}
 	public void render(Batch sb)
-	{
-		
+	{	
 		sb.setColor(CFVars.DEFAULT_SHADOW_COLOR);
 		sb.draw(currentFrame, position.x+2, position.y+2, 0, 0, 16, 10, 1.2f, 1.9f,0);
-		sb.setColor(CFVars.DEFAULT_SB_COLOR);
+		sb.setColor(currentColor);
 		sb.draw(currentFrame, position.x, position.y);
+	}
+	public boolean isDefeated()
+	{
+		return defeated;
+	}
+	public void setDefeated()
+	{
+		defeated=true;
+		currentColor = Color.SLATE;
 	}
 	public Vector2 getGridPos()
 	{
