@@ -156,9 +156,9 @@ public class OverWorld extends GameScreen
 	@Override
 	public void update(float dt)
 	{
-		
 		handleInput();
-		player.update(Gdx.graphics.getDeltaTime());	
+		player.update(dt);	
+		cameraFollowPlayer();
 	}
 	@Override
 	public void render()
@@ -166,10 +166,7 @@ public class OverWorld extends GameScreen
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	
 		renderer.setView(cam);
-	
-		
-		cameraFollowPlayer();
-		
+			
 		AnimatedTiledMapTile.updateAnimationBaseTime();
 		
 		if(currentGrass!=null )
