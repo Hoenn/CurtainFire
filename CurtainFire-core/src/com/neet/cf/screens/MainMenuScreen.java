@@ -11,6 +11,7 @@ import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
+import com.neet.cf.util.CFVars;
 
 public class MainMenuScreen extends GameScreen
 {
@@ -28,7 +29,8 @@ public class MainMenuScreen extends GameScreen
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		CurtainFire.font.setColor(Color.WHITE);
-		CurtainFire.font.draw(batch,"Press Z", 300, 300);
+		CurtainFire.font.draw(batch,"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+										+CFVars.PO_CHAR+CFVars.KE_CHAR+CFVars.PK_CHAR+CFVars.MN_CHAR, 0, 300);
 		batch.end();
 	}
 	public void handleInput()

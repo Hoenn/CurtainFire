@@ -26,6 +26,11 @@ public class CFVars
 	public static Color DEFAULT_SB_COLOR;
 	public static final Color DEFAULT_SHADOW_COLOR = new Color(0,0,0,0.8f);
 	
+	public static final String PO_CHAR ="{";
+	public static final String KE_CHAR ="}";
+	public static final String PK_CHAR ="[";
+	public static final String MN_CHAR ="]";			
+	
 	public enum Direction
 	{
 		UP(0), LEFT(1), DOWN(2), RIGHT(3);
