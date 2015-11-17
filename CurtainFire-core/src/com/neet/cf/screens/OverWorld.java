@@ -169,12 +169,15 @@ public class OverWorld extends GameScreen
 		cameraFollowPlayer();
 		if(textPopUp)
 		{
-			
-			textAccum+=dt;
-			if(textAccum>currTextReadRate)
+			if(!DialogBox.charSeq.needsReturn())
 			{
-				DialogBox.charSeq.addNextChar();			
-				textAccum=0;
+				textAccum+=dt;
+				if(textAccum>currTextReadRate)
+				{
+					
+					DialogBox.charSeq.addNextChar();			
+					textAccum=0;
+				}
 			}
 			
 		}
@@ -361,7 +364,13 @@ public class OverWorld extends GameScreen
 			if(!textPopUp)
 				playerInteract();
 			else
-				if(DialogBox.charSeq.isDone())textPopUp=false;
+			{
+				if(DialogBox.charSeq.isDone())
+					textPopUp=false;
+				else if(DialogBox.charSeq.needsReturn())
+					DialogBox.charSeq.carriageReturn();
+			}
+			
 		}
 		if(GameInput.isDown(GameInput.BUTTON_Z))
 		{

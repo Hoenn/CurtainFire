@@ -35,8 +35,8 @@ public class CFVars
 	public static final String PK_CHAR ="[";
 	public static final String MN_CHAR ="]";	
 	
-	public static final float textReadRate_NORM = .20f;
-	public static final float textReadRate_FAST = .05f;
+	public static final float textReadRate_NORM = .08f;
+	public static final float textReadRate_FAST = .01f;
 	public static float currTextReadRate = textReadRate_NORM;
 	
 	public enum Direction
