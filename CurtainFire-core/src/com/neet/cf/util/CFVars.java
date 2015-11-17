@@ -1,6 +1,7 @@
 package com.neet.cf.util;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class CFVars
 {	
@@ -26,10 +27,17 @@ public class CFVars
 	public static Color DEFAULT_SB_COLOR;
 	public static final Color DEFAULT_SHADOW_COLOR = new Color(0,0,0,0.8f);
 	
+	public static BitmapFont font;
+	public static float fontSize;
+	
 	public static final String PO_CHAR ="{";
 	public static final String KE_CHAR ="}";
 	public static final String PK_CHAR ="[";
-	public static final String MN_CHAR ="]";			
+	public static final String MN_CHAR ="]";	
+	
+	public static final float textReadRate_NORM = .20f;
+	public static final float textReadRate_FAST = .05f;
+	public static float currTextReadRate = textReadRate_NORM;
 	
 	public enum Direction
 	{

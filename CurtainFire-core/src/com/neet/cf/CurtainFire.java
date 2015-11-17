@@ -14,10 +14,10 @@ import com.neet.cf.handlers.GameInputProcessor;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.screens.GameScreen;
 import com.neet.cf.util.CFVars;
+import com.neet.cf.util.DialogBox;
 
 public class CurtainFire extends ApplicationAdapter {
 	public static AssetManager manager;
-	public static BitmapFont font;
 	public static GameScreen currentScreen;
 	public static final float V_WIDTH = 240;
 	public static final float V_HEIGHT =192;
@@ -39,19 +39,22 @@ public class CurtainFire extends ApplicationAdapter {
 		manager = new AssetManager();
 		manager.load("player.png", Texture.class);
 		manager.load("boyscout.png", Texture.class);
+		manager.load("textBoxPurple.png", Texture.class);
 		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		manager.load("map001.tmx", TiledMap.class);
 		manager.load("flowerIsland.tmx", TiledMap.class);
 		manager.load("cfFont.fnt", BitmapFont.class);
 		manager.finishLoading();
-		font = manager.get("cfFont.fnt", BitmapFont.class);
+		CFVars.font = manager.get("cfFont.fnt", BitmapFont.class);
+		CFVars.fontSize= CFVars.font.getSpaceWidth();
 		Gdx.input.setInputProcessor(new GameInputProcessor());
-		
+		DialogBox.box= manager.get("textBoxPurple.png", Texture.class);
 		sb = new SpriteBatch();
 		CFVars.DEFAULT_SB_COLOR=sb.getColor();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		hudCam = new OrthographicCamera();
+		hudCam.setToOrtho(false, CFVars.SCREEN_WIDTH, CFVars.SCREEN_HEIGHT);
 		
 		gsm = new GameScreenManager(this);
 	}

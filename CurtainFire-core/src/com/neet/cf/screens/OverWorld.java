@@ -5,6 +5,8 @@ import static com.neet.cf.util.CFVars.*;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -31,10 +33,14 @@ import com.neet.cf.handlers.OverworldGrid;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
 import com.neet.cf.util.CFVars;
+import com.neet.cf.util.CharSequencer;
+import com.neet.cf.util.DialogBox;
 
 public class OverWorld extends GameScreen
 {	
 	private static TiledMap currentMap;
+	private float textAccum = 0;
+	private boolean textPopUp = false;
 	private static int currentMapHeight;
 	private static int currentMapWidth;
 	private final String ANIMATIONFRAMES="animatedTileset";
@@ -157,8 +163,21 @@ public class OverWorld extends GameScreen
 	public void update(float dt)
 	{
 		handleInput();
+		if(!textPopUp)
+			player.handleMove();
 		player.update(dt);	
 		cameraFollowPlayer();
+		if(textPopUp)
+		{
+			
+			textAccum+=dt;
+			if(textAccum>currTextReadRate)
+			{
+				DialogBox.charSeq.addNextChar();			
+				textAccum=0;
+			}
+			
+		}
 	}
 	@Override
 	public void render()
@@ -202,9 +221,18 @@ public class OverWorld extends GameScreen
 		{
 			n.render(sb);;
 		}
-		sb.end();
+
+	
 		
+		sb.end();
 		renderer.render(new int[]{FOREGROUND_LAYER});
+		if(textPopUp)
+		{
+			DialogBox.draw(sb, hudCam);
+
+		}
+		
+		
 	
 	}
 	private void updateGrassAnimation()
@@ -311,7 +339,11 @@ public class OverWorld extends GameScreen
 			e.printStackTrace();
 		}
 	}
-
+	public void startTextReadOut(String s)
+	{
+		DialogBox.charSeq = new CharSequencer(s);
+		textPopUp=true;
+	}
 	public void handleInput()
 	{
 		if(GameInput.isDown(GameInput.BUTTON_R))
@@ -324,11 +356,21 @@ public class OverWorld extends GameScreen
 		}
 		if(GameInput.isDown(GameInput.BUTTON_NUM_1))
 				changeMap("map001.tmx");
+		if(Gdx.input.isKeyJustPressed(Keys.Z))
+		{
+			if(!textPopUp)
+				playerInteract();
+			else
+				if(DialogBox.charSeq.isDone())textPopUp=false;
+		}
 		if(GameInput.isDown(GameInput.BUTTON_Z))
 		{
-			playerInteract();
+			CFVars.currTextReadRate=textReadRate_FAST;
 		}
-		player.handleMove();
+		else
+		{
+			CFVars.currTextReadRate=textReadRate_NORM;
+		}
 	}
 	private void playerInteract()
 	{
@@ -336,7 +378,7 @@ public class OverWorld extends GameScreen
 		for(NPC npc: NPCList)
 		{
 			if(npc.getGridPos().equals(targetGridPos))
-				npc.setDefeated();
+				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
 		}
 		
 	}

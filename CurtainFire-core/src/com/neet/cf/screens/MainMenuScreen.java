@@ -28,8 +28,8 @@ public class MainMenuScreen extends GameScreen
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		CurtainFire.font.setColor(Color.WHITE);
-		CurtainFire.font.draw(batch,"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
+		CFVars.font.setColor(Color.WHITE);
+		CFVars.font.draw(batch,"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
 										+CFVars.PO_CHAR+CFVars.KE_CHAR+CFVars.PK_CHAR+CFVars.MN_CHAR, 0, 300);
 		batch.end();
 	}
