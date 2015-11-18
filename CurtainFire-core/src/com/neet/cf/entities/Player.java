@@ -121,8 +121,6 @@ public class Player
 		{
 			currentFrame = idleFrames[direction];
 		}
-		sb.setColor(DEFAULT_SHADOW_COLOR);
-		sb.draw(currentFrame, position.x+2, position.y+2, 0, 0, 16, 10, 1.2f, 1.9f,0);
 		sb.setColor(DEFAULT_SB_COLOR);
 		sb.draw(currentFrame, position.x, position.y);
 	}
@@ -376,6 +374,11 @@ public class Player
 	public Vector2 getGridPos()
 	{
 		return new Vector2(gridX, gridY);
+	}
+	public void drawShadow(Batch sb)
+	{
+		sb.setColor(DEFAULT_SHADOW_COLOR);
+		sb.draw(currentFrame, position.x+2, position.y+2, 0, 0, 16, 10, 1.2f, 1.9f,0);
 	}
 
 

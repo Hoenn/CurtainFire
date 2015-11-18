@@ -210,11 +210,14 @@ public class OverWorld extends GameScreen
 	
 		sb.setProjectionMatrix(cam.combined);
 		sb.begin();	
+		player.drawShadow(sb);
+		for(NPC n: NPCList)
+			n.drawShadow(sb);
 		tempList = new Array<NPC>();
 		for(NPC n: NPCList)
 		{
 			if(n.getGridPos().y>=player.getGridPos().y)
-				n.render(sb);
+				n.draw(sb);
 			else
 				tempList.add(n);
 		}
@@ -222,7 +225,7 @@ public class OverWorld extends GameScreen
 		//NPCs Below player
 		for(NPC n: tempList)
 		{
-			n.render(sb);;
+			n.draw(sb);;
 		}
 
 	

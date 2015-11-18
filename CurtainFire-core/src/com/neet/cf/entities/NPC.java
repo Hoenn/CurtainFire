@@ -31,12 +31,15 @@ public class NPC
 		position = new Vector2(x, y);
 		gridPos = new Vector2(x/CFVars.TILE_WIDTH, y/CFVars.TILE_WIDTH);
 	}
-	public void render(Batch sb)
+	public void draw(Batch sb)
 	{	
-		sb.setColor(CFVars.DEFAULT_SHADOW_COLOR);
-		sb.draw(currentFrame, position.x+2, position.y+2, 0, 0, 16, 10, 1.2f, 1.9f,0);
 		sb.setColor(currentColor);
 		sb.draw(currentFrame, position.x, position.y);
+	}
+	public void drawShadow(Batch sb)
+	{
+		sb.setColor(CFVars.DEFAULT_SHADOW_COLOR);
+		sb.draw(currentFrame, position.x+2, position.y+2, 0, 0, 16, 10, 1.2f, 1.9f,0);
 	}
 	public boolean isDefeated()
 	{
