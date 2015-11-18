@@ -11,10 +11,12 @@ public class DialogBox
 {
 	public static CharSequencer charSeq;
 	public static Texture box;
-	private final static float width = 592;
-	private final static float height = 200;
-	private final static float x = 64;
-	private final static float y = 32;
+	
+	
+	private final static float x = 16*(CFVars.SCREEN_WIDTH/CFVars.V_WIDTH);
+	private final static float y = 8*(CFVars.SCREEN_HEIGHT/CFVars.SCREEN_HEIGHT);
+	private final static float width =CFVars.SCREEN_WIDTH-x*2;	
+	private final static float height = y*21;
 	private static GlyphLayout layout = new GlyphLayout();
 	public static void draw(SpriteBatch sb, OrthographicCamera hudCam)
 	{		
@@ -24,10 +26,10 @@ public class DialogBox
 		CFVars.font.setColor(Color.BLACK);
 		layout.setText(CFVars.font, charSeq.getCurrent());
 		//If box is "full" there is a carriage return
-		if(layout.width>=461*3)
+		if(layout.width>=(width-x-x-16)*3-36)
 			charSeq.setReturn();
 		
-		CFVars.font.draw(sb, charSeq.getCurrent(), x+x, 176, 470, 30, true);
+		CFVars.font.draw(sb, charSeq.getCurrent(), x+x+8, 135, width-x-x-16, 30, true);
 		sb.end();
 
 	}

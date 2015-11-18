@@ -387,7 +387,15 @@ public class OverWorld extends GameScreen
 		for(NPC npc: NPCList)
 		{
 			if(npc.getGridPos().equals(targetGridPos))
-				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
+			{
+				//startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
+				String s ="";
+				for(int i=0; i<50; i++)
+				{
+					s+=Character.toChars(i);
+				}
+				startTextReadOut(s);
+			}
 		}
 		
 	}

@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -46,6 +47,7 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.load("cfFont.fnt", BitmapFont.class);
 		manager.finishLoading();
 		CFVars.font = manager.get("cfFont.fnt", BitmapFont.class);
+		//CFVars.font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Nearest);
 		CFVars.fontSize= CFVars.font.getSpaceWidth();
 		Gdx.input.setInputProcessor(new GameInputProcessor());
 		DialogBox.box= manager.get("textBoxPurple.png", Texture.class);
@@ -54,7 +56,7 @@ public class CurtainFire extends ApplicationAdapter {
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		hudCam = new OrthographicCamera();
-		hudCam.setToOrtho(false, CFVars.SCREEN_WIDTH, CFVars.SCREEN_HEIGHT);
+		hudCam.setToOrtho(false, CFVars.SCREEN_WIDTH,CFVars.SCREEN_HEIGHT);
 		
 		gsm = new GameScreenManager(this);
 	}
