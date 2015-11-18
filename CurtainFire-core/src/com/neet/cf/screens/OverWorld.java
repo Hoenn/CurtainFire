@@ -388,13 +388,10 @@ public class OverWorld extends GameScreen
 		{
 			if(npc.getGridPos().equals(targetGridPos))
 			{
-				//startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
-				String s ="";
-				for(int i=0; i<50; i++)
-				{
-					s+=Character.toChars(i);
-				}
-				startTextReadOut(s);
+				//opposite direction
+				npc.turn(player.getDirection()+2);
+				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
+				
 			}
 		}
 		

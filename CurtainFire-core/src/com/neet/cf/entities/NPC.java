@@ -16,25 +16,17 @@ public class NPC
 	private Vector2 position;
 	private Color currentColor;
 	private boolean defeated;
+	private TextureRegion[][] frames;
 	private TextureRegion currentFrame;
 	public NPC(String imgPath, float x, float y, int direction)
 	{
 		Texture texture = CurtainFire.manager.get(imgPath);
-		TextureRegion[][] temp = TextureRegion.split(texture, SPRITE_WIDTH, SPRITE_HEIGHT);
+		frames = TextureRegion.split(texture, SPRITE_WIDTH, SPRITE_HEIGHT);
 
-		TextureRegion idleFrame=null;
-		if(direction==CFVars.Direction.RIGHT.num())
-		{
-			TextureRegion right = new TextureRegion(temp[0][1]);
-			right.flip(true,  false);
-			idleFrame = right;
-		}
-		else
-			idleFrame = new TextureRegion(temp[0][direction]);
-	
+		turn(direction);
+		
 		currentColor = DEFAULT_SB_COLOR;
 		defeated=false;
-		currentFrame = idleFrame;
 		
 		position = new Vector2(x, y);
 		gridPos = new Vector2(x/CFVars.TILE_WIDTH, y/CFVars.TILE_WIDTH);
@@ -54,6 +46,19 @@ public class NPC
 	{
 		defeated=true;
 		currentColor = Color.SLATE;
+	}
+	public void turn(int dir)
+	{
+		//only allow 0,1,2,3
+		dir = dir%4;
+		if(dir==CFVars.Direction.RIGHT.num())
+		{
+			TextureRegion right = new TextureRegion(frames[0][1]);
+			right.flip(true,  false);
+			currentFrame= right;
+		}
+		else
+			currentFrame = new TextureRegion(frames[0][dir]);
 	}
 	public Vector2 getGridPos()
 	{

@@ -365,6 +365,10 @@ public class Player
 		}
 		return target;
 	}
+	public int getDirection()
+	{
+		return direction;
+	}
 	public Vector2 getPosition()
 	{
 		return position;
