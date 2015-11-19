@@ -16,9 +16,9 @@ import com.neet.cf.screens.OverWorld;
 
 import static com.neet.cf.handlers.GameInput.*;
 
-public class Player
+public class Player extends MapEntity
 {
-	private Vector2 position, destVector, moveVector;	
+	private Vector2 destVector, moveVector;	
 	private final float RUN_TIME = 0.18f;
 	private final float WALK_TIME = 0.36f;
 	private float MOVE_TIME= WALK_TIME;
@@ -30,7 +30,6 @@ public class Player
 	private final float RUN_ANI_SPEED = 0.1f;
 	private ArrayList<Animation> runs = new ArrayList<Animation>();
 	private TextureRegion[] idleFrames = new TextureRegion[4];
-	private TextureRegion currentFrame;
 	
 	private boolean moving=false;
 	private int gridX;
@@ -367,19 +366,12 @@ public class Player
 	{
 		return direction;
 	}
-	public Vector2 getPosition()
-	{
-		return position;
-	}
+	
 	public Vector2 getGridPos()
 	{
 		return new Vector2(gridX, gridY);
 	}
-	public void drawShadow(Batch sb)
-	{
-		sb.setColor(DEFAULT_SHADOW_COLOR);
-		sb.draw(currentFrame, position.x+2, position.y+2, 0, 0, 16, 10, 1.2f, 1.9f,0);
-	}
+	
 
 
 }

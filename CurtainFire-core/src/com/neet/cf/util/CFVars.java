@@ -25,7 +25,7 @@ public class CFVars
 	public static final int SPRITE_HEIGHT= 20;
 	
 	public static Color DEFAULT_SB_COLOR;
-	public static final Color DEFAULT_SHADOW_COLOR = new Color(0,0,0,0.8f);
+	public static final Color DEFAULT_SHADOW_COLOR = new Color(0,0,0,0.7f);
 	
 	public static BitmapFont font;
 	public static float fontSize;
