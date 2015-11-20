@@ -14,9 +14,9 @@ public class DialogBox
 	
 	
 	private final static float x = 16*(CFVars.SCREEN_WIDTH/CFVars.V_WIDTH);
-	private final static float y = 8*(CFVars.SCREEN_HEIGHT/CFVars.SCREEN_HEIGHT);
+	private final static float y = 8;
 	private final static float width =CFVars.SCREEN_WIDTH-x*2;	
-	private final static float height = y*21;
+	private final static float height = 168;
 	private static GlyphLayout layout = new GlyphLayout();
 	public static void draw(SpriteBatch sb, OrthographicCamera hudCam)
 	{		
