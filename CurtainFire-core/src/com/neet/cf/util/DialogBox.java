@@ -24,7 +24,7 @@ public class DialogBox
 		CFVars.font.setColor(Color.BLACK);
 		layout.setText(CFVars.font, charSeq.getCurrent());
 		//If box is "full" there is a carriage return
-		if(layout.width>=(width-(x*x)-16)*3-36)
+		if(layout.width>=(width-x-x-16)*3-36)
 			charSeq.setReturn();
 		
 		CFVars.font.draw(sb, charSeq.getCurrent(), (x*2)+8, 135, width-(x*2)-16, 30, true);
