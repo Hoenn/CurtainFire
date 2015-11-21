@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.maps.MapLayer;
@@ -372,12 +373,19 @@ public class OverWorld extends GameScreen
 		{
 			if(!textPopUp)
 				playerInteract();
+			
 			else
 			{
 				if(DialogBox.charSeq.isDone())
+				{
+					CurtainFire.manager.get("blip.ogg", Sound.class).play(.3f);
 					textPopUp=false;
+				}
 				else if(DialogBox.charSeq.needsReturn())
+				{
+					CurtainFire.manager.get("blip.ogg", Sound.class).play(.3f);
 					DialogBox.charSeq.carriageReturn();
+				}
 			}
 			
 		}
@@ -399,7 +407,14 @@ public class OverWorld extends GameScreen
 			{
 				//opposite direction
 				npc.turn(player.getDirection()+2);
-				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
+				//startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
+				String s="";
+				for(int i=0; i<50; i++)
+				{
+					s+= Character.toChars(i);
+					
+				}
+				startTextReadOut(s);
 				
 			}
 		}

@@ -1,5 +1,8 @@
 package com.neet.cf.util;
 
+import com.badlogic.gdx.audio.Sound;
+import com.neet.cf.CurtainFire;
+
 public class CharSequencer
 {
 	private char[] array;
@@ -42,7 +45,6 @@ public class CharSequencer
 	public void carriageReturn()
 	{
 		current.setLength(0);
-
 		carriageReturn=false;
 	}
 	public String getCurrent()

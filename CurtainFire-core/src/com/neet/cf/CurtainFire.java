@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -38,14 +39,9 @@ public class CurtainFire extends ApplicationAdapter {
 	public void create()
 	{
 		manager = new AssetManager();
-		manager.load("player.png", Texture.class);
-		manager.load("boyscout.png", Texture.class);
-		manager.load("textBoxPurple.png", Texture.class);
-		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-		manager.load("map001.tmx", TiledMap.class);
-		manager.load("flowerIsland.tmx", TiledMap.class);
-		manager.load("cfFont.fnt", BitmapFont.class);
+		loadAssets();
 		manager.finishLoading();
+		manager.get("pcboot.ogg", Sound.class).play();
 		CFVars.font = manager.get("cfFont.fnt", BitmapFont.class);
 		//CFVars.font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Nearest);
 		CFVars.fontSize= CFVars.font.getSpaceWidth();
@@ -73,6 +69,20 @@ public class CurtainFire extends ApplicationAdapter {
 	public OrthographicCamera getHUDCamera()
 	{
 		return hudCam;
+	}
+	private void loadAssets()
+	{
+		manager.load("player.png", Texture.class);
+		manager.load("boyscout.png", Texture.class);
+		manager.load("textBoxPurple.png", Texture.class);
+		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+		manager.load("map001.tmx", TiledMap.class);
+		manager.load("flowerIsland.tmx", TiledMap.class);
+		manager.load("cfFont.fnt", BitmapFont.class);
+		manager.load("pcboot.ogg", Sound.class);
+		manager.load("blip.ogg", Sound.class);
+		manager.load("pause.ogg", Sound.class);
+		manager.load("unpause.ogg", Sound.class);
 	}
 	public void render()
 	{
