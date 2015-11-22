@@ -43,7 +43,6 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.finishLoading();
 		manager.get("pcboot.ogg", Sound.class).play();
 		CFVars.font = manager.get("cfFont.fnt", BitmapFont.class);
-		//CFVars.font.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Nearest);
 		CFVars.fontSize= CFVars.font.getSpaceWidth();
 		Gdx.input.setInputProcessor(new GameInputProcessor());
 		DialogBox.box= manager.get("textBoxPurple.png", Texture.class);
