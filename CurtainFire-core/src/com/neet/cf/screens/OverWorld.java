@@ -378,12 +378,12 @@ public class OverWorld extends GameScreen
 			{
 				if(DialogBox.charSeq.isDone())
 				{
-					CurtainFire.manager.get("blip.ogg", Sound.class).play(.3f);
+					CurtainFire.manager.get("blip.ogg", Sound.class).play(CFVars.VOLUME);
 					textPopUp=false;
 				}
 				else if(DialogBox.charSeq.needsReturn())
 				{
-					CurtainFire.manager.get("blip.ogg", Sound.class).play(.3f);
+					CurtainFire.manager.get("blip.ogg", Sound.class).play(CFVars.VOLUME);
 					DialogBox.charSeq.carriageReturn();
 				}
 			}

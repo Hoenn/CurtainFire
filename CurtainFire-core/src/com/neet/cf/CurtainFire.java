@@ -41,11 +41,13 @@ public class CurtainFire extends ApplicationAdapter {
 		manager = new AssetManager();
 		loadAssets();
 		manager.finishLoading();
-		manager.get("pcboot.ogg", Sound.class).play();
+		
 		CFVars.font = manager.get("cfFont.fnt", BitmapFont.class);
-		CFVars.fontSize= CFVars.font.getSpaceWidth();
+		
 		Gdx.input.setInputProcessor(new GameInputProcessor());
+		
 		DialogBox.box= manager.get("textBoxPurple.png", Texture.class);
+		
 		sb = new SpriteBatch();
 		CFVars.DEFAULT_SB_COLOR=sb.getColor();
 		cam = new OrthographicCamera();
@@ -53,6 +55,7 @@ public class CurtainFire extends ApplicationAdapter {
 		hudCam = new OrthographicCamera();
 		hudCam.setToOrtho(false, CFVars.SCREEN_WIDTH,CFVars.SCREEN_HEIGHT);
 		
+		manager.get("pcboot.ogg", Sound.class).play(CFVars.VOLUME);
 		gsm = new GameScreenManager(this);
 	}
 	public SpriteBatch getSpriteBatch()
