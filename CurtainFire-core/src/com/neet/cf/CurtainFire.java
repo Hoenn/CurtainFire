@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -85,6 +86,7 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.load("blip.ogg", Sound.class);
 		manager.load("pause.ogg", Sound.class);
 		manager.load("unpause.ogg", Sound.class);
+		manager.load("testMusic.ogg", Music.class);
 	}
 	public void render()
 	{
