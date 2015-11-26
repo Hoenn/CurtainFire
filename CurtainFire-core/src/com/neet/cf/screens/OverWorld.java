@@ -373,6 +373,13 @@ public class OverWorld extends GameScreen
 		{
 			changeMap("flowerIsland.tmx");
 		}
+		if(Gdx.input.isKeyJustPressed(Keys.M))
+		{
+			if(music.isPlaying())
+				music.pause();
+			else
+				music.play();
+		}
 		if(GameInput.isDown(GameInput.BUTTON_NUM_1))
 				changeMap("map001.tmx");
 		if(Gdx.input.isKeyJustPressed(Keys.Z))
