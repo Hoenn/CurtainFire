@@ -26,7 +26,6 @@ public class GameScreenManager
 		this.game = game;
 		gameScreens = new GameScreen[NUMSTATES];
 		
-		//LoadingScreen
 		setScreen(START);
 	}
 	public CurtainFire getGame()
