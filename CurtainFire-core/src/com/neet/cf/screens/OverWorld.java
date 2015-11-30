@@ -112,7 +112,8 @@ public class OverWorld extends GameScreen
 				String direction = (String) properties.get("DIRECTION");
 				int dir = CFVars.Direction.valueOf(Direction.class, direction).num();
 				Rectangle rect = ((RectangleMapObject)mo).getRectangle();
-				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir));//send scripts too
+				String scriptPath = ((String) properties.get("SCRIPT"))+".cf";
+				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir, scriptPath));//send scripts too
 			}
 		}
 		
@@ -420,7 +421,7 @@ public class OverWorld extends GameScreen
 			{
 				//opposite direction
 				npc.turn(player.getDirection()+2);
-				//BattleScreen.currentScript = npc.getScript();
+				BattleScreen.scriptPath = npc.getScript();
 				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());				
 			}
 		}

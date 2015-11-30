@@ -14,13 +14,16 @@ public class NPC extends MapEntity
 {
 	private Vector2 gridPos;
 	private Color currentColor;
+	private String scriptPath;
 	private boolean defeated;
 	private TextureRegion[][] frames;
-	public NPC(String imgPath, float x, float y, int direction)
+	public NPC(String imgPath, float x, float y, int direction, String sp)
 	{
 		Texture texture = CurtainFire.manager.get(imgPath);
 		frames = TextureRegion.split(texture, SPRITE_WIDTH, SPRITE_HEIGHT);
 
+		scriptPath = sp;
+		
 		turn(direction);
 		
 		currentColor = DEFAULT_SB_COLOR;
@@ -60,5 +63,9 @@ public class NPC extends MapEntity
 	public Vector2 getGridPos()
 	{
 		return gridPos;
+	}
+	public String getScript()
+	{
+		return scriptPath;
 	}
 }

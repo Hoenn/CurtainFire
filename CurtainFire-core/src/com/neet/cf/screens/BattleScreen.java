@@ -11,13 +11,23 @@ import com.neet.cf.util.CFVars;
 
 public class BattleScreen extends GameScreen
 {
-
+	public static String scriptPath = "";
 	public BattleScreen(GameScreenManager gsm)
 	{
 		super(gsm);
 
 	}
-
+	@Override
+	public void render()
+	{ 	
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		sb.begin();
+		sb.setProjectionMatrix(hudCam.combined);
+		CFVars.font.setColor(Color.WHITE);
+		CFVars.font.draw(sb, scriptPath, 10, 20);
+		sb.end();
+	}
 	@Override
 	public void pause()
 	{
@@ -51,18 +61,6 @@ public class BattleScreen extends GameScreen
 	public void update(float dt)
 	{
 		handleInput();
-	}
-
-	@Override
-	public void render()
-	{ 	
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		sb.begin();
-		sb.setProjectionMatrix(hudCam.combined);
-		CFVars.font.setColor(Color.WHITE);
-		CFVars.font.draw(sb, "BATTLE", 10, 20);
-		sb.end();
 	}
 
 	@Override
