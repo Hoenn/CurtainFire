@@ -30,7 +30,7 @@ public class OptionsScreen extends GameScreen
     	VolumeUp(0, "VOLUME UP"), 
     	VolumeDown(1, "VOLUME DOWN"), 
     	Mute(2, "Mute"),
-    	Done(3, "Done");
+    	Done(3, "Return");
     	private final int items=4;
     	private float yVal;
     	private String text;
@@ -84,6 +84,15 @@ public class OptionsScreen extends GameScreen
 
 	public void handleInput()
 	{
+		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE))
+		{
+			if(gsm.prevScreen==gsm.OVERWORLD)
+				gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.RectUp), false);
+			else if(gsm.prevScreen == gsm.BATTLE)
+				gsm.setScreen(gsm.BATTLE, new Transition(TransitionType.RectUp), false);
+			else
+				gsm.setScreen(gsm.prevScreen, false);
+		}
 		if (Gdx.input.isKeyJustPressed(Keys.Z))
 		{
 			CurtainFire.manager.get("blip.ogg", Sound.class).play(CFVars.VOLUME);

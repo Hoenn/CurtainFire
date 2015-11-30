@@ -363,7 +363,7 @@ public class OverWorld extends GameScreen
 	}
 	public void handleInput()
 	{
-		if(GameInput.isDown(GameInput.BUTTON_R))
+		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE))
 		{
 			gsm.prevScreen=gsm.OVERWORLD;
 			gsm.transitionScreens(this, gsm.OPTIONS, new Transition(TransitionType.RectDown));
@@ -392,6 +392,7 @@ public class OverWorld extends GameScreen
 				{
 					CurtainFire.manager.get("blip.ogg", Sound.class).play(CFVars.VOLUME);
 					textPopUp=false;
+					gsm.transitionScreens(this, gsm.BATTLE, new Transition(TransitionType.VerticalSlices));
 				}
 				else if(DialogBox.charSeq.needsReturn())
 				{
@@ -419,15 +420,8 @@ public class OverWorld extends GameScreen
 			{
 				//opposite direction
 				npc.turn(player.getDirection()+2);
-				//startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());
-				String s="";
-				for(int i=0; i<50; i++)
-				{
-					s+= Character.toChars(i);
-					
-				}
-				startTextReadOut(s);
-				
+				//BattleScreen.currentScript = npc.getScript();
+				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());				
 			}
 		}
 		
