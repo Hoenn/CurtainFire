@@ -3,6 +3,7 @@ package com.neet.cf.handlers;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.screens.GameScreen;
 import com.neet.cf.screens.MainMenuScreen;
+import com.neet.cf.screens.OptionsScreen;
 import com.neet.cf.screens.OverWorld;
 import com.neet.cf.screens.TransitionScreen;
 
@@ -12,9 +13,10 @@ public class GameScreenManager
 	
 	private GameScreen[] gameScreens;
 	
-	public final int NUMSTATES=2;
+	public final int NUMSTATES=3;
 	public final int START=0;
 	public final int OVERWORLD = 1;
+	public final int OPTIONS = 2;
 
 	
 	private int currentScreen;
@@ -44,6 +46,7 @@ public class GameScreenManager
 	{
 		if(screen==START) return new MainMenuScreen(this);
 		if(screen==OVERWORLD) return new OverWorld(this);
+		if(screen==OPTIONS) return new OptionsScreen(this);
 		return null;
 	}
 	public void transitionScreens(GameScreen currentScreen, int nextScreen, Transition t)

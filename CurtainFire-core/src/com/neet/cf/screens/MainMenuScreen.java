@@ -1,8 +1,5 @@
 package com.neet.cf.screens;
 
-import static com.neet.cf.handlers.GameInput.BUTTON_Z;
-import static com.neet.cf.handlers.GameInput.isDown;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -22,35 +19,36 @@ public class MainMenuScreen extends GameScreen
     private SpriteBatch batch;
     private ShapeRenderer sr;
     private GlyphLayout layout;
-    private final String MENU1 ="PLAY";
-    private final String MENU2 ="OPTIONS";
-    private final String MENU3= "Test";
+
     
     private Rectangle rect;
     private enum Selection {
-    	Play(0), 
-    	Options(1), 
-    	Test(2);
+    	Play(0, "PLAY"), 
+    	Options(1, "OPTIONS"), 
+    	Test(2, "Test");
     	private final int items=4;
     	private float yVal;
-    	private Selection(int listNum){
+    	private String text;
+    	private Selection(int listNum, String t){
     		yVal= (items-listNum)*CFVars.SCREEN_HEIGHT/(items+1);
+    		text=t;
     	}
     	private float getY(){
     		return yVal;
     	}
  
     };
-    private Selection[] selectList = {Selection.Play, Selection.Options, Selection.Test};
+    private Selection[] selectList;
     private int listPos;
 	public MainMenuScreen(GameScreenManager gsm)
 	{
 		super(gsm);
 		//Set layout to widest test for rectangle init
-		layout = new GlyphLayout(CFVars.font, MENU2);
+		layout = new GlyphLayout(CFVars.font, Selection.Options.text);
 		batch = new SpriteBatch();
 		sr = new ShapeRenderer();
 		listPos=0;
+		selectList = Selection.values();
 		rect= new Rectangle((CFVars.SCREEN_WIDTH-layout.width*2)/2, selectList[listPos].getY()-layout.height*1.5f, layout.width*2, layout.height*2);
 	}
 	@Override
@@ -62,11 +60,11 @@ public class MainMenuScreen extends GameScreen
 		//Draw Test
 		batch.begin();
 		CFVars.font.setColor(Color.WHITE);
-		layout.setText(CFVars.font, MENU1);
+		layout.setText(CFVars.font, selectList[0].text);
 		CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, Selection.Play.getY());
-		layout.setText(CFVars.font, MENU2);
+		layout.setText(CFVars.font, selectList[1].text);
 		CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, Selection.Options.getY());
-		layout.setText(CFVars.font, MENU3);
+		layout.setText(CFVars.font, selectList[2].text);
 		CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, Selection.Test.getY());
 		batch.end();
 		
@@ -78,7 +76,7 @@ public class MainMenuScreen extends GameScreen
 	}
 	public void handleInput()
 	{
-		if(isDown(BUTTON_Z))
+		if(Gdx.input.isKeyJustPressed(Keys.Z))
 		{
 			Selection sel = selectList[listPos];
 			switch(sel)
@@ -87,6 +85,7 @@ public class MainMenuScreen extends GameScreen
 					gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut));
 					break;
 				case Options:
+					gsm.setScreen(gsm.OPTIONS);
 					break;
 				case Test:
 					break;
