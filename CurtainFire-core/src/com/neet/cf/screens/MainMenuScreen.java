@@ -28,12 +28,13 @@ public class MainMenuScreen extends GameScreen
     
     private Rectangle rect;
     private enum Selection {
-    	Play((3*CFVars.SCREEN_HEIGHT)/4), 
-    	Options((2*CFVars.SCREEN_HEIGHT)/4), 
-    	Test((CFVars.SCREEN_HEIGHT)/4);
+    	Play(0), 
+    	Options(1), 
+    	Test(2);
+    	private final int items=4;
     	private float yVal;
-    	private Selection(float y){
-    		yVal=y;
+    	private Selection(int listNum){
+    		yVal= (items-listNum)*CFVars.SCREEN_HEIGHT/(items+1);
     	}
     	private float getY(){
     		return yVal;
