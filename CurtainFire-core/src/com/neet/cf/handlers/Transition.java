@@ -71,8 +71,8 @@ public class Transition
 		Rectangle shape = shapes.get(0);
 		if(timer>=tick)
 		{	
-			shape.height+=TILE_WIDTH;
-			if(shape.height>SCREEN_HEIGHT)
+			shape.y+=TILE_WIDTH;
+			if(shape.y>=SCREEN_HEIGHT)
 				complete=true;
 			timer=0;
 		}
@@ -227,7 +227,7 @@ public class Transition
 		{
 			case RectUp:
 				tick=0.05f;
-				shapes.add(new Rectangle(0, 0, SCREEN_WIDTH, TILE_WIDTH));
+				shapes.add(new Rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 				break;
 	
 			case RectDown:

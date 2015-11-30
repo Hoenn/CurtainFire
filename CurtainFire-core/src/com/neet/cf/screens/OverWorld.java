@@ -69,8 +69,6 @@ public class OverWorld extends GameScreen
 		player = new Player();
 		cameraFollowPlayer();
 		music = CurtainFire.manager.get("testMusic.ogg", Music.class);
-		music.setVolume(CFVars.VOLUME);
-		music.play();
 		changeMap("map001.tmx");
 	}
 	public void changeMap(String mapPath)
@@ -368,7 +366,7 @@ public class OverWorld extends GameScreen
 		if(GameInput.isDown(GameInput.BUTTON_R))
 		{
 			gsm.prevScreen=gsm.OVERWORLD;
-			gsm.transitionScreens(this, gsm.OPTIONS, new Transition(TransitionType.VerticalSlices));
+			gsm.transitionScreens(this, gsm.OPTIONS, new Transition(TransitionType.RectDown));
 		}
 		if(GameInput.isDown(GameInput.BUTTON_F))
 		{

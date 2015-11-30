@@ -52,15 +52,16 @@ public class GameScreenManager
 	}
 	public void transitionScreens(GameScreen currentScreen, int nextScreen, Transition t)
 	{
+		
 		currentScreen.pause();
 		CurtainFire.currentScreen= new TransitionScreen(this, currentScreen, nextScreen, t);
 		currentGameScreen = CurtainFire.currentScreen;
 	}
 	//Sets screen to new screen so that it can be constructed and rendered to be the
 	//background for transition.
-	public void setScreen(int screen, Transition t)
+	public void setScreen(int screen, Transition t, boolean pause)
 	{
-		setScreen(screen);
+		setScreen(screen, pause);
 		transitionScreens(CurtainFire.currentScreen, screen, t);
 
 	}

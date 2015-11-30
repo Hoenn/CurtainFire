@@ -81,7 +81,7 @@ public class MainMenuScreen extends GameScreen
 			switch(sel)
 			{
 				case Play:
-					gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut));
+					gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
 					break;
 				case Options:
 					gsm.prevScreen=gsm.MENU;

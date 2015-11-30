@@ -11,13 +11,11 @@ public class TransitionScreen extends GameScreen
 	private GameScreen prevScreen;
 	private Transition transition;
 	public TransitionScreen(GameScreenManager gsm, GameScreen p, int s, Transition t)
-	{
-		
+	{		
 		super(gsm);
 		nextScreen=s;
 		prevScreen=p;
-		transition = t;
-		
+		transition = t;	
 	}
 
 	@Override

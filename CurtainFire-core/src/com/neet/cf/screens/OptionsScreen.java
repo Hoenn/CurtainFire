@@ -101,8 +101,10 @@ public class OptionsScreen extends GameScreen
 				case Mute:	
 							CFVars.VOLUME=0;
 							break;
-				case Done:	
-							gsm.setScreen(gsm.prevScreen, false);
+				case Done:	if(gsm.prevScreen==gsm.OVERWORLD)
+								gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.RectUp), false);
+							else
+								gsm.setScreen(gsm.prevScreen, false);
 							break;
 			}
 		}
