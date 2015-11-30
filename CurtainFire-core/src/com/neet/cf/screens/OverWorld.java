@@ -367,7 +367,8 @@ public class OverWorld extends GameScreen
 	{
 		if(GameInput.isDown(GameInput.BUTTON_R))
 		{
-			gsm.transitionScreens(this, gsm.START, new Transition(TransitionType.VerticalSlices));
+			gsm.prevScreen=gsm.OVERWORLD;
+			gsm.transitionScreens(this, gsm.OPTIONS, new Transition(TransitionType.VerticalSlices));
 		}
 		if(GameInput.isDown(GameInput.BUTTON_F))
 		{
@@ -445,12 +446,14 @@ public class OverWorld extends GameScreen
 	@Override
 	public void pause()
 	{
+		music.pause();
 	}
 
 	@Override
 	public void resume()
 	{
-		
+		music.setVolume(CFVars.VOLUME);
+		music.play();
 	}
 
 	@Override

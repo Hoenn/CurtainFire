@@ -1,10 +1,8 @@
 package com.neet.cf.screens;
 
-import static com.neet.cf.handlers.GameInput.BUTTON_Z;
-import static com.neet.cf.handlers.GameInput.isDown;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -12,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
@@ -23,45 +22,40 @@ public class OptionsScreen extends GameScreen
 	private SpriteBatch batch;
 	private ShapeRenderer sr;
 	private GlyphLayout layout;
-	private final String MENU1 = "PLAY";
-	private final String MENU2 = "OPTIONS";
-	private final String MENU3 = "Test";
+
 
 	private Rectangle rect;
-
-	private enum Selection
-	{
-		Play(0), Options(1), Test(2);
-		private final int items = 4;
-		private float yVal;
-
-		private Selection(int listNum)
-		{
-			yVal = (items - listNum) * CFVars.SCREEN_HEIGHT / (items + 1);
-		}
-
-		private float getY()
-		{
-			return yVal;
-		}
-
-	};
-
-	private Selection[] selectList =
-	{ Selection.Play, Selection.Options, Selection.Test };
+	
+    private enum Selection {
+    	VolumeUp(0, "VOLUME UP"), 
+    	VolumeDown(1, "VOLUME DOWN"), 
+    	Mute(2, "Mute"),
+    	Done(3, "Done");
+    	private final int items=4;
+    	private float yVal;
+    	private String text;
+    	private Selection(int listNum, String t){
+    		yVal= (items-listNum)*CFVars.SCREEN_HEIGHT/(items+1);
+    		text=t;
+    	}
+    	private float getY(){
+    		return yVal;
+    	}
+ 
+    };
+    private Selection[] selectList = Selection.values();
 	private int listPos;
 
 	public OptionsScreen(GameScreenManager gsm)
 	{
 		super(gsm);
 		// Set layout to widest test for rectangle init
-		layout = new GlyphLayout(CFVars.font, MENU2);
+		layout = new GlyphLayout(CFVars.font, Selection.VolumeDown.text);
 		batch = new SpriteBatch();
 		sr = new ShapeRenderer();
 		listPos = 0;
-		rect = new Rectangle((CFVars.SCREEN_WIDTH - layout.width * 2) / 2,
-				selectList[listPos].getY() - layout.height * 1.5f,
-				layout.width * 2, layout.height * 2);
+		selectList = Selection.values();
+		rect= new Rectangle((CFVars.SCREEN_WIDTH-layout.width*2)/2, selectList[listPos].getY()-layout.height*1.5f, layout.width*2, layout.height*2);
 	}
 
 	@Override
@@ -73,12 +67,12 @@ public class OptionsScreen extends GameScreen
 		// Draw Test
 		batch.begin();
 		CFVars.font.setColor(Color.WHITE);
-		layout.setText(CFVars.font, MENU1);
-		CFVars.font.draw(batch, layout,(CFVars.SCREEN_WIDTH - layout.width) / 2,Selection.Play.getY());
-		layout.setText(CFVars.font, MENU2);
-		CFVars.font.draw(batch, layout,(CFVars.SCREEN_WIDTH - layout.width) / 2,Selection.Options.getY());
-		layout.setText(CFVars.font, MENU3);
-		CFVars.font.draw(batch, layout,(CFVars.SCREEN_WIDTH - layout.width) / 2,Selection.Test.getY());
+		for(int i=0; i<selectList.length; i++)
+		{
+			layout.setText(CFVars.font, selectList[i].text);
+			CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, selectList[i].getY());
+			
+		}
 		batch.end();
 
 		// Draw Selection Rectangle
@@ -92,16 +86,24 @@ public class OptionsScreen extends GameScreen
 	{
 		if (Gdx.input.isKeyJustPressed(Keys.Z))
 		{
+			CurtainFire.manager.get("blip.ogg", Sound.class).play(CFVars.VOLUME);
 			Selection sel = selectList[listPos];
 			switch (sel)
 			{
-			case Play:
-				gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut));
-				break;
-			case Options:
-				break;
-			case Test:
-				break;
+				case VolumeUp:
+							if(CFVars.VOLUME<CFVars.VOLUME_MAX)
+								CFVars.VOLUME+=.025f;
+							break;
+				case VolumeDown:
+							if(CFVars.VOLUME>0)
+								CFVars.VOLUME -= .025f;
+							break;
+				case Mute:	
+							CFVars.VOLUME=0;
+							break;
+				case Done:	
+							gsm.setScreen(gsm.prevScreen, false);
+							break;
 			}
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.DOWN))

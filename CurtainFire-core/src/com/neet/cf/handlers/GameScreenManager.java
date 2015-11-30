@@ -14,12 +14,13 @@ public class GameScreenManager
 	private GameScreen[] gameScreens;
 	
 	public final int NUMSTATES=3;
-	public final int START=0;
+	public final int MENU=0;
 	public final int OVERWORLD = 1;
 	public final int OPTIONS = 2;
 
 	
 	private int currentScreen;
+	public int prevScreen;
 	
 	private GameScreen currentGameScreen;
 	
@@ -28,7 +29,7 @@ public class GameScreenManager
 		this.game = game;
 		gameScreens = new GameScreen[NUMSTATES];
 		
-		setScreen(START);
+		setScreen(MENU);
 	}
 	public CurtainFire getGame()
 	{
@@ -44,13 +45,14 @@ public class GameScreenManager
 	}
 	private GameScreen getScreen(int screen)
 	{
-		if(screen==START) return new MainMenuScreen(this);
+		if(screen==MENU) return new MainMenuScreen(this);
 		if(screen==OVERWORLD) return new OverWorld(this);
 		if(screen==OPTIONS) return new OptionsScreen(this);
 		return null;
 	}
 	public void transitionScreens(GameScreen currentScreen, int nextScreen, Transition t)
 	{
+		currentScreen.pause();
 		CurtainFire.currentScreen= new TransitionScreen(this, currentScreen, nextScreen, t);
 		currentGameScreen = CurtainFire.currentScreen;
 	}

@@ -26,7 +26,7 @@ public class MainMenuScreen extends GameScreen
     	Play(0, "PLAY"), 
     	Options(1, "OPTIONS"), 
     	Test(2, "Test");
-    	private final int items=4;
+    	private final int items=3;
     	private float yVal;
     	private String text;
     	private Selection(int listNum, String t){
@@ -59,13 +59,12 @@ public class MainMenuScreen extends GameScreen
 
 		//Draw Test
 		batch.begin();
-		CFVars.font.setColor(Color.WHITE);
-		layout.setText(CFVars.font, selectList[0].text);
-		CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, Selection.Play.getY());
-		layout.setText(CFVars.font, selectList[1].text);
-		CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, Selection.Options.getY());
-		layout.setText(CFVars.font, selectList[2].text);
-		CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, Selection.Test.getY());
+		for(int i=0; i<selectList.length; i++)
+		{
+			layout.setText(CFVars.font, selectList[i].text);
+			CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, selectList[i].getY());
+			
+		}
 		batch.end();
 		
 		//Draw Selection Rectangle
@@ -85,6 +84,7 @@ public class MainMenuScreen extends GameScreen
 					gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut));
 					break;
 				case Options:
+					gsm.prevScreen=gsm.MENU;
 					gsm.setScreen(gsm.OPTIONS);
 					break;
 				case Test:
