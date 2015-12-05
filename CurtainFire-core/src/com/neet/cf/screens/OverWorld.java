@@ -1,6 +1,6 @@
 package com.neet.cf.screens;
 
-import static com.neet.cf.util.CFVars.*;
+import static com.neet.cf.overworld.util.CFVars.*;
 
 import java.util.Iterator;
 
@@ -27,16 +27,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
-import com.neet.cf.entities.NPC;
-import com.neet.cf.entities.Player;
 import com.neet.cf.handlers.GameInput;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.OverworldGrid;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
-import com.neet.cf.util.CFVars;
-import com.neet.cf.util.CharSequencer;
-import com.neet.cf.util.DialogBox;
+import com.neet.cf.overworld.entities.NPC;
+import com.neet.cf.overworld.entities.Player;
+import com.neet.cf.overworld.util.CFVars;
+import com.neet.cf.overworld.util.CharSequencer;
+import com.neet.cf.overworld.util.DialogBox;
 
 public class OverWorld extends GameScreen
 {	
@@ -112,7 +112,7 @@ public class OverWorld extends GameScreen
 				String direction = (String) properties.get("DIRECTION");
 				int dir = CFVars.Direction.valueOf(Direction.class, direction).num();
 				Rectangle rect = ((RectangleMapObject)mo).getRectangle();
-				String scriptPath = ((String) properties.get("SCRIPT"))+".cf";
+				String scriptPath = ((String) properties.get("SCRIPT"))+".cfl";
 				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir, scriptPath));//send scripts too
 			}
 		}
@@ -421,7 +421,7 @@ public class OverWorld extends GameScreen
 			{
 				//opposite direction
 				npc.turn(player.getDirection()+2);
-				BattleScreen.scriptPath = npc.getScript();
+				BattleScreen.scriptFile = npc.getScript();
 				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());				
 			}
 		}

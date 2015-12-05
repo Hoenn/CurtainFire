@@ -8,27 +8,35 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.neet.cf.handlers.GameInputProcessor;
 import com.neet.cf.handlers.GameScreenManager;
+import com.neet.cf.overworld.util.CFVars;
+import com.neet.cf.overworld.util.DialogBox;
 import com.neet.cf.screens.GameScreen;
-import com.neet.cf.util.CFVars;
-import com.neet.cf.util.DialogBox;
 
 public class CurtainFire extends ApplicationAdapter {
 	public static AssetManager manager;
 	public static GameScreen currentScreen;
 	public static final float V_WIDTH = 240;
 	public static final float V_HEIGHT =192;
+	public static boolean DEBUG = true;
+	
+	public static final GameInputProcessor inputProc = new GameInputProcessor();
 
 	public static GameScreenManager gsm;
 	private SpriteBatch sb;
 	private OrthographicCamera cam;
 	private OrthographicCamera hudCam;
+	
+	//Fix this
+	public static SpriteBatch sBatch;
+	public static ShapeRenderer shapeRenderer;
 	public CurtainFire(float width, float height)
 	{
 		CFVars.SCREEN_WIDTH=width;
@@ -44,8 +52,9 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.finishLoading();
 		
 		CFVars.font = manager.get("cfFont.fnt", BitmapFont.class);
+	
 		
-		Gdx.input.setInputProcessor(new GameInputProcessor());
+		Gdx.input.setInputProcessor(inputProc);
 		
 		DialogBox.box= manager.get("textBoxPurple.png", Texture.class);
 		
@@ -55,6 +64,10 @@ public class CurtainFire extends ApplicationAdapter {
 		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		hudCam = new OrthographicCamera();
 		hudCam.setToOrtho(false, CFVars.SCREEN_WIDTH,CFVars.SCREEN_HEIGHT);
+		
+		sBatch = new SpriteBatch();
+		shapeRenderer = new ShapeRenderer();
+		
 		
 		manager.get("pcboot.ogg", Sound.class).play(CFVars.VOLUME);
 		gsm = new GameScreenManager(this);
@@ -82,6 +95,7 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.load("map001.tmx", TiledMap.class);
 		manager.load("flowerIsland.tmx", TiledMap.class);
 		manager.load("cfFont.fnt", BitmapFont.class);
+		//manager.load("uiskin.json", Skin.class);
 		manager.load("pcboot.ogg", Sound.class);
 		manager.load("blip.ogg", Sound.class);
 		manager.load("pause.ogg", Sound.class);

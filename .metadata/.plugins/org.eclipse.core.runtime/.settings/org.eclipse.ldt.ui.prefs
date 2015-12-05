@@ -1,0 +1,9 @@
+DLTK_default=255,128,64
+DLTK_keyword=255,255,0
+eclipse.preferences.version=1
+sourceHoverBackgroundColor=255,255,225
+sourceHoverBackgroundColor.SystemDefault=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true
+variable.global=0,255,0
+variable.local=255,255,255

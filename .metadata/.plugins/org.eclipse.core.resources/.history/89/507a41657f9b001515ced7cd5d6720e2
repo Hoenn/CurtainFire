@@ -1,0 +1,57 @@
+package com.curtainfire.entities;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Rectangle;
+import com.curtainfire.CurtainFireGame;
+import com.curtainfire.screen.BattleScreen;
+
+/*
+ * Rectangular shaped bullet with image on top
+ */
+public class RectBullet extends Bullet
+{
+	private Rectangle hitbox;
+	
+	
+	public RectBullet(float x, float y, float width, float height, double angle, float speed, Color color)
+	{
+		super(x, y, angle, speed, color);
+		hitbox = new Rectangle(x, y, width, height);
+	}
+	
+	public void tick(float delta)
+	{
+		hitbox.x += (float)(Math.cos(Math.toRadians(angle)) * (speed * delta));
+		hitbox.y += (float)(Math.sin(Math.toRadians(angle)) * (speed * delta));
+		
+		if (offScreen())
+		{
+			setAlive(false);
+		}
+	}
+	
+	private boolean offScreen()
+	{
+		return (hitbox.x + hitbox.width < 0 || 
+				hitbox.x > BattleScreen.FIELD_WIDTH ||
+				hitbox.y + hitbox.height < 0 ||
+				hitbox.y > BattleScreen.FIELD_HEIGHT);
+	}
+	
+	public void draw()
+	{
+		//bullet image code goes above
+		
+		//show hitboxes when debugging
+		if (CurtainFireGame.DEBUG)
+		{
+			CurtainFireGame.shapeRenderer.setColor(hitboxColor);
+			CurtainFireGame.shapeRenderer.rect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+		}
+	}
+	
+	public Rectangle getHitbox()
+	{
+		return hitbox;
+	}
+}

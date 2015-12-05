@@ -74,7 +74,7 @@
    <properties>
     <property name="BATTLE" value="0"/>
     <property name="DIRECTION" value="RIGHT"/>
-    <property name="SCRIPT" value="Put it here dan"/>
+    <property name="SCRIPT" value="shooter"/>
     <property name="SPRITE" value="boyscout"/>
    </properties>
   </object>
@@ -82,7 +82,7 @@
    <properties>
     <property name="BATTLE" value="1"/>
     <property name="DIRECTION" value="UP"/>
-    <property name="SCRIPT" value="TEST"/>
+    <property name="SCRIPT" value="sample"/>
     <property name="SPRITE" value="boyscout"/>
    </properties>
   </object>
@@ -90,7 +90,7 @@
    <properties>
     <property name="BATTLE" value="2"/>
     <property name="DIRECTION" value="DOWN"/>
-    <property name="SCRIPT" value="TEST 2"/>
+    <property name="SCRIPT" value="noloop"/>
     <property name="SPRITE" value="boyscout"/>
    </properties>
   </object>
@@ -98,7 +98,7 @@
    <properties>
     <property name="BATTLE" value="3"/>
     <property name="DIRECTION" value="LEFT"/>
-    <property name="SCRIPT" value="TEST 3"/>
+    <property name="SCRIPT" value="testcrash"/>
     <property name="SPRITE" value="boyscout"/>
    </properties>
   </object>

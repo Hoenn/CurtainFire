@@ -1,0 +1,6 @@
+construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 50 50 end 
+wait 2 end
+move 500 50 1.8 end
+move 500 200 0.6 end
+move 500 50 0.6 end
+move 50 50 1.8 end 

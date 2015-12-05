@@ -1,0 +1,5 @@
+construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 250 450 150 end 
+shoot test4.lua end --start execution of lua script, turn off by passing in nil
+wait 10000 end --stops the script from looping every frame
+--move rand50 rand50 0.35 linear end
+--move 250 50 9.35 fade end --anchor

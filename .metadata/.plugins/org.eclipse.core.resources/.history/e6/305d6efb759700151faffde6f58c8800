@@ -1,0 +1,70 @@
+package com.neet.cf.screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.neet.cf.handlers.GameScreenManager;
+import com.neet.cf.handlers.Transition;
+import com.neet.cf.handlers.Transition.TransitionType;
+
+public class BattleScreen extends GameScreen
+{
+
+	public BattleScreen(GameScreenManager gsm)
+	{
+		super(gsm);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void pause()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resume()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleInput()
+	{
+		if(Gdx.input.isKeyJustPressed(Keys.R))
+		{
+			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.RectDown), false);
+
+		}
+		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE))
+		{
+			System.out.println("tt");
+			gsm.prevScreen=gsm.BATTLE;
+			gsm.transitionScreens(this, gsm.OPTIONS, new Transition(TransitionType.RectDown));
+		}
+	}
+
+	@Override
+	public void update(float dt)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dispose()
+	{
+		System.out.println("dispose");
+		// TODO Auto-generated method stub
+		
+	}
+
+}

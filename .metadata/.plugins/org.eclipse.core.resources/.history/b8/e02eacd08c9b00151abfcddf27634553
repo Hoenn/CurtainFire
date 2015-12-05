@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="16">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="tileset.png" trans="ff00ff" width="256" height="256"/>
+  <tile id="6">
+   <properties>
+    <property name="GRASS" value="0"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="FLOWER" value="0"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="257" name="animatedTileset" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="animatedTileset.png" trans="ff00ff" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="FLOWER" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="FLOWER" value="2"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="FLOWER" value="3"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="FLOWER" value="4"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="FLOWER" value="5"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="GRASS" value="1"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="GRASS" value="2"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="GRASS" value="3"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="GRASS" value="4"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="GRASS" value="5"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="513" name="specialTileset" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="specialTileset.png" trans="ff00ff" width="64" height="64"/>
+ </tileset>
+ <objectgroup name="Objects">
+  <object id="1" x="64" y="32" width="16" height="16">
+   <properties>
+    <property name="BATTLE" value="0"/>
+    <property name="DIRECTION" value="RIGHT"/>
+    <property name="SCRIPT" value="shooter"/>
+    <property name="SPRITE" value="boyscout"/>
+   </properties>
+  </object>
+  <object id="4" x="224" y="32" width="16" height="16">
+   <properties>
+    <property name="BATTLE" value="1"/>
+    <property name="DIRECTION" value="UP"/>
+    <property name="SCRIPT" value="sample"/>
+    <property name="SPRITE" value="boyscout"/>
+   </properties>
+  </object>
+  <object id="13" x="224" y="144" width="16" height="16">
+   <properties>
+    <property name="BATTLE" value="2"/>
+    <property name="DIRECTION" value="DOWN"/>
+    <property name="SCRIPT" value="noloop"/>
+    <property name="SPRITE" value="boyscout"/>
+   </properties>
+  </object>
+  <object id="14" x="96" y="160" width="16" height="16">
+   <properties>
+    <property name="BATTLE" value="3"/>
+    <property name="DIRECTION" value="LEFT"/>
+    <property name="SCRIPT" value="looper"/>
+    <property name="SPRITE" value="boyscout"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Low" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwTZ2BgEB/Fo3gUj+JRTDXMTgSmtpkD4TYAxGEiUQ==
+  </data>
+ </layer>
+ <layer name="Special" width="20" height="20">
+  <properties>
+   <property name="BATTLE" value="4"/>
+   <property name="DIRECTION" value="LEFT"/>
+   <property name="SPRITE" value="boyscout"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBhagImJuupGwSgAAVLTy2BLX4xM+PnUMg+dHijzRsHgAACH9AAv
+  </data>
+ </layer>
+ <layer name="Middle" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDHVgCMRGQGwMxCZAbEqheY5A7ATEzkDsAsSuFJoXCMRBQBwMxCFAHAoVD4PSERSaPwoGBgAAWa8EnA==
+  </data>
+ </layer>
+ <layer name="High" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDFdgBsTmQGxBJfPcgNgdiD2oZB4IhFPRrFFAXwAA1okB0g==
+  </data>
+ </layer>
+</map>

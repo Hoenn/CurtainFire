@@ -1,0 +1,12 @@
+construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 50 50 end 
+wait 3 end
+move 500 50 2.5 fade end
+wait 3 end
+-*
+move 500 500 2.5 pow5Out end
+wait 3 end
+move 50 500 2.5 exp10Out end
+wait 3 end
+*-
+move 50 50 2.5 bounce end
+print iteration done.

@@ -1,6 +1,6 @@
 package com.neet.cf.handlers;
 
-import static com.neet.cf.util.CFVars.*;
+import static com.neet.cf.overworld.util.CFVars.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -43,8 +43,7 @@ public class Transition
 		{
 			case RectUp:
 				rectUp(delta);
-				break;
-	
+				break;	
 			case RectDown:
 				rectDown(delta);
 				break;
@@ -199,14 +198,14 @@ public class Transition
 			{
 				for(int i = 0; i <shapes.size; i+=2)
 				{
-					shapes.get(i).y+=TILE_WIDTH;
+					shapes.get(i).y+=TILE_WIDTH*2;
 				}
 			}
 			else
 			{
 				for(int i = 1; i <shapes.size-1; i+=2)
 				{
-					shapes.get(i).y-=TILE_WIDTH;
+					shapes.get(i).y-=TILE_WIDTH*2;
 				}
 
 			}
