@@ -1,9 +1,0 @@
-construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 50 50 end 
-wait 2 end
-move 500 50 1.8 fade end
-loop 2 end
-move 500 200 0.2 fade end
-move 500 50 0.2 fade end
-endloop end
-move 50 50 1.8 fade end 
-print dont come here until done looping.
