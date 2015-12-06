@@ -418,7 +418,7 @@ public class OverWorld extends GameScreen
 		Vector2 targetGridPos = player.getPositionFacing();
 		for(NPC npc: NPCList)
 		{
-			if(npc.getGridPos().equals(targetGridPos))
+			if(npc.getGridPos().equals(targetGridPos) && !npc.isDefeated())
 			{
 				//opposite direction
 				npc.turn(player.getDirection()+2);
