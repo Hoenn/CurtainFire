@@ -7,7 +7,7 @@ local count = 0;
 function tick(enemy, delta)
   if bulletTimer > 0.15 then
     for i=1, num, 1 do
-      enemy:shoot(8, angle, 250, 0); --radius, angle, speed, index
+      enemy:shoot(20, angle, 250, 0); --radius, angle, speed, index
       angle = angle + changeangle;
     end
     count = count + 10;
