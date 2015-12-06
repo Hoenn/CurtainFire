@@ -69,6 +69,7 @@ public class OverWorld extends GameScreen
 		player = new Player();
 		cameraFollowPlayer();
 		music = CurtainFire.manager.get("testMusic.ogg", Music.class);
+		music.setLooping(true);
 		changeMap("map001.tmx");
 	}
 	public void changeMap(String mapPath)
