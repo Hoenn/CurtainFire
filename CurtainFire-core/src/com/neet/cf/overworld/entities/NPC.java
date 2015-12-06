@@ -19,6 +19,8 @@ public class NPC extends MapEntity
 	private TextureRegion[][] frames;
 	public NPC(String imgPath, float x, float y, int direction, String sp)
 	{
+		CurtainFire.manager.load(imgPath, Texture.class);
+		CurtainFire.manager.finishLoading();
 		Texture texture = CurtainFire.manager.get(imgPath);
 		frames = TextureRegion.split(texture, SPRITE_WIDTH, SPRITE_HEIGHT);
 

@@ -75,7 +75,7 @@
     <property name="BATTLE" value="0"/>
     <property name="DIRECTION" value="RIGHT"/>
     <property name="SCRIPT" value="shooter"/>
-    <property name="SPRITE" value="boyscout"/>
+    <property name="SPRITE" value="kidboy"/>
    </properties>
   </object>
   <object id="4" x="224" y="32" width="16" height="16">
@@ -91,7 +91,7 @@
     <property name="BATTLE" value="2"/>
     <property name="DIRECTION" value="DOWN"/>
     <property name="SCRIPT" value="noloop"/>
-    <property name="SPRITE" value="boyscout"/>
+    <property name="SPRITE" value="girlscout"/>
    </properties>
   </object>
   <object id="14" x="96" y="160" width="16" height="16">
@@ -99,7 +99,7 @@
     <property name="BATTLE" value="3"/>
     <property name="DIRECTION" value="LEFT"/>
     <property name="SCRIPT" value="testcrash"/>
-    <property name="SPRITE" value="boyscout"/>
+    <property name="SPRITE" value="rival"/>
    </properties>
   </object>
  </objectgroup>
