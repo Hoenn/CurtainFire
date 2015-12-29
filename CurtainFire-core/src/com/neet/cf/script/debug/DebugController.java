@@ -25,6 +25,7 @@ public class DebugController
 	{
 		if (Gdx.input.isKeyJustPressed(Keys.R) && !scriptController.isPause())
 		{
+			//Resets the script
 			System.out.println("Script reset.");
 			scriptController.reset();
 		}
