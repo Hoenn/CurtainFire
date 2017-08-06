@@ -33,7 +33,8 @@ public class DebugController
 		{
 			scriptController.pause();
 		}
-		else if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE) && !scriptController.isPause())
+		//skips ahead to the next action
+		else if (Gdx.input.isKeyJustPressed(Keys.TAB) && !scriptController.isPause())
 		{
 			for (Actor actor : BattleScreen.stage.getActors())
 			{

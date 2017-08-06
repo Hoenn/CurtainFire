@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.neet.cf.CurtainFire;
+import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.screens.BattleScreen;
 
 public class Player extends Entity
@@ -20,7 +21,7 @@ public class Player extends Entity
 	
 	private float bulletTimer;
 	private float hitTimer;
-	private float hitTimeLimit = 3;
+	private float hitTimeLimit;
 	
 	private Circle hitbox;
 	
@@ -42,6 +43,9 @@ public class Player extends Entity
 		hitbox = new Circle();
 		hitboxColor = Color.WHITE;
 		hitbox.radius = 5;
+		
+		hitTimer = 0;
+		hitTimeLimit = 200; //temporary
 	}
 	
 	@Override
@@ -100,32 +104,45 @@ public class Player extends Entity
 	@Override
 	void checkCollision(float delta)
 	{
-		hitTimer += delta;
-		try
+		if (!hit)
 		{
-			if (Intersector.overlaps(hitbox, BattleScreen.scriptController.getEnemy().getHitbox()))
+			try
 			{
-				if (hitTimer >= hitTimeLimit)
+				if (Intersector.overlaps(hitbox, BattleScreen.scriptController.getEnemy().getHitbox()))
 				{
+					hit = true;
 					decreaseHP(1);
 					hitTimer = 0;
 					if (!isAlive())
 						System.out.println("You lost!"); //TODO implement lose
 				}
 			}
-		}
-		catch (NullPointerException e)
-		{
-			//TODO enemy is loaded after player, but what if player exists and no enemy is on screen?
-		}
-		for (int i = 0, len = BattleScreen.enemyBullets.size; i < len; i++)
-		{
-			if (hitbox.overlaps(BattleScreen.enemyBullets.get(i).getHitbox()))
+			catch (NullPointerException e)
 			{
-				decreaseHP(1);
-				BattleScreen.enemyBullets.get(i).setAlive(false);
-				if (!isAlive())
-					System.out.println("You lost!"); //TODO implement lose
+				//TODO enemy is loaded after player, but what if player exists and no enemy is on screen?
+			}
+			
+			for (int i = 0, len = BattleScreen.enemyBullets.size; i < len; i++)
+			{
+				if (hitbox.overlaps(BattleScreen.enemyBullets.get(i).getHitbox()))
+				{
+					hit = true;
+					decreaseHP(1);
+					BattleScreen.enemyBullets.get(i).setAlive(false);
+					hitTimer = 0;
+					if (!isAlive())
+						System.out.println("You lost!"); //TODO implement lose
+					break;
+				}
+			}
+		}
+		else
+		{
+			hitTimer += delta * 100;
+			if (hitTimer >= hitTimeLimit)
+			{
+				hitTimer = 0;
+				hit = false;
 			}
 		}
 	}

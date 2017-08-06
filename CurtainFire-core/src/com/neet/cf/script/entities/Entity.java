@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.screens.BattleScreen;
 
 public abstract class Entity extends Actor
@@ -19,6 +20,7 @@ public abstract class Entity extends Actor
 	
 	private String name;
 	boolean pause;
+	protected boolean hit;
 	
 	Color hitboxColor;
 	
@@ -49,6 +51,8 @@ public abstract class Entity extends Actor
 		
 		this.hp = hp;
 		
+		hit = false;
+		
 		init();
 	}
 	
@@ -65,6 +69,17 @@ public abstract class Entity extends Actor
 		batch.setColor(color.r, color.g, color.b, parentAlpha);
         batch.draw(region, getX(), getY(), getOriginX(), getOriginY(),
                 getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
+        
+        if (hit)
+        {
+        	CFVars.font.setColor(Color.RED);
+        	CFVars.font.draw(batch, "HP: " + getHP(), getX(), getY());
+        }
+        else
+        {
+        	CFVars.font.setColor(Color.WHITE);
+        	CFVars.font.draw(batch, "HP: " + getHP(), getX(), getY());
+        }
 	}
 	
 	@Override
