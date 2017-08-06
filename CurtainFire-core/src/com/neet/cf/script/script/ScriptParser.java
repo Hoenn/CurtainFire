@@ -54,7 +54,7 @@ public class ScriptParser
 		{
 			try
 			{
-				script = new Scanner(new File(System.getProperty("user.dir") + "/user_assets/scripts/default.cfl"));
+				script = new Scanner(new File(System.getProperty("user.dir") + "/user_assets/scripts/file_not_found.cfl"));
 			}
 			catch (Exception ex)
 			{

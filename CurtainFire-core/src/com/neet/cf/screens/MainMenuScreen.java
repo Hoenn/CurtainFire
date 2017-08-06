@@ -88,6 +88,9 @@ public class MainMenuScreen extends GameScreen
 					gsm.setScreen(gsm.OPTIONS);
 					break;
 				case Test:
+					gsm.prevScreen = gsm.MENU;
+					TestScreen.scriptFile = "test.cfl";
+					gsm.setScreen(gsm.TEST);
 					break;
 			}
 		}

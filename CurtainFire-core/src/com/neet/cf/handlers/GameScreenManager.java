@@ -6,6 +6,7 @@ import com.neet.cf.screens.GameScreen;
 import com.neet.cf.screens.MainMenuScreen;
 import com.neet.cf.screens.OptionsScreen;
 import com.neet.cf.screens.OverWorld;
+import com.neet.cf.screens.TestScreen;
 import com.neet.cf.screens.TransitionScreen;
 
 public class GameScreenManager 
@@ -14,11 +15,12 @@ public class GameScreenManager
 	
 	private GameScreen[] gameScreens;
 	
-	public final int NUMSTATES=4;
-	public final int MENU=0;
+	public final int NUMSTATES = 5;
+	public final int MENU = 0;
 	public final int OVERWORLD = 1;
 	public final int OPTIONS = 2;
 	public final int BATTLE = 3;
+	public final int TEST = 4;
 
 	
 	private int currentScreen;
@@ -51,6 +53,7 @@ public class GameScreenManager
 		if(screen==OVERWORLD) return new OverWorld(this);
 		if(screen==OPTIONS) return new OptionsScreen(this);
 		if(screen==BATTLE) return new BattleScreen(this);
+		if(screen==TEST) return new TestScreen(this);
 		return null;
 	}
 	public void transitionScreens(GameScreen currentScreen, int nextScreen, Transition t)
