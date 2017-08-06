@@ -1,11 +1,12 @@
-construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 250 250 end --asdfhksadf
+construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 250 250 50 end
+shoot test4.lua end
 wait 1.5 end
-move 600 50 2.9 end
+move 600 50 2.9 linear end
 print waiting...
 wait 2 end
-move 500 0 1.5 end
-move 300 600 1.2 end
+move 500 0 1.5 linear end
+move 300 600 1.2 linear end
 print hai
 wait 2 end
-move 50 50 1.5 end
+move 50 50 1.5 linear end
 print bye

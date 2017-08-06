@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
+import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.screens.BattleScreen;
 import com.neet.cf.script.entities.Enemy;
 
@@ -74,9 +75,9 @@ public class ScriptRunner
 					tokens.get(1),
 					tokens.get(2),
 					Float.parseFloat(tokens.get(3)),
-					Float.parseFloat(tokens.get(4)),
-					Float.parseFloat(tokens.get(5)),
-					Integer.parseInt(tokens.get(6))
+					CFVars.SCREEN_WIDTH / 2,
+					CFVars.SCREEN_HEIGHT / 2,
+					Integer.parseInt(tokens.get(4))
 				);
 			}
 			catch(NumberFormatException e)
