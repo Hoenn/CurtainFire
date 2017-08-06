@@ -58,7 +58,16 @@ public class ScriptRunner
 		else if (firstToken.equals(Keyword.PRINT.getValue()))
 			print(tokens, lineNumber);
 		else if (firstToken.equals(Keyword.SHOOT.getValue()))
-			shoot(tokens, lineNumber);
+		{
+			try
+			{
+				shoot(tokens, lineNumber);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
 		else
 			System.out.println(Error.INCORRECT_KEYWORD.getText() + (lineNumber + 1)); //TODO print list of usable keywords
 	}

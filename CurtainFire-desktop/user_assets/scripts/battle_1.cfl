@@ -1,3 +1,5 @@
 construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 50 end
-shoot battle_1.lua end
+--play cry (needs implementation)
+wait 2 end
+shoot test4.lua end
 wait 1 end

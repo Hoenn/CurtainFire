@@ -123,11 +123,14 @@ public class Enemy extends Entity
 		));
 	}
 	
+	/*
+	 * x and y values are numbers relative to distance from enemy
+	 */
 	public void shoot(float x, float y, int radius, double angle, float speed, int index)
 	{
 		BattleScreen.enemyBullets.add(new CircleBullet(
-				x,
-				y,
+				getX() + getWidth() / 2 + x,
+				getY() + getHeight() / 2 + y,
 				radius, angle, speed, index, Color.RED
 		));
 	}

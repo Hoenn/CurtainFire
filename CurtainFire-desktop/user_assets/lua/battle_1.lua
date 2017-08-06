@@ -1,5 +1,5 @@
 local bulletTimer = 0;
-local num = 10;
+local num = 5;
 local changeangle = 360 / num;
 local angle = 0;
 local count = 0;
