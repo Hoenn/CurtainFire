@@ -44,7 +44,8 @@ public class BattleScreen extends GameScreen
 		super(gsm);
 		stage = new Stage(new ScreenViewport());
 		
-		FIELD_WIDTH = stage.getWidth() - MENU_WIDTH;
+		//FIELD_WIDTH = stage.getWidth() - MENU_WIDTH;
+		FIELD_WIDTH = stage.getWidth();
 		FIELD_HEIGHT = stage.getHeight();
 		
 		INVOKE_GC = false;
