@@ -116,9 +116,6 @@ public class ScriptRunner
 		constructed = true;
 	}
 	
-	/*
-	 * TODO add support for interpolation
-	 */
 	private void move(Array<String> tokens, int lineNumber)
 	{
 		if (tokens.size == Keyword.MOVE.getArgLength())
@@ -146,7 +143,7 @@ public class ScriptRunner
 							+ scriptController.getEnemy().getX();
 				}
 				else
-					x = Float.parseFloat(arg0);
+					x = Float.parseFloat(arg0) + scriptController.getEnemy().getX();
 				
 				String arg1 = tokens.get(1);
 				float y;
@@ -157,7 +154,7 @@ public class ScriptRunner
 							+ scriptController.getEnemy().getY();
 				}
 				else
-					y = Float.parseFloat(arg1);
+					y = Float.parseFloat(arg1) + scriptController.getEnemy().getY();
 
 				action.setPosition(x, y);
 				action.setDuration(Float.parseFloat(tokens.get(2)));
