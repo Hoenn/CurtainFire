@@ -145,7 +145,7 @@ public class ScriptRunner
 				else
 				{
 					if (arg0.equals(Keyword.DEF.getValue()))
-						x = CFVars.SCREEN_WIDTH / 2;
+						x = (CFVars.SCREEN_WIDTH / 2) - (BattleScreen.scriptController.getEnemy().getWidth() / 2);
 					else
 						x = Float.parseFloat(arg0);
 				}
