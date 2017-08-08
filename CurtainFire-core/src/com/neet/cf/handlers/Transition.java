@@ -17,6 +17,7 @@ public class Transition
 	private TransitionType type;
 	private Array<Rectangle> shapes;
 	private float timer;
+	private float speed;
 	private float tick;
 	public enum TransitionType {
 		RectUp, RectDown, SplitOut, VerticalSquish, HorizontalSquish, 
@@ -28,6 +29,7 @@ public class Transition
 		type=t;
 		complete=false;
 		timer=0f;
+		speed = 2.0f;
 		shapes = new Array<Rectangle>();
 		//Specific initializers
 		initialize();
@@ -66,7 +68,7 @@ public class Transition
 	}
 	private void rectUp(float delta)
 	{
-		timer+=delta;
+		timer+=delta * timer;
 		Rectangle shape = shapes.get(0);
 		if(timer>=tick)
 		{	
@@ -83,7 +85,7 @@ public class Transition
 	}
 	private void rectDown(float delta)
 	{
-		timer+=delta;
+		timer+=delta * speed;
 		Rectangle shape = shapes.get(0);
 		if(timer>=tick)
 		{	
@@ -105,7 +107,7 @@ public class Transition
 	{
 		Rectangle left = shapes.get(0);
 		Rectangle right = shapes.get(1);
-		timer+=delta;
+		timer+=delta * speed;
 		if(timer>=tick)
 		{
 			left.x-=TILE_WIDTH;
@@ -125,7 +127,7 @@ public class Transition
 	{
 		Rectangle left = shapes.get(0);
 		Rectangle right = shapes.get(1);
-		timer+=delta;
+		timer+=delta * speed;
 		if(timer>=tick)
 		{
 			left.x+=TILE_WIDTH;
@@ -145,7 +147,7 @@ public class Transition
 	{
 		Rectangle bottom = shapes.get(0);
 		Rectangle top = shapes.get(1);
-		timer+=delta;
+		timer+=delta * speed;
 		if(timer>=tick)
 		{
 			bottom.y+=TILE_WIDTH;
@@ -167,7 +169,7 @@ public class Transition
 		Rectangle right = shapes.get(1);
 		Rectangle bottom = shapes.get(2);
 		Rectangle top = shapes.get(3);
-		timer+=delta;
+		timer+=delta * speed;
 		if(timer>=tick)
 		{
 			left.x+=(LRAdjustment);
@@ -191,7 +193,7 @@ public class Transition
 	{
 		if(shapes.get(1).y<=0)
 			complete=true;
-		timer+=delta;
+		timer+=delta * speed;
 		if(timer>tick)
 		{
 			if(shapes.get(0).y<0)
