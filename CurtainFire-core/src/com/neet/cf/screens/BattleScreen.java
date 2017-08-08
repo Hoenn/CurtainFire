@@ -11,6 +11,7 @@ import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
+import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.script.debug.DebugController;
 import com.neet.cf.script.entities.CircleBullet;
 import com.neet.cf.script.entities.Player;
@@ -69,7 +70,8 @@ public class BattleScreen extends GameScreen
 			debugController = new DebugController(scriptController);
 		}
 		//temporary
-		Player player = new Player("Beedrill", "Beedrill_1.png", "Beedrill_2.png", 0.6f, 250, 50, 3);
+		Player player = new Player("Beedrill", "Beedrill_1.png", "Beedrill_2.png", 
+				0.6f, CFVars.SCREEN_WIDTH / 2, CFVars.SCREEN_HEIGHT / 2 - CFVars.SCREEN_HEIGHT / 4, 3);
 		
 		stage.addActor(player);
 		

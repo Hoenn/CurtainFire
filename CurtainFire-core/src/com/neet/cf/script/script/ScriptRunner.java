@@ -84,8 +84,8 @@ public class ScriptRunner
 					tokens.get(1),
 					tokens.get(2),
 					Float.parseFloat(tokens.get(3)),
-					CFVars.SCREEN_WIDTH / 2,
-					CFVars.SCREEN_HEIGHT / 2,
+					CFVars.SCREEN_WIDTH / 2, 
+					CFVars.SCREEN_HEIGHT / 2 + CFVars.SCREEN_HEIGHT / 4,
 					Integer.parseInt(tokens.get(4))
 				);
 			}

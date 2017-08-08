@@ -47,7 +47,7 @@ public abstract class Entity extends Actor
 		this.setWidth(texture.getWidth());
 		this.setHeight(texture.getHeight());
 		
-		this.setPosition(x - (getWidth() / 2), y + (CFVars.SCREEN_HEIGHT / 4));
+		this.setPosition(x - (getWidth() / 2), y);
 		this.setOrigin(0, 0);
 		
 		this.hp = hp;
