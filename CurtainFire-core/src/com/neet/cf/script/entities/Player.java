@@ -25,6 +25,8 @@ public class Player extends Entity
 	
 	private Circle hitbox;
 	
+	private float bulletSpeed;
+	
 	public Player(String name, String imageFile1, String imageFile2, float aniDur, float x, float y, int hp)
 	{
 		super(name, imageFile1, imageFile2, aniDur, x, y, hp);
@@ -46,6 +48,7 @@ public class Player extends Entity
 		
 		hitTimer = 0;
 		hitTimeLimit = 200; //temporary
+		bulletSpeed = 800;
 	}
 	
 	@Override
@@ -91,7 +94,7 @@ public class Player extends Entity
 		{
 			BattleScreen.playerBullets.add(new RectBullet(
 				getX() + getWidth() / 2 - 10 / 2, getY() + getHeight() / 2, 
-				10, 20, 90, 400f, Color.CYAN));
+				10, 20, 90, bulletSpeed, Color.CYAN));
 			bulletTimer = 0;
 		}
 	}
