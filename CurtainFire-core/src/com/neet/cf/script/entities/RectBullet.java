@@ -43,11 +43,11 @@ public class RectBullet extends Bullet
 		//bullet image code goes above
 		
 		//show hitboxes when debugging
-		if (CurtainFire.DEBUG)
-		{
+		//if (CurtainFire.DEBUG)
+		//{
 			CurtainFire.shapeRenderer.setColor(hitboxColor);
 			CurtainFire.shapeRenderer.rect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-		}
+		//}
 	}
 	
 	public Rectangle getHitbox()

@@ -41,11 +41,11 @@ public class CircleBullet extends Bullet
 		//bullet image code goes above
 		
 		//show hitboxes when debuggins
-		if (CurtainFire.DEBUG)
-		{
+		//if (CurtainFire.DEBUG)
+		//{
 			CurtainFire.shapeRenderer.setColor(hitboxColor);
 			CurtainFire.shapeRenderer.circle(hitbox.x, hitbox.y, hitbox.radius);
-		}
+		//}
 	}
 	
 	public Circle getHitbox()
