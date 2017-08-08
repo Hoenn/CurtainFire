@@ -3,7 +3,9 @@
 construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 250 end
 --play cry (needs implementation)
 shoot flower1.lua end
-wait 5 end
+move 50 def 1.0 linear end
+move 800 def 1.0 linear end
+
 
 -*move -50 0 0.175 linear end
 wait 3 end

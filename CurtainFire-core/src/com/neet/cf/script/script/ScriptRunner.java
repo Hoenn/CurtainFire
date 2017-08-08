@@ -143,7 +143,12 @@ public class ScriptRunner
 							+ scriptController.getEnemy().getX();
 				}
 				else
-					x = Float.parseFloat(arg0) + scriptController.getEnemy().getX();
+				{
+					if (arg0.equals(Keyword.DEF.getValue()))
+						x = CFVars.SCREEN_WIDTH / 2;
+					else
+						x = Float.parseFloat(arg0);
+				}
 				
 				String arg1 = tokens.get(1);
 				float y;
@@ -154,7 +159,12 @@ public class ScriptRunner
 							+ scriptController.getEnemy().getY();
 				}
 				else
-					y = Float.parseFloat(arg1) + scriptController.getEnemy().getY();
+				{
+					if (arg1.equals(Keyword.DEF.getValue()))
+						y = CFVars.SCREEN_HEIGHT / 2 + CFVars.SCREEN_HEIGHT / 4;
+					else
+						y = Float.parseFloat(arg1);
+				}
 
 				action.setPosition(x, y);
 				action.setDuration(Float.parseFloat(tokens.get(2)));

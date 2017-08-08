@@ -15,6 +15,7 @@ public enum Keyword
 	COMMENTSTART("-*", 0),
 	COMMENTEND("*-", 0),
 	RAND("rand", 0),
+	DEF("def", 0), 
 	PRINT("print", 1);
 	
 	private final String value;
