@@ -26,6 +26,7 @@ public class CurtainFire extends ApplicationAdapter {
 	public static final float V_WIDTH = 240;
 	public static final float V_HEIGHT =192;
 	public static boolean DEBUG = true;
+	public static String testScript = "butterfree.cfl";
 	
 	public static final GameInputProcessor inputProc = new GameInputProcessor();
 

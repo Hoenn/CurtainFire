@@ -72,15 +72,16 @@ public abstract class Entity extends Actor
                 getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
         
         if (hit)
-        {
         	CFVars.font.setColor(Color.RED);
-        	CFVars.font.draw(batch, "HP: " + getHP(), getX(), getY());
-        }
+
         else
-        {
         	CFVars.font.setColor(Color.WHITE);
-        	CFVars.font.draw(batch, "HP: " + getHP(), getX(), getY());
-        }
+    	
+        if (hp < 10)
+    		CFVars.font.draw(batch, "HP: " + getHP(), getX() + 7, getY());
+    	else
+    		CFVars.font.draw(batch, "HP: " + getHP(), getX(), getY());
+
 	}
 	
 	@Override

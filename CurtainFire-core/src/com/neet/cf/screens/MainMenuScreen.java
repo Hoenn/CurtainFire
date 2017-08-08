@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
@@ -89,7 +90,7 @@ public class MainMenuScreen extends GameScreen
 					break;
 				case Test:
 					gsm.prevScreen = gsm.MENU;
-					TestScreen.scriptFile = "battle_1.cfl";
+					TestScreen.scriptFile = CurtainFire.testScript;
 					gsm.setScreen(gsm.TEST);
 					break;
 			}

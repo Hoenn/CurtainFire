@@ -1,5 +1,0 @@
-construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 50 end
---play cry (needs implementation)
-shoot test4.lua end
-move -200 0 0.5 linear end
-move 200 0 0.5 linear end
