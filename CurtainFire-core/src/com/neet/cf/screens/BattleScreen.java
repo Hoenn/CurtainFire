@@ -102,17 +102,11 @@ public class BattleScreen extends GameScreen
 		{
 			
 			for (CircleBullet e : enemyBullets)
-			{
 				if (!scriptController.isPause())
 					e.tick(delta);
-				e.draw();
-			}
 			
 			for (RectBullet e : playerBullets)
-			{ 
 				e.tick(delta);
-				e.draw();
-			}
 			
 		}
 		if (INVOKE_GC)
@@ -149,18 +143,8 @@ public class BattleScreen extends GameScreen
 	{
 		if (delta < DELTA_LIMIT)
 		{	
-			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			
 			stage.act(delta);
-			CurtainFire.shapeRenderer.begin(ShapeType.Line);
-			stage.draw();
 			tick(delta);
-			CurtainFire.shapeRenderer.end();
-			CurtainFire.sBatch.begin();
-			if (CurtainFire.DEBUG)
-				debugController.render();
-			//battlePanel.getMenuTable().iDraw(CurtainFire.sBatch);
-			CurtainFire.sBatch.end();
 			handleInput();
 		}
 	}
@@ -232,14 +216,9 @@ public class BattleScreen extends GameScreen
 		CurtainFire.shapeRenderer.begin(ShapeType.Line);
 		stage.draw();
 		for (CircleBullet e : enemyBullets)
-		{
 			e.draw();
-		}
-		for (RectBullet e : playerBullets)
-		{ 
-
+		for (RectBullet e : playerBullets) 
 			e.draw();
-		}
 		CurtainFire.shapeRenderer.end();
 		CurtainFire.sBatch.begin();
 		if (CurtainFire.DEBUG)
