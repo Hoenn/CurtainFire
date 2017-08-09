@@ -405,7 +405,6 @@ public class OverWorld extends GameScreen
 		{
 			if(!textPopUp)
 				playerInteract();
-			
 			else
 			{
 				if(DialogBox.charSeq.isDone())

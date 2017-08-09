@@ -228,8 +228,27 @@ public class BattleScreen extends GameScreen
 	@Override
 	public void render()
 	{
-		// TODO Auto-generated method stub
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		CurtainFire.shapeRenderer.begin(ShapeType.Line);
+		stage.draw();
+		for (CircleBullet e : enemyBullets)
+		{
+			e.draw();
+		}
+		for (RectBullet e : playerBullets)
+		{ 
+
+			e.draw();
+		}
+		CurtainFire.shapeRenderer.end();
+		CurtainFire.sBatch.begin();
+		if (CurtainFire.DEBUG)
+			debugController.render();
 		
+
+
+		//battlePanel.getMenuTable().iDraw(CurtainFire.sBatch);
+		CurtainFire.sBatch.end();
 	}
 
 }
