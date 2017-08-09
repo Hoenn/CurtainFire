@@ -28,7 +28,7 @@ import com.neet.cf.screens.OverWorld;
 public class Player extends MapEntity
 {
 	private Vector2 destVector, moveVector;	
-	private final float RUN_TIME = 0.18f;
+	private final float RUN_TIME = 0.14f;
 	private final float WALK_TIME = 0.36f;
 	private float MOVE_TIME= WALK_TIME;
 	
@@ -136,6 +136,7 @@ public class Player extends MapEntity
 	{		
 		if(moving)
 		{
+
 			if(OverWorld.isOpen(gridX+(int)moveVector.x, gridY+(int)moveVector.y))
 			{
 				if(moveVector.x!=0)
@@ -258,7 +259,7 @@ public class Player extends MapEntity
 							startMove(UP);
 						}
 						setDirection(UP);
-					}					
+					}
 			}
 
 			else if(Gdx.input.isKeyJustPressed(Keys.LEFT) && direction!=LEFT)
@@ -381,6 +382,4 @@ public class Player extends MapEntity
 		return new Vector2(gridX, gridY);
 	}
 	
-
-
 }
