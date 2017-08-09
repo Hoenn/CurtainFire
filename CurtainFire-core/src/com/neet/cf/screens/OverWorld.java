@@ -62,7 +62,7 @@ public class OverWorld extends GameScreen
 	private static Array<TiledMapTile> grassTiles;
 	private static TiledMapTile staticGrass;
 	private static Cell currentGrass;
-	private static Cell currentGrassFloor;	
+	private static Cell currentGrassFloor;
 	private static float elapsedTimeSinceAnimation = 0.0f;
 	private static int currentAnimationFrame =0;
 	private static boolean animating;
@@ -127,7 +127,7 @@ public class OverWorld extends GameScreen
 				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir, scriptPath));
 			}
 			
-			//if (properties.containsKey("PLAYER")) 
+			//if (properties.containsKey("PLAYER"))
 			{
 				//Rect.x, Rect.y will always be divisible by TILEWIDTH;
 				Rectangle rect = new Rectangle(32, 32, 0, 0);//((RectangleMapObject)mo).getRectangle();
@@ -222,10 +222,10 @@ public class OverWorld extends GameScreen
 			if(animating)
 			{
 				elapsedTimeSinceAnimation += Gdx.graphics.getDeltaTime();
-		        	if(elapsedTimeSinceAnimation > GRASS_ANIMATION_SPEED){
-		        		updateGrassAnimation();
-		        		elapsedTimeSinceAnimation = 0.0f;
-		        	}
+				if(elapsedTimeSinceAnimation > GRASS_ANIMATION_SPEED){
+					updateGrassAnimation();
+					elapsedTimeSinceAnimation = 0.0f;
+				}
 			}
 
 		}
@@ -292,8 +292,8 @@ public class OverWorld extends GameScreen
 			
 			currentAnimationFrame++;
 		}
-	 }
-	    
+	}
+
 	public static void setGrassAnimation(int x, int y)
 	{
 		TiledMapTileLayer lower = (TiledMapTileLayer) currentMap.getLayers().get(BACKGROUND_LAYER);
