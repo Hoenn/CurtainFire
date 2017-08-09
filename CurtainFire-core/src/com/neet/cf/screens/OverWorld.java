@@ -76,7 +76,7 @@ public class OverWorld extends GameScreen
 	public OverWorld(GameScreenManager gsm)
 	{
 		super(gsm);
-		player = new Player();
+		player = new Player(0, 0);
 		cameraFollowPlayer();
 		music = CurtainFire.manager.get("testMusic.ogg", Music.class);
 		music.setLooping(true);
@@ -102,7 +102,7 @@ public class OverWorld extends GameScreen
 				if(c!=null)
 				{
 					//Add collidable to master map
-					masterMap.setPos(j,i, 1);		
+					masterMap.setPos(j,i, 1);
 				}
 				else
 				{
@@ -124,7 +124,15 @@ public class OverWorld extends GameScreen
 				int dir = CFVars.Direction.valueOf(Direction.class, direction).num();
 				Rectangle rect = ((RectangleMapObject)mo).getRectangle();
 				String scriptPath = ((String) properties.get("SCRIPT"))+".cfl";
-				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir, scriptPath));//send scripts too
+				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir, scriptPath));
+			}
+			
+			//if (properties.containsKey("PLAYER")) 
+			{
+				//Rect.x, Rect.y will always be divisible by TILEWIDTH;
+				Rectangle rect = new Rectangle(32, 32, 0, 0);//((RectangleMapObject)mo).getRectangle();
+				player.setPosition(rect.x, rect.y);
+				cameraFollowPlayer();
 			}
 		}
 		

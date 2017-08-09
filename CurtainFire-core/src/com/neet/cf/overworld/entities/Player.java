@@ -22,6 +22,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.Animation;
+import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.overworld.util.CFVars.Direction;
 import com.neet.cf.screens.OverWorld;
 
@@ -46,7 +47,7 @@ public class Player extends MapEntity
 	private float turnTimeCounter;
 	private final float turnTime= 1/16f;
 		
-	public Player()
+	public Player(float x, float y)
 	{
 		Texture texture = CurtainFire.manager.get("player.png");
 		TextureRegion[][] temp = TextureRegion.split(texture, SPRITE_WIDTH, SPRITE_HEIGHT);
@@ -93,12 +94,16 @@ public class Player extends MapEntity
 		direction=UP;
 		currentFrame = idleFrames[direction];
 
-		position = new Vector2(0, 0);
-		gridX = (int) position.x;
-		gridY = (int) position.y;
+		setPosition(x, y);
 		
 		destVector = new Vector2(0, 0);
 		moveVector = new Vector2(0,0);
+	}
+	public void setPosition(float x, float y)
+	{
+		position = new Vector2(x, y);
+		gridX = (int) (x/CFVars.TILE_WIDTH);
+		gridY = (int) (y/CFVars.TILE_WIDTH);
 	}
 	private TextureRegion[] mirrorTextureRegionsY(TextureRegion[] textures)
 	{
