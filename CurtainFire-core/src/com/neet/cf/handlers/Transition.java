@@ -68,7 +68,7 @@ public class Transition
 	}
 	private void rectUp(float delta)
 	{
-		timer+=delta * timer;
+		timer+=delta * speed;
 		Rectangle shape = shapes.get(0);
 		if(timer>=tick)
 		{	
