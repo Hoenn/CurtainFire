@@ -1,8 +1,5 @@
 package com.neet.cf.overworld.util;
 
-import com.badlogic.gdx.audio.Sound;
-import com.neet.cf.CurtainFire;
-
 public class CharSequencer
 {
 	private char[] array;

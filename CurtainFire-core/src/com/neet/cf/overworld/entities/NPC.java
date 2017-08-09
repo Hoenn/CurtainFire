@@ -1,6 +1,8 @@
 package com.neet.cf.overworld.entities;
 
-import static com.neet.cf.overworld.util.CFVars.*;
+import static com.neet.cf.overworld.util.CFVars.DEFAULT_SB_COLOR;
+import static com.neet.cf.overworld.util.CFVars.SPRITE_HEIGHT;
+import static com.neet.cf.overworld.util.CFVars.SPRITE_WIDTH;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;

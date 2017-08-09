@@ -1,21 +1,29 @@
 package com.neet.cf.overworld.entities;
 
+import static com.neet.cf.handlers.GameInput.BUTTON_DOWN;
+import static com.neet.cf.handlers.GameInput.BUTTON_LEFT;
+import static com.neet.cf.handlers.GameInput.BUTTON_RIGHT;
+import static com.neet.cf.handlers.GameInput.BUTTON_SPACE;
+import static com.neet.cf.handlers.GameInput.BUTTON_UP;
+import static com.neet.cf.handlers.GameInput.isDown;
+import static com.neet.cf.overworld.util.CFVars.DEFAULT_SB_COLOR;
+import static com.neet.cf.overworld.util.CFVars.SPRITE_HEIGHT;
+import static com.neet.cf.overworld.util.CFVars.SPRITE_WIDTH;
+import static com.neet.cf.overworld.util.CFVars.TILE_WIDTH;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.Animation;
+import com.neet.cf.overworld.util.CFVars.Direction;
 import com.neet.cf.screens.OverWorld;
-
-import static com.neet.cf.handlers.GameInput.*;
-import static com.neet.cf.overworld.util.CFVars.*;
 
 public class Player extends MapEntity
 {

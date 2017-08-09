@@ -1,6 +1,9 @@
 package com.neet.cf.handlers;
 
-import static com.neet.cf.overworld.util.CFVars.*;
+import static com.neet.cf.overworld.util.CFVars.SCREEN_HEIGHT;
+import static com.neet.cf.overworld.util.CFVars.SCREEN_WIDTH;
+import static com.neet.cf.overworld.util.CFVars.TILE_WIDTH;
+import static com.neet.cf.overworld.util.CFVars.V_WIDTH;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;

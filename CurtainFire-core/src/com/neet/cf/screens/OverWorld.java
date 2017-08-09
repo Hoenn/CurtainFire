@@ -1,6 +1,16 @@
 package com.neet.cf.screens;
 
-import static com.neet.cf.overworld.util.CFVars.*;
+import static com.neet.cf.overworld.util.CFVars.BACKGROUND_LAYER;
+import static com.neet.cf.overworld.util.CFVars.FLOWER_ANIMATION_SPEED;
+import static com.neet.cf.overworld.util.CFVars.FOREGROUND_LAYER;
+import static com.neet.cf.overworld.util.CFVars.GRASS_ANIMATION_SPEED;
+import static com.neet.cf.overworld.util.CFVars.MIDDLEGROUND_LAYER;
+import static com.neet.cf.overworld.util.CFVars.SPECIAL_LAYER;
+import static com.neet.cf.overworld.util.CFVars.SPRITE_HEIGHT;
+import static com.neet.cf.overworld.util.CFVars.SPRITE_WIDTH;
+import static com.neet.cf.overworld.util.CFVars.currTextReadRate;
+import static com.neet.cf.overworld.util.CFVars.textReadRate_FAST;
+import static com.neet.cf.overworld.util.CFVars.textReadRate_NORM;
 
 import java.util.Iterator;
 
@@ -8,7 +18,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -35,6 +44,7 @@ import com.neet.cf.handlers.Transition.TransitionType;
 import com.neet.cf.overworld.entities.NPC;
 import com.neet.cf.overworld.entities.Player;
 import com.neet.cf.overworld.util.CFVars;
+import com.neet.cf.overworld.util.CFVars.Direction;
 import com.neet.cf.overworld.util.CharSequencer;
 import com.neet.cf.overworld.util.DialogBox;
 
