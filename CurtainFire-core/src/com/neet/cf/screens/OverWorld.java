@@ -433,6 +433,7 @@ public class OverWorld extends GameScreen
 				//opposite direction
 				npc.turn(player.getDirection()+2);
 				BattleScreen.scriptFile = npc.getScript();
+				BattleScreen.overworldNPCSprite = npc;
 				startTextReadOut(npc.getGridPos().toString()+" "+npc.getClass().toString()+" "+npc.hashCode());				
 			}
 		}

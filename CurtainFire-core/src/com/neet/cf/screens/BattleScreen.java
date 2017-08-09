@@ -11,6 +11,7 @@ import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
+import com.neet.cf.overworld.entities.NPC;
 import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.script.debug.DebugController;
 import com.neet.cf.script.entities.CircleBullet;
@@ -28,6 +29,8 @@ public class BattleScreen extends GameScreen
 	public static float FIELD_HEIGHT;
 	public static boolean INVOKE_GC; //only runs garbage collection when one or more bullet states that it is not alive
 	
+	public static NPC overworldNPCSprite;
+
 	public static String scriptFile;
 	
 	private final float DELTA_LIMIT = 0.030f;
@@ -217,6 +220,8 @@ public class BattleScreen extends GameScreen
 		{
 			Gdx.input.setInputProcessor(CurtainFire.inputProc);
 			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
+			//Proof of concept
+			overworldNPCSprite.setDefeated();
 		}
 	}
 
