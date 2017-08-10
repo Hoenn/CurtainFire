@@ -114,6 +114,10 @@ public class OptionsScreen extends GameScreen
 							break;
 				case Done:	if(gsm.prevScreen==gsm.OVERWORLD)
 								gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.RectUp), false);
+							else if(gsm.prevScreen == gsm.BATTLE) 
+								gsm.setScreen(gsm.BATTLE, new Transition(TransitionType.RectUp), false);			
+							else if (gsm.prevScreen == gsm.TEST)
+								gsm.setScreen(gsm.TEST, new Transition(TransitionType.RectUp), false);
 							else
 								gsm.setScreen(gsm.prevScreen, false);
 							break;
