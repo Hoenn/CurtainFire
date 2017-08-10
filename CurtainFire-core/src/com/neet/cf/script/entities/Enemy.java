@@ -135,30 +135,6 @@ public class Enemy extends Entity
 		));
 	}
 	
-	public void addBulletTrajectory(double angle, float speedChange, int index)
-	{
-		for (CircleBullet e : BattleScreen.enemyBullets)
-		{
-			if (e.getIndex() == index)
-			{
-				e.setAngle(e.getAngle() + angle);
-				e.setSpeed(e.getSpeed() + speedChange);
-			}
-		}
-	}
-	
-	public void changeBulletTrajectory(double angle, float speed, int index)
-	{
-		for (CircleBullet e : BattleScreen.enemyBullets)
-		{
-			if (e.getIndex() == index)
-			{
-				e.setAngle(angle);
-				e.setSpeed(speed);
-			}
-		}
-	}
-	
 	public void addBulletAngle(double angle, int index)
 	{
 		for (CircleBullet e : BattleScreen.enemyBullets)
@@ -221,7 +197,7 @@ public class Enemy extends Entity
 		{
 			if (e.getIndex() == index && Math.abs(e.getSpeed()) > limit)
 			{
-				e.setSpeed(e.getSpeed() + speedChange);
+				e.setSpeed(e.getSpeed() - speedChange);
 			}
 		}
 	}
