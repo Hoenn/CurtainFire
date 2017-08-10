@@ -85,16 +85,7 @@ public class OptionsScreen extends GameScreen
 	public void handleInput()
 	{
 		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE))
-		{
-			if(gsm.prevScreen==gsm.OVERWORLD)
-				gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.RectUp), false);
-			else if(gsm.prevScreen == gsm.BATTLE) 
-				gsm.setScreen(gsm.BATTLE, new Transition(TransitionType.RectUp), false);			
-			else if (gsm.prevScreen == gsm.TEST)
-				gsm.setScreen(gsm.TEST, new Transition(TransitionType.RectUp), false);
-			else
-				gsm.setScreen(gsm.prevScreen, false);
-		}
+			gsm.setScreen(gsm.prevScreen, new Transition(TransitionType.RectUp), false);
 		if (Gdx.input.isKeyJustPressed(Keys.Z))
 		{
 			CurtainFire.manager.get("blip.ogg", Sound.class).play(CFVars.VOLUME);
@@ -112,14 +103,7 @@ public class OptionsScreen extends GameScreen
 				case Mute:	
 							CFVars.VOLUME=0;
 							break;
-				case Done:	if(gsm.prevScreen==gsm.OVERWORLD)
-								gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.RectUp), false);
-							else if(gsm.prevScreen == gsm.BATTLE) 
-								gsm.setScreen(gsm.BATTLE, new Transition(TransitionType.RectUp), false);			
-							else if (gsm.prevScreen == gsm.TEST)
-								gsm.setScreen(gsm.TEST, new Transition(TransitionType.RectUp), false);
-							else
-								gsm.setScreen(gsm.prevScreen, false);
+				case Done:  gsm.setScreen(gsm.prevScreen, new Transition(TransitionType.RectUp), false);
 							break;
 			}
 		}
@@ -185,6 +169,5 @@ public class OptionsScreen extends GameScreen
 	public void update(float dt)
 	{
 		handleInput();
-
 	}
 }
