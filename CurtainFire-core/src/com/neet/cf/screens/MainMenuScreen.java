@@ -66,6 +66,10 @@ public class MainMenuScreen extends GameScreen
 			CFVars.font.draw(batch, layout, (CFVars.SCREEN_WIDTH-layout.width)/2, selectList[i].getY());
 			
 		}
+		
+		if (CurtainFire.DEBUG)
+			CFVars.font.draw(batch, "Debug", 30, Gdx.graphics.getHeight() - 50);
+		
 		batch.end();
 		
 		//Draw Selection Rectangle
