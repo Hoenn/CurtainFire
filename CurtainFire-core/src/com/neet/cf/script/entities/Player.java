@@ -26,6 +26,8 @@ public class Player extends Entity
 	
 	private float bulletSpeed;
 	
+	private boolean invincible;
+	
 	public Player(String name, String imageFile1, String imageFile2, float aniDur, float x, float y, int hp)
 	{
 		super(name, imageFile1, imageFile2, aniDur, x, y, hp);
@@ -65,7 +67,8 @@ public class Player extends Entity
 		bulletTimer += delta;
 		
 		tickHitbox();
-		checkCollision(delta);
+		if (!invincible)
+			checkCollision(delta);
 	}
 	
 	@Override
@@ -210,5 +213,15 @@ public class Player extends Entity
 	public void setShoot(boolean shoot)
 	{
 		this.shoot = shoot;
+	}
+
+	public boolean isInvincible()
+	{
+		return invincible;
+	}
+
+	public void setInvincible(boolean invincible)
+	{
+		this.invincible = invincible;
 	}
 }

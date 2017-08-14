@@ -33,6 +33,10 @@ public class DebugController
 		{
 			scriptController.pause();
 		}
+		else if (Gdx.input.isKeyJustPressed(Keys.I))
+		{
+			BattleScreen.player.setInvincible(!BattleScreen.player.isInvincible());
+		}
 		//skips ahead to the next action
 		else if (Gdx.input.isKeyJustPressed(Keys.TAB) && !scriptController.isPause())
 		{
@@ -63,6 +67,13 @@ public class DebugController
 			CFVars.font.draw(CurtainFire.sBatch, 
 				"Paused", 
 				30, Gdx.graphics.getHeight() - 50);
+		}
+		
+		if (BattleScreen.player.isInvincible())
+		{
+			CFVars.font.draw(CurtainFire.sBatch, 
+					"Invincible", 
+					30, Gdx.graphics.getHeight() - 70);
 		}
 	}
 }
