@@ -115,6 +115,8 @@ public class MainMenuScreen extends GameScreen
 				listPos=selectList.length-1;
 			rect.y=selectList[listPos].getY()-layout.height*1.5f;
 		}
+		if (Gdx.input.isKeyJustPressed(Keys.D))
+			CurtainFire.DEBUG = !CurtainFire.DEBUG;
 	}
 	@Override
 	public void resize(int width, int height)
