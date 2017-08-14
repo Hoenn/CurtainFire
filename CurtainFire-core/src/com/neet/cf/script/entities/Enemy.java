@@ -89,8 +89,6 @@ public class Enemy extends Entity
 			{
 				decreaseHP(1); //will likely be designed to vary
 				BattleScreen.playerBullets.get(i).setAlive(false);
-				if (!isAlive())
-					System.out.println("You won!"); //TODO implement win
 			}
 		}
 	}

@@ -36,7 +36,7 @@ public class BattleScreen extends GameScreen
 	private final float DELTA_LIMIT = 0.030f;
 	public static ScriptController scriptController; //plan on using array, every instance of scriptController should control an indiviual instance of Enemy
 	
-	private DebugController debugController;
+	protected DebugController debugController;
 	
 	public static Array<CircleBullet> enemyBullets;
 	public static Array<RectBullet> playerBullets;
@@ -111,13 +111,28 @@ public class BattleScreen extends GameScreen
 				e.tick(delta);
 			
 		}
+		
+		if (player.getHP() <= 0)
+		{
+			Gdx.input.setInputProcessor(CurtainFire.inputProc);
+			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
+		}
+		
+		if (scriptController.getEnemy().getHP() <= 0)
+		{
+			Gdx.input.setInputProcessor(CurtainFire.inputProc);
+			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
+			//Proof of concept
+			overworldNPCSprite.setDefeated();
+		}
+		
 		if (INVOKE_GC)
 		{
 			garbageCollection();
 		}
 	}
 	
-	private void garbageCollection()
+	protected void garbageCollection()
 	{
 		INVOKE_GC = false;
 		for (int i = 0, len = enemyBullets.size; i < len; i++)

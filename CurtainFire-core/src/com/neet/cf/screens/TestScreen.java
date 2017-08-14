@@ -6,6 +6,8 @@ import com.neet.cf.CurtainFire;
 import com.neet.cf.handlers.GameScreenManager;
 import com.neet.cf.handlers.Transition;
 import com.neet.cf.handlers.Transition.TransitionType;
+import com.neet.cf.script.entities.CircleBullet;
+import com.neet.cf.script.entities.RectBullet;
 
 public class TestScreen extends BattleScreen
 {
@@ -28,6 +30,30 @@ public class TestScreen extends BattleScreen
 			Gdx.input.setInputProcessor(CurtainFire.inputProc);
 			gsm.disposeScreen(gsm.TEST);
 			gsm.setScreen(gsm.MENU);
+		}
+	}
+	
+	@Override
+	public void tick(float delta)
+	{
+		scriptController.tick();
+		if (CurtainFire.DEBUG)
+			debugController.tick();
+		if (enemyBullets.size > 0)
+		{
+			
+			for (CircleBullet e : enemyBullets)
+				if (!scriptController.isPause())
+					e.tick(delta);
+			
+			for (RectBullet e : playerBullets)
+				e.tick(delta);
+			
+		}
+		
+		if (INVOKE_GC)
+		{
+			garbageCollection();
 		}
 	}
 

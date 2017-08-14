@@ -118,8 +118,6 @@ public class Player extends Entity
 					hit = true;
 					decreaseHP(1);
 					hitTimer = 0;
-					if (!isAlive())
-						System.out.println("You lost!"); //TODO implement lose
 				}
 			}
 			catch (NullPointerException e)
@@ -135,8 +133,6 @@ public class Player extends Entity
 					decreaseHP(1);
 					BattleScreen.enemyBullets.get(i).setAlive(false);
 					hitTimer = 0;
-					if (!isAlive())
-						System.out.println("You lost!"); //TODO implement lose
 					break;
 				}
 			}
