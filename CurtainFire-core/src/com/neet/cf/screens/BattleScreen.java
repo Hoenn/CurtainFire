@@ -202,7 +202,7 @@ public class BattleScreen extends GameScreen
 			gsm.prevScreen=gsm.BATTLE;
 			gsm.transitionScreens(this, gsm.OPTIONS, new Transition(TransitionType.RectDown));
 		}		
-		if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE))
+		if (Gdx.input.isKeyJustPressed(Keys.BACKSPACE) && CurtainFire.DEBUG)
 		{
 			Gdx.input.setInputProcessor(CurtainFire.inputProc);
 			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
