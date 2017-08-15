@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="19">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="256">
   <image source="tileset.png" trans="ff00ff" width="256" height="256"/>
   <tile id="6">
@@ -70,7 +70,7 @@
   <image source="specialTileset.png" trans="ff00ff" width="64" height="64"/>
  </tileset>
  <objectgroup name="Objects">
-  <object id="1" x="64" y="32" width="16" height="16">
+  <object id="1" x="224" y="192" width="16" height="16">
    <properties>
     <property name="BATTLE" value="0"/>
     <property name="DIRECTION" value="RIGHT"/>
@@ -78,7 +78,7 @@
     <property name="SPRITE" value="kidboy"/>
    </properties>
   </object>
-  <object id="4" x="224" y="32" width="16" height="16">
+  <object id="4" x="384" y="192" width="16" height="16">
    <properties>
     <property name="BATTLE" value="1"/>
     <property name="DIRECTION" value="UP"/>
@@ -86,7 +86,7 @@
     <property name="SPRITE" value="boyscout"/>
    </properties>
   </object>
-  <object id="13" x="224" y="144" width="16" height="16">
+  <object id="13" x="384" y="304" width="16" height="16">
    <properties>
     <property name="BATTLE" value="2"/>
     <property name="DIRECTION" value="DOWN"/>
@@ -94,7 +94,7 @@
     <property name="SPRITE" value="girlscout"/>
    </properties>
   </object>
-  <object id="14" x="96" y="160" width="16" height="16">
+  <object id="14" x="256" y="320" width="16" height="16">
    <properties>
     <property name="BATTLE" value="3"/>
     <property name="DIRECTION" value="LEFT"/>
@@ -102,35 +102,35 @@
     <property name="SPRITE" value="rival"/>
    </properties>
   </object>
-  <object id="16" x="144" y="112" width="16" height="16">
+  <object id="16" x="304" y="272" width="16" height="16">
    <properties>
     <property name="PLAYER" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <layer name="Low" width="20" height="20">
+ <layer name="Low" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJwTZ2BgEB/Fo3gUj+JRTDXMTgSmtpkD4TYAxGEiUQ==
+   eJzt0MEJACAQA8H7WYL2X6kt+Mihwgzkv6QKAPrM8PTp06dPnz59+vTpS/SNg93+79W+1HcdfSs8AP62AQ+vJDE=
   </data>
  </layer>
- <layer name="Special" width="20" height="20">
+ <layer name="Special" width="40" height="40">
   <properties>
    <property name="BATTLE" value="4"/>
    <property name="DIRECTION" value="LEFT"/>
    <property name="SPRITE" value="boyscout"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBhagImJuupGAfUB8xAMe1LTy2BLX4xM+PnUMg+dHijzRsHgAACbjgA0
+   eJztl8sKABAQAD3+/59dpdQulsVMyUVj2oMSAgAA3EpMNmtl32p+70tCf+/c7/Pz5KRvjysr7mR+Mk6/L9J3UOM86bJw1q7WO3rP7r521zhnuanPo5M+Py4LJ33zLs//NwCAFynK8AE2
   </data>
  </layer>
- <layer name="Middle" width="20" height="20">
+ <layer name="Middle" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDHVgCMRGQGwMxCZAbEqheY5A7ATEzkDsAsSuFJoXCMRBQBwMxCFAHAoVD4PSERSaPwoGBgAAWa8EnA==
+   eJztkrkNgDAQBGkDOoCMrwC+AnhF/5WwgWOMubNBsCONTiKwzyOiiPyBGCYn8+n7UpidTNt5rtN2n+t7bOe5TvZjvy/100a7nzbsJ4P9ZLCfDPaTwX4yfPXLYQFLWMH65n6++jWwhR3s4XBzP1/9RjjBGS5wNd83M/eL+/31/9OC/WSwnwztfqGn63tCT/Zjvzf1I9/kADGvazQ=
   </data>
  </layer>
- <layer name="High" width="20" height="20">
+ <layer name="High" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDFdgBsTmQGxBJfPcgNgdiD2oZB4IhFPRrFFAXwAA1okB0g==
+   eJztl8EJgEAMBO+rBakVqB3YfyfGBpRjc0nAGVjulyUD90hr4MFkmV/e6n1f83rf7H2i+/CHv8p9o8GfBv408KeBPw38aeBPQ91nsayWLaivl91yWM4Bsx889rmC+yrB/9XAn4b3/Rh9f2aT7Qt///YHkMENSU8QXg==
   </data>
  </layer>
 </map>
