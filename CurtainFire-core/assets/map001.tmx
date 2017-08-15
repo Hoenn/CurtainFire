@@ -103,7 +103,7 @@
    <properties>
     <property name="BATTLE" value="3"/>
     <property name="DIRECTION" value="LEFT"/>
-    <property name="SCRIPT" value="testcrash"/>
+    <property name="SCRIPT" value="butterfree"/>
     <property name="SPRITE" value="rival"/>
    </properties>
   </object>
