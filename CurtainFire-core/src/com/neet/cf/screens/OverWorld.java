@@ -127,10 +127,10 @@ public class OverWorld extends GameScreen
 				NPCList.add(new NPC(imgPath,rect.x, rect.y, dir, scriptPath));
 			}
 			
-			//if (properties.containsKey("PLAYER"))
+			if (properties.containsKey("PLAYER"))
 			{
 				//Rect.x, Rect.y will always be divisible by TILEWIDTH;
-				Rectangle rect = new Rectangle(32, 32, 0, 0);//((RectangleMapObject)mo).getRectangle();
+				Rectangle rect = ((RectangleMapObject)mo).getRectangle();
 				player.setPosition(rect.x, rect.y);
 				cameraFollowPlayer();
 			}
