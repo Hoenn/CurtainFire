@@ -99,8 +99,10 @@ public class OverWorld extends GameScreen
 			{
 				//Create collision
 				Cell c = specialLayer.getCell(i, j);
-				if(c!=null)
-				{
+				
+
+				if(c!=null && c.getTile().getProperties().get("PLAYER") != null)
+				{				
 					//Add collidable to master map
 					masterMap.setPos(j,i, 1);
 				}
@@ -129,7 +131,6 @@ public class OverWorld extends GameScreen
 			
 			if (properties.containsKey("PLAYER"))
 			{
-				//Rect.x, Rect.y will always be divisible by TILEWIDTH;
 				Rectangle rect = ((RectangleMapObject)mo).getRectangle();
 				player.setPosition(rect.x, rect.y);
 				cameraFollowPlayer();

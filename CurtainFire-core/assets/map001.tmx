@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="23">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="256">
   <image source="tileset.png" trans="ff00ff" width="256" height="256"/>
   <tile id="6">
@@ -68,6 +68,11 @@
  </tileset>
  <tileset firstgid="513" name="specialTileset" tilewidth="16" tileheight="16" tilecount="16">
   <image source="specialTileset.png" trans="ff00ff" width="64" height="64"/>
+  <tile id="2">
+   <properties>
+    <property name="PLAYER" value="0"/>
+   </properties>
+  </tile>
  </tileset>
  <objectgroup name="Objects">
   <object id="1" x="224" y="192" width="16" height="16">
@@ -120,7 +125,7 @@
    <property name="SPRITE" value="boyscout"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztl8sKABAQAD3+/59dpdQulsVMyUVj2oMSAgAA3EpMNmtl32p+70tCf+/c7/Pz5KRvjysr7mR+Mk6/L9J3UOM86bJw1q7WO3rP7r521zhnuanPo5M+Py4LJ33zLs//NwCAFynK8AE2
+   eJztl90KQBEQBh3e/53PrbaUv+XDTMnNNiYXSggAAHAqX/RZM/tm83pfrPSX5l6/PyUnfTouD+dNfcnM7n5fat/BFudOl4czd1lv7zmr++ze4hzlpD5FJ306Lg8nfeMu5f8bAMCN/MScATY=
   </data>
  </layer>
  <layer name="Middle" width="40" height="40">
