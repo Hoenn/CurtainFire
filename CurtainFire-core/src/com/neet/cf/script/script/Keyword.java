@@ -2,7 +2,7 @@ package com.neet.cf.script.script;
 
 public enum Keyword
 {
-	CONSTRUCT("construct", 5),
+	CONSTRUCT("construct", 4),
 	MOVE("move", 4),
 	WAIT("wait", 1),
 	SHOOT("shoot", 1),

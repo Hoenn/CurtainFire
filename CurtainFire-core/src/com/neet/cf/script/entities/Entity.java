@@ -17,8 +17,6 @@ public abstract class Entity extends Actor
 	private TextureRegion region;
 	private Animation animation;
 	private float stateTime;
-	
-	private String name;
 	boolean pause;
 	protected boolean hit;
 	
@@ -26,12 +24,10 @@ public abstract class Entity extends Actor
 	
 	private int hp;
 	
-	public Entity(String name, String imageFile1, String imageFile2, float aniDur, float x, float y, int hp)
+	public Entity(String imageFile1, String imageFile2, float aniDur, float x, float y, int hp)
 	{
 		frames = new TextureRegion[2];
 		region = null;
-		
-		this.name = name;
 		
 		texture = new Texture(Gdx.files.absolute(System.getProperty("user.dir") + 
 				"/user_assets/" + getClass().getSimpleName().toLowerCase() + "/" + imageFile1));
@@ -82,18 +78,6 @@ public abstract class Entity extends Actor
     	else
     		CFVars.font.draw(batch, "HP: " + getHP(), getX(), getY());
 
-	}
-	
-	@Override
-	public String getName()
-	{
-		return name;
-	}
-
-	@Override
-	public void setName(String name)
-	{
-		this.name = name;
 	}
 
 	public boolean isPause()

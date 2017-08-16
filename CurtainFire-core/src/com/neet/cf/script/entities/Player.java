@@ -32,9 +32,9 @@ public class Player extends Entity
 	
 	private boolean invincible;
 	
-	public Player(String name, String imageFile1, String imageFile2, float aniDur, float x, float y, int hp)
+	public Player(String imageFile1, String imageFile2, float aniDur, float x, float y, int hp)
 	{
-		super(name, imageFile1, imageFile2, aniDur, x, y, hp);
+		super(imageFile1, imageFile2, aniDur, x, y, hp);
 		//BattleScreen.battlePanel.getPlayerLabel().setName(name);
 		//BattleScreen.battlePanel.getPlayerLabel().setHP(hp);
 	}

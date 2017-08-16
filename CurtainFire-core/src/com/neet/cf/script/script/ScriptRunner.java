@@ -82,11 +82,10 @@ public class ScriptRunner
 				enemy = new Enemy(
 					tokens.get(0),
 					tokens.get(1),
-					tokens.get(2),
-					Float.parseFloat(tokens.get(3)),
+					Float.parseFloat(tokens.get(2)),
 					CFVars.SCREEN_WIDTH / 2, 
 					CFVars.SCREEN_HEIGHT / 2 + CFVars.SCREEN_HEIGHT / 4,
-					Integer.parseInt(tokens.get(4))
+					Integer.parseInt(tokens.get(3))
 				);
 			}
 			catch(NumberFormatException e)

@@ -83,7 +83,7 @@ public class BattleScreen extends GameScreen
 			debugController = new DebugController(scriptController);
 		}
 		//temporary
-		player = new Player("Beedrill", "Beedrill_1.png", "Beedrill_2.png", 
+		player = new Player("Beedrill_1.png", "Beedrill_2.png", 
 				0.6f, CFVars.SCREEN_WIDTH / 2, CFVars.SCREEN_HEIGHT / 2 - CFVars.SCREEN_HEIGHT / 4, 3);
 		
 		stage.addActor(player);
