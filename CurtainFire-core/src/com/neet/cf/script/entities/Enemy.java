@@ -30,6 +30,8 @@ public class Enemy extends Entity
 	
 	private Rectangle hitbox;
 	
+	private Color bulletColor;
+	
 	public Enemy(String name, String imageFile1, String imageFile2, float aniDur, float x, float y, int hp)
 	{
 		super(name, imageFile1, imageFile2, aniDur, x, y, hp);
@@ -47,6 +49,8 @@ public class Enemy extends Entity
 		hitboxColor = Color.BLUE;
 		hitbox.width = getWidth();
 		hitbox.height = getHeight();
+		
+		bulletColor = Color.WHITE; //default
 	}
 	
 	@Override
@@ -95,6 +99,11 @@ public class Enemy extends Entity
 			}
 		}
 	}
+	
+//	public void setBulletColor(int r, int g, int b)
+//	{
+//		bulletColor = new Color(r / 255, g / 255, b / 255, 1.0f);
+//	}
 
 	public void setScript(String s)
 	{
@@ -120,7 +129,7 @@ public class Enemy extends Entity
 		BattleScreen.enemyBullets.add(new CircleBullet(
 				getX() + getWidth() / 2,
 				getY() + getHeight() / 2,
-				radius, angle, speed, index, Color.RED //colors are shouldn't be necessary if using images
+				radius, angle, speed, index, bulletColor //colors are shouldn't be necessary if using images
 		));
 	}
 	
@@ -132,7 +141,7 @@ public class Enemy extends Entity
 		BattleScreen.enemyBullets.add(new CircleBullet(
 				getX() + getWidth() / 2 + x,
 				getY() + getHeight() / 2 + y,
-				radius, angle, speed, index, Color.RED
+				radius, angle, speed, index, bulletColor
 		));
 	}
 	
