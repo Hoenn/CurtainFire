@@ -1,6 +1,6 @@
--- butterfree battle: flutters around randomley and shoots spiral pattern
+-- butterfree battle: flutters around randomly and shoots spiral pattern
 
-construct Dragonite Dragonite_1.png Dragonite_2.png 0.5f 200 end
+construct Butterfree Butterfree_1.png Butterfree_2.png 0.2f 200 end
 --play cry (needs implementation)
 shoot flower1.lua end
 wait 10 end
