@@ -1,11 +1,13 @@
 package com.neet.cf.script.entities;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.neet.cf.CurtainFire;
+import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.screens.BattleScreen;
 
 public class Player extends Entity
@@ -123,6 +125,7 @@ public class Player extends Entity
 				{
 					hit = true;
 					decreaseHP(1);
+					CurtainFire.manager.get("playerHit.ogg", Sound.class).play(CFVars.VOLUME / 2);
 					hitTimer = 0;
 				}
 			}
@@ -133,10 +136,11 @@ public class Player extends Entity
 			
 			for (int i = 0, len = BattleScreen.enemyBullets.size; i < len; i++)
 			{
-				if (hitbox.overlaps(BattleScreen.enemyBullets.get(i).getHitbox()))
+				if (hitbox.overlaps(BattleScreen.enemyBullets.get(i).getHitbox()) && !hit)
 				{
 					hit = true;
 					decreaseHP(1);
+					CurtainFire.manager.get("playerHit.ogg", Sound.class).play(CFVars.VOLUME / 2);
 					BattleScreen.enemyBullets.get(i).setAlive(false);
 					hitTimer = 0;
 					break;

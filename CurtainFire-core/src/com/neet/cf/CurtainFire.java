@@ -100,6 +100,10 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.load("pause.ogg", Sound.class);
 		manager.load("unpause.ogg", Sound.class);
 		manager.load("testMusic.ogg", Music.class);
+		manager.load("enemy_defeated.ogg", Sound.class);
+		manager.load("playerHit.ogg", Sound.class);
+		manager.load("se_damage01.ogg", Sound.class);
+		manager.load("Boss_Battle.ogg", Music.class);
 	}
 	public void render()
 	{

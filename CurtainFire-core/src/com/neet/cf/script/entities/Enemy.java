@@ -5,10 +5,12 @@ import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.neet.cf.CurtainFire;
+import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.screens.BattleScreen;
 import com.neet.cf.script.script.Keyword;
 
@@ -88,6 +90,7 @@ public class Enemy extends Entity
 			if (hitbox.overlaps(BattleScreen.playerBullets.get(i).getHitbox()))
 			{
 				decreaseHP(1); //will likely be designed to vary
+				CurtainFire.manager.get("se_damage01.ogg", Sound.class).play(CFVars.VOLUME / 4);
 				BattleScreen.playerBullets.get(i).setAlive(false);
 			}
 		}

@@ -2,6 +2,8 @@ package com.neet.cf.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -47,6 +49,9 @@ public class BattleScreen extends GameScreen
 	
 	private float battleEndTimer;
 	private float battleEndTime;
+	private boolean enemyDefeatedSoundPlayed;
+	
+	private Music music;
 	
 	public BattleScreen(GameScreenManager gsm)
 	{	
@@ -87,6 +92,14 @@ public class BattleScreen extends GameScreen
 		
 		battleEndTimer = 0;
 		battleEndTime = 2.5f; //time gap between screen transition
+		
+		enemyDefeatedSoundPlayed = false;
+		
+		music = CurtainFire.manager.get("Boss_Battle.ogg", Music.class);
+		music.setLooping(true);
+		
+		music.setVolume(CFVars.VOLUME);
+		music.play();
 	}
 
 	@Override
@@ -131,6 +144,11 @@ public class BattleScreen extends GameScreen
 		if (scriptController.getEnemy().getHP() <= 0)
 		{
 			battleEndTimer += delta;
+			if (!enemyDefeatedSoundPlayed)
+			{
+				CurtainFire.manager.get("enemy_defeated.ogg", Sound.class).play(CFVars.VOLUME / 2);
+				enemyDefeatedSoundPlayed = true;
+			}
 			scriptController.getEnemy().remove();
 			player.setInvincible(true); //so stray bullets don't accidently defeat you
 			if (battleEndTimer >= battleEndTime)
@@ -212,7 +230,9 @@ public class BattleScreen extends GameScreen
 	@Override
 	public void dispose()
 	{
-		stage.dispose();		
+		stage.dispose();
+		music.stop();
+		music.dispose();
 	}
 
 	public String getScriptFile()
