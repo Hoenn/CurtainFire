@@ -146,7 +146,7 @@ public class ScriptRunner
 					if (arg0.equals(Keyword.DEF.getValue()))
 						x = (CFVars.SCREEN_WIDTH / 2) - (BattleScreen.scriptController.getEnemy().getWidth() / 2);
 					else
-						x = Float.parseFloat(arg0);
+						x = (Float.parseFloat(arg0) / 100.0f * CFVars.SCREEN_WIDTH) - (BattleScreen.scriptController.getEnemy().getWidth() / 2.0f);
 				}
 				
 				String arg1 = tokens.get(1);
@@ -162,7 +162,7 @@ public class ScriptRunner
 					if (arg1.equals(Keyword.DEF.getValue()))
 						y = CFVars.SCREEN_HEIGHT / 2 + CFVars.SCREEN_HEIGHT / 4;
 					else
-						y = Float.parseFloat(arg1);
+						y = (Float.parseFloat(arg1) / 100.0f * CFVars.SCREEN_HEIGHT) - (BattleScreen.scriptController.getEnemy().getHeight() / 2.0f);
 				}
 
 				action.setPosition(x, y);
