@@ -16,7 +16,9 @@ public class Player extends Entity
 	private Vector2 velocity;
 	private double length;
 	
-	private boolean moveLeft, moveRight, moveUp, moveDown, shoot;
+	private boolean moveLeft, moveRight, moveUp, moveDown, shoot, shootable;
+
+	private float shootIntervalSpeed;
 	
 	private float bulletTimer;
 	private float hitTimer;
@@ -50,6 +52,10 @@ public class Player extends Entity
 		hitTimer = 0;
 		hitTimeLimit = 200; //temporary
 		bulletSpeed = 800;
+		
+		shootIntervalSpeed = .10f;
+		
+		shootable = true;
 	}
 	
 	@Override
@@ -61,7 +67,7 @@ public class Player extends Entity
 		if (isMoving())
 			move(delta);
 		
-		if(shoot)
+		if(shoot && shootable)
 			shoot();
 		
 		bulletTimer += delta;
@@ -92,7 +98,7 @@ public class Player extends Entity
 	private void shoot()
 	{
 		//TODO Temporary, likely to be implemented on subclass or per instance basis
-		if (bulletTimer > .10)
+		if (bulletTimer > shootIntervalSpeed)
 		{
 			BattleScreen.playerBullets.add(new RectBullet(
 				getX() + getWidth() / 2 - 10 / 2, getY() + getHeight() / 2, 
@@ -219,5 +225,15 @@ public class Player extends Entity
 	public void setInvincible(boolean invincible)
 	{
 		this.invincible = invincible;
+	}
+
+	public boolean isShootable()
+	{
+		return shootable;
+	}
+
+	public void setShootable(boolean shootable)
+	{
+		this.shootable = shootable;
 	}
 }

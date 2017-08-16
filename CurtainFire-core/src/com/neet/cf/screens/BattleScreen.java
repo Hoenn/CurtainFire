@@ -45,6 +45,9 @@ public class BattleScreen extends GameScreen
 	
 	public static Player player;
 	
+	private float battleEndTimer;
+	private float battleEndTime;
+	
 	public BattleScreen(GameScreenManager gsm)
 	{	
 		super(gsm);
@@ -82,7 +85,8 @@ public class BattleScreen extends GameScreen
 		
 		Gdx.input.setInputProcessor(new PlayerInput(player));
 		
-		
+		battleEndTimer = 0;
+		battleEndTime = 2.5f; //time gap between screen transition
 	}
 
 	@Override
@@ -110,20 +114,32 @@ public class BattleScreen extends GameScreen
 			for (RectBullet e : playerBullets)
 				e.tick(delta);
 			
-		}
-		
+		}		
 		if (player.getHP() <= 0)
 		{
-			Gdx.input.setInputProcessor(CurtainFire.inputProc);
-			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
+			battleEndTimer += delta;
+			player.setInvincible(true);
+			player.setShootable(false);
+			if (battleEndTimer >= battleEndTime)
+			{
+				player.remove();
+				Gdx.input.setInputProcessor(CurtainFire.inputProc);
+				gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
+			}
 		}
 		
 		if (scriptController.getEnemy().getHP() <= 0)
 		{
-			Gdx.input.setInputProcessor(CurtainFire.inputProc);
-			gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
-			//Proof of concept
-			overworldNPCSprite.setDefeated();
+			battleEndTimer += delta;
+			scriptController.getEnemy().remove();
+			player.setInvincible(true); //so stray bullets don't accidently defeat you
+			if (battleEndTimer >= battleEndTime)
+			{
+				Gdx.input.setInputProcessor(CurtainFire.inputProc);
+				gsm.setScreen(gsm.OVERWORLD, new Transition(TransitionType.SplitOut), false);
+				//Proof of concept
+				overworldNPCSprite.setDefeated();
+			}
 		}
 		
 		if (INVOKE_GC)

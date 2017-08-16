@@ -95,7 +95,7 @@
    <properties>
     <property name="BATTLE" value="2"/>
     <property name="DIRECTION" value="DOWN"/>
-    <property name="SCRIPT" value="noloop"/>
+    <property name="SCRIPT" value="butterfree"/>
     <property name="SPRITE" value="girlscout"/>
    </properties>
   </object>
