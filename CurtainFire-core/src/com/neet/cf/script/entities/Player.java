@@ -47,9 +47,8 @@ public class Player extends Entity
 		
 		velocity = new Vector2();
 		
-		hitbox = new Circle();
+		hitbox = new Circle(this.getX(), this.getY(), 5);
 		hitboxColor = Color.WHITE;
-		hitbox.radius = 5;
 		
 		hitTimer = 0;
 		hitTimeLimit = 200; //temporary
