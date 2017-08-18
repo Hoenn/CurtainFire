@@ -94,7 +94,7 @@ public class Enemy extends Entity
 			if (hitbox.overlaps(BattleScreen.playerBullets.get(i).getHitbox()))
 			{
 				decreaseHP(1); //will likely be designed to vary
-				CurtainFire.manager.get("se_damage01.ogg", Sound.class).play(CFVars.VOLUME / 4);
+				CurtainFire.manager.get("se_damage01.ogg", Sound.class).play(CFVars.VOLUME);
 				BattleScreen.playerBullets.get(i).setAlive(false);
 			}
 		}

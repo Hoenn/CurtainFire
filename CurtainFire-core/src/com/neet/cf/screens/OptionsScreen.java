@@ -99,6 +99,9 @@ public class OptionsScreen extends GameScreen
 				case VolumeDown:
 							if(CFVars.VOLUME>0)
 								CFVars.VOLUME -= .025f;
+								if(CFVars.VOLUME <= 0)
+									CFVars.VOLUME = 0;
+							
 							break;
 				case Mute:	
 							CFVars.VOLUME=0;

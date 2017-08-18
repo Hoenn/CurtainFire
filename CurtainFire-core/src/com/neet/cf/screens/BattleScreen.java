@@ -209,22 +209,20 @@ public class BattleScreen extends GameScreen
 	@Override
 	public void pause()
 	{
-		// TODO Auto-generated method stub
-		
+		music.pause();
 	}
 
 	@Override
 	public void resume()
 	{
-		// TODO Auto-generated method stub
-		
+		music.setVolume(CFVars.VOLUME);
+		music.play();	
 	}
 
 	@Override
 	public void hide()
 	{
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override
