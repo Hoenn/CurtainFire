@@ -1,5 +1,7 @@
 package com.neet.cf.overworld.util;
 
+import static com.neet.cf.overworld.util.CFVars.DEFAULT_SB_COLOR;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,6 +21,7 @@ public class DialogBox
 	public static void draw(SpriteBatch sb, OrthographicCamera hudCam)
 	{		
 		sb.begin();
+		sb.setColor(DEFAULT_SB_COLOR);
 		sb.setProjectionMatrix(hudCam.combined);
 		sb.draw(box, x, y, width, height);
 		CFVars.font.setColor(Color.BLACK);

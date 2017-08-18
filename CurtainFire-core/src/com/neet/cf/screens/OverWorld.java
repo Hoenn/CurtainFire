@@ -101,7 +101,7 @@ public class OverWorld extends GameScreen
 				Cell c = specialLayer.getCell(i, j);
 				
 
-				if(c!=null && c.getTile().getProperties().get("PLAYER") != null)
+				if(c!=null && c.getTile().getProperties().get("PLAYER") == null)
 				{				
 					//Add collidable to master map
 					masterMap.setPos(j,i, 1);
