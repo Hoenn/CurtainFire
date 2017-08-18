@@ -100,10 +100,10 @@ public class Enemy extends Entity
 		}
 	}
 	
-//	public void setBulletColor(int r, int g, int b)
-//	{
-//		bulletColor = new Color(r / 255, g / 255, b / 255, 1.0f);
-//	}
+	public void setBulletColor(int r, int g, int b)
+	{
+		bulletColor = new Color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
+	}
 
 	public void setScript(String s)
 	{

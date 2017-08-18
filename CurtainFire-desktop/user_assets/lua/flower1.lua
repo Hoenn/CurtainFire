@@ -1,6 +1,8 @@
 local bulletTimer = 0;
 local num = 5;
 
+local doOnce = true;
+
 local changeangle1 = 360 / num;
 local angle1 = 0;
 local count1 = 0;
@@ -10,6 +12,10 @@ local angle2 = 0;
 local count2 = 0;
 
 function tick(enemy, delta)
+  if doOnce then
+     enemy:setBulletColor(255, 0, 0);
+     doOnce = false;
+  end
 	if bulletTimer > 0.10 then
 		for i=1, num, 1 do
 			enemy:shoot(10, angle1, 250, 0); --radius, angle, speed, index
