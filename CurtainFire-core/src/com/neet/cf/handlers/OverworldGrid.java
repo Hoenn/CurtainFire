@@ -8,7 +8,7 @@ public class OverworldGrid
 	public OverworldGrid(int width, int height)
 	{
 		this.height=height;
-		grid = new int[width][height];
+		grid = new int[height][width];
 	}
 	public int getPos(int x, int y)
 	{

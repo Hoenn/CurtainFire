@@ -93,6 +93,7 @@ public class CurtainFire extends ApplicationAdapter {
 		manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		manager.load("map001.tmx", TiledMap.class);
 		manager.load("flowerIsland.tmx", TiledMap.class);
+		manager.load("DemoMap.tmx", TiledMap.class);
 		manager.load("cfFont.fnt", BitmapFont.class);
 		//manager.load("uiskin.json", Skin.class);
 		manager.load("pcboot.ogg", Sound.class);
