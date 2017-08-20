@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="30" tilewidth="16" tileheight="16" nextobjectid="4">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="30" tilewidth="16" tileheight="16" nextobjectid="10">
  <tileset firstgid="1" name="animatedTileset" tilewidth="16" tileheight="16" tilecount="256">
   <image source="animatedTileset.png" trans="ff00ff" width="256" height="256"/>
   <tile id="0">
@@ -68,14 +68,6 @@
  </tileset>
  <tileset firstgid="513" name="specialTileset" tilewidth="16" tileheight="16" tilecount="16">
   <image source="specialTileset.png" trans="ff00ff" width="64" height="64"/>
-  <tile id="1">
-   <properties>
-    <property name="BATTLE" value="0"/>
-    <property name="DIRECTION" value="DOWN"/>
-    <property name="SCRIPT" value="butterfree"/>
-    <property name="SPRITE" value="rival"/>
-   </properties>
-  </tile>
   <tile id="2">
    <properties>
     <property name="PLAYER" value="0"/>
@@ -83,28 +75,44 @@
   </tile>
  </tileset>
  <objectgroup name="Objects">
-  <object id="2" x="560" y="368" width="16" height="16">
-   <properties>
-    <property name="PLAYER" value="0"/>
-   </properties>
-  </object>
   <object id="3" x="800" y="128" width="16" height="16">
    <properties>
     <property name="BATTLE" value="0"/>
     <property name="DIRECTION" value="DOWN"/>
-    <property name="SCRIPT" value="butterfree"/>
+    <property name="SCRIPT" value="dragonite"/>
     <property name="SPRITE" value="rival"/>
+   </properties>
+  </object>
+  <object id="4" x="496" y="112" width="16" height="16">
+   <properties>
+    <property name="BATTLE" value="1"/>
+    <property name="DIRECTION" value="DOWN"/>
+    <property name="SCRIPT" value="butterfree"/>
+    <property name="SPRITE" value="boyscout"/>
+   </properties>
+  </object>
+  <object id="8" x="288" y="336" width="16" height="16">
+   <properties>
+    <property name="BATTLE" value="2"/>
+    <property name="DIRECTION" value="LEFT"/>
+    <property name="SCRIPT" value="weezing"/>
+    <property name="SPRITE" value="kidboy"/>
+   </properties>
+  </object>
+  <object id="9" x="112" y="208" width="16" height="16">
+   <properties>
+    <property name="PLAYER" value="0"/>
    </properties>
   </object>
  </objectgroup>
  <layer name="Low" width="64" height="30">
   <data encoding="base64" compression="zlib">
-   eJztlrkKwzAMhtMpQ8+tQ8+xkF5723fPo1UBG4Sw4yOy4wT98A3BNuSTnVhVJZFIJBKa/WIeiH8a/xoR+k4f4Av8Zui/BFaKtWUteLfg30Id2iFuN8czh3/tAfY+Evrq4OvlywbYZfbX7tr3buCRyL3z3SIuwJvZ31WDbvyg3EM8OWpwVs6aq2EOh7+pBnisYXQPgfrTvef0L5En8FKY3Evx7zs7qRnb3/bPGAK+Y133y5j+nO7Ymd6xpwL9Q91tc2x9xZT8Q+pEx/XdasPVX3D7+57jWH88H/dVod4l+bvW2ObgvY/tJ1P5+/7LXL1jH02E75T8c/QCKf1jv4OcNRB/iUQikdD8ASUMW1o=
+   eJztlrsOgzAMRenE0OfWoc+NSvS1t/13Pq1GSiTLSkgCDgnIVzpDFaNyTJS4KCQSiURCs1/MA/GP418iQt/pA3yB3wz9l8BKsbY8C94N+DfQh2aI283xm8O/9AB7HwldffD18mUD7Eb21+7a927gEcm99d0iLsCb2d/Vg3b9oNxDPDl6cFbOmquhhsPf1AO8VjO6h0D96bfn9M+RJ/BSmNxz8e/aO7FJ7W87M4aA71jX/ZLSn9MdO9M79pShP3auFD71Nm/qPCX/kD1C1/XdasM1X3D7++7jvv64Hs9Vod6p/fWe9+mDrQZ/+77zZCx/37PMNTt2UffwnZL/GLNATP/QcyBFD7j9K4Lr/2m9iRz9JRKJZM75A9ReXXo=
   </data>
  </layer>
  <layer name="Special" width="64" height="30">
   <data encoding="base64" compression="zlib">
-   eJztllsOgzAMBCm9/52r/qEqkPV67aTSjoTEI8YZEpwchzHGGIPzOnuObP5Kf2W7aCzyXoX/im+L5L7m/56fgz6p/Hfj6v/knJ17XeMcpcs/E8vER+Luxkc1bh3+mbqyo3/UY9SG+Q53193zP5qbXd+ycwSNzcQo/FX19x/8n9b2LIp/GalTjP/Mebc9DOvP1vYd/Uf3ZvNW7YRQkY/1/23bQUUedF1asX9m91LRHJFn3f4rcqA1ccY72P+O8R7lRO4hzyr6Ug26F5i1Vx3GGMPyAYraAuw=
+   eJztl9sOhCAMRBX//583vhkD9jJlYJM5icleKOUIqfU4hBBCCD9n41xo/pn+6LhmzGH5I7m9rLi3ntzP/Pfn1llTlf9uPP2/nJG1M/c5Cssfic3ER+JG+1O1bwx/pK4w/K/gHFGP3pjMfRh9Z5//aO7s8w09I95YJKbCv6r+/oP/17MdBanFkf4n428579bDZP2ztX1H/95v1rmtdvIwI1/W/z2WwYw8oznf7x8r+udsLxXNEfmP7b8ih7cmzlgLu65EHWf7s/H2Atb4qksIIbL8ADwFAvQ=
   </data>
  </layer>
  <layer name="Medium" width="64" height="30">
