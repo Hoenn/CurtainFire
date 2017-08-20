@@ -1,3 +1,17 @@
 construct Weezing_1.png Weezing_2.png 0.2f 200 end
+
+loop 3 end
+
+shoot smokescreen_counter_clockwise.lua end
+move rand300 def 1.0 linear end
+shoot empty.lua end
+wait 1.0 end
+shoot smokescreen_counter_clockwise.lua end
+move def def 1.0 linear end
+shoot empty.lua end
+wait 1.0 end
+
+endloop end
+
 shoot sludgebomb.lua end
 wait 5 end
