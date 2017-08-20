@@ -15,7 +15,7 @@ public class RectBullet extends Bullet
 	
 	public RectBullet(float x, float y, float width, float height, double angle, float speed, Color color)
 	{
-		super(x, y, angle, speed, color);
+		super(x, y, angle, speed, color, -1);
 		hitbox = new Rectangle(x, y, width, height);
 	}
 	

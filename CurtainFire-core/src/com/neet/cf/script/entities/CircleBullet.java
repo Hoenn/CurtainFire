@@ -13,7 +13,7 @@ public class CircleBullet extends Bullet
 	
 	public CircleBullet(float x, float y, int radius, double angle, float speed, int index, Color color)
 	{
-		super(x, y, angle, speed, color);
+		super(x, y, angle, speed, color, index);
 		hitbox = new Circle(x, y, radius);
 	}
 	

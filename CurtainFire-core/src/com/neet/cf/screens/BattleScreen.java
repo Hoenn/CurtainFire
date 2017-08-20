@@ -115,18 +115,20 @@ public class BattleScreen extends GameScreen
 	public void tick(float delta)
 	{
 		scriptController.tick();
+		
+		if (playerBullets.size > 0)
+		{
+			for (RectBullet e : playerBullets)
+				e.tick(delta);
+		}
+		
 		if (CurtainFire.DEBUG)
 			debugController.tick();
 		if (enemyBullets.size > 0)
 		{
-			
 			for (CircleBullet e : enemyBullets)
 				if (!scriptController.isPause())
 					e.tick(delta);
-			
-			for (RectBullet e : playerBullets)
-				e.tick(delta);
-			
 		}		
 		if (player.getHP() <= 0)
 		{

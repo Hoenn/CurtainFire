@@ -37,6 +37,13 @@ public class TestScreen extends BattleScreen
 	public void tick(float delta)
 	{
 		scriptController.tick();
+		
+		if (playerBullets.size > 0)
+		{
+			for (RectBullet e : playerBullets)
+				e.tick(delta);
+		}
+		
 		if (CurtainFire.DEBUG)
 			debugController.tick();
 		if (enemyBullets.size > 0)
@@ -44,11 +51,7 @@ public class TestScreen extends BattleScreen
 			
 			for (CircleBullet e : enemyBullets)
 				if (!scriptController.isPause())
-					e.tick(delta);
-			
-			for (RectBullet e : playerBullets)
-				e.tick(delta);
-			
+					e.tick(delta);			
 		}
 		
 		if (INVOKE_GC)

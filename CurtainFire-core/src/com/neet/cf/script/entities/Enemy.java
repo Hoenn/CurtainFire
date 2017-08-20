@@ -107,15 +107,11 @@ public class Enemy extends Entity
 
 	public void setScript(String s)
 	{
-		if (!s.equals(Keyword.NIL.getValue()) && !s.equals(scriptName))
+		if (!s.equals(Keyword.NIL.getValue()))
 		{
 			scriptName = s;
 			globals.get("dofile").call(LuaValue.valueOf("user_assets/lua/" + s)); // initialize
 			script = globals.get("tick");
-		}
-		else if (!s.equals(Keyword.NIL.getValue()) && s.equals(scriptName))
-		{
-			//prevents needless reloading of lua script
 		}
 		else
 			script = null;

@@ -35,7 +35,7 @@ public class CFVars
 	public static final String PK_CHAR ="[";
 	public static final String MN_CHAR ="]";	
 	
-	public static float VOLUME = 0.2f;
+	public static float VOLUME = 0.0f; //0.2f;
 	public static final float VOLUME_MAX=0.5f;
 	
 	public static final float textReadRate_NORM = .08f;

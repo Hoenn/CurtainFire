@@ -14,7 +14,7 @@ public class Bullet
 	protected double accumulatedAngleChange;
 	protected float accumulatedSpeedChange;
 	
-	public Bullet(float x, float y, double angle, float speed, Color color)
+	public Bullet(float x, float y, double angle, float speed, Color color, int index)
 	{
 		this.setAngle(angle);
 		this.setSpeed(speed);
@@ -22,6 +22,7 @@ public class Bullet
 		accumulatedAngleChange = 0;
 		accumulatedSpeedChange = 0;
 		hitboxColor = color;
+		this.index = index;
 	}
 	
 	public Color getHitboxColor()
