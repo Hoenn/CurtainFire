@@ -121,12 +121,8 @@ public class Enemy extends Entity
 			if (scripts.size == index + 1)
 				scripts.set(index, globals.get("tick"));
 			else if (scripts.size > index + 1)
-			{
 				while ((index + 1) < scripts.size)
-				{
 					scripts.add(null);
-				}
-			}
 			else
 				scripts.add(globals.get("tick"));
 		}
