@@ -291,15 +291,23 @@ public class ScriptRunner
 	{
 		if (tokens.size == Keyword.SHOOT.getArgLength())
 		{
-			try
-			{
-				scriptController.getEnemy().setScript(tokens.get(0), Integer.parseInt(tokens.get(1)));
+			if (tokens.get(2).equals(Keyword.ON.getValue()) || tokens.get(2).equals(Keyword.OFF.getValue()))
+			{				
+				try
+				{
+					scriptController.getEnemy().setScript(tokens.get(0), Integer.parseInt(tokens.get(1)), tokens.get(2), lineNumber);
+				}
+				catch (NumberFormatException e)
+				{
+					System.out.println(Error.INCORRECT_ARG.getText() + (lineNumber + 1));
+					busy = true; //stops execution of script until user fixes error
+				}
 			}
-			catch (NumberFormatException e)
+			else
 			{
 				System.out.println(Error.INCORRECT_ARG.getText() + (lineNumber + 1));
 				busy = true; //stops execution of script until user fixes error
-			}
+			}	
 		}
 		else
 		{

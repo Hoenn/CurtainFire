@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.screens.BattleScreen;
+import com.neet.cf.script.script.Error;
 import com.neet.cf.script.script.Keyword;
 
 
@@ -112,9 +113,9 @@ public class Enemy extends Entity
 		bulletColor = new Color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 	}
 
-	public void setScript(String s, int index)
+	public void setScript(String s, int index, String sw, int lineNumber)
 	{
-		if (!s.equals(Keyword.NIL.getValue()))
+		if (sw.equals(Keyword.ON.getValue()))
 		{
 			scriptName = s;
 			globals.get("dofile").call(LuaValue.valueOf("user_assets/lua/" + s)); // initialize
@@ -128,7 +129,16 @@ public class Enemy extends Entity
 			}
 		}
 		else
-			scripts.set(index, null);
+		{
+			try
+			{
+				scripts.set(index, null);
+			}
+			catch (IndexOutOfBoundsException e)
+			{
+				System.out.println(Error.INDEX_DOES_NOT_EXIST.getText() + (lineNumber + 1));
+			}
+		}
 	}
 	
 	/*

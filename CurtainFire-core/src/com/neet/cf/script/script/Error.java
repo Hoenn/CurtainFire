@@ -2,6 +2,7 @@ package com.neet.cf.script.script;
 
 public enum Error
 {
+	INDEX_DOES_NOT_EXIST("You are trying to access an index that does not exist at line "),
 	INCORRECT_KEYWORD("Incorrect Keyword at line "),
 	INCORRECT_ARG_NUM("Incorrect number of arguments at line "),
 	INCORRECT_ARG("An argument was incorrect at line "),
