@@ -291,7 +291,7 @@ public class ScriptRunner
 	{
 		if (tokens.size == Keyword.SHOOT.getArgLength())
 		{
-			scriptController.getEnemy().setScript(tokens.first()); //TODO support multiple enemies
+			scriptController.getEnemy().setScript(tokens.get(0), Integer.parseInt(tokens.get(1)));
 		}
 		else
 		{

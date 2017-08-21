@@ -5,7 +5,7 @@ public enum Keyword
 	CONSTRUCT("construct", 4),
 	MOVE("move", 4),
 	WAIT("wait", 1),
-	SHOOT("shoot", 1),
+	SHOOT("shoot", 2),
 	NIL("nil", 0),
 	END("end", 0),
 	SPACE("_", 0), //TODO add support for space

@@ -9,6 +9,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 import com.neet.cf.CurtainFire;
 import com.neet.cf.overworld.util.CFVars;
 import com.neet.cf.screens.BattleScreen;
@@ -25,7 +26,7 @@ import com.neet.cf.script.script.Keyword;
 public class Enemy extends Entity
 {
 	private Globals globals;
-	private LuaValue script;
+	private Array<LuaValue> scripts;
 	private String scriptName;
 	
 	private Rectangle hitbox;
@@ -42,7 +43,7 @@ public class Enemy extends Entity
 	{
 		globals = JsePlatform.standardGlobals();
 		
-		script = null;
+		scripts = new Array<LuaValue>();
 		scriptName = null;
 		
 		hitbox = new Rectangle();
@@ -59,8 +60,8 @@ public class Enemy extends Entity
 		if (!pause)
 			super.act(delta);
 		//passes Enemy and delta into lua script tick function every frame
-		if (script != null && !pause)
-			script.call(CoerceJavaToLua.coerce(this), LuaValue.valueOf(delta));
+		for (int i = 0; i < scripts.size; i++)
+			scripts.get(i).call(CoerceJavaToLua.coerce(this), LuaValue.valueOf(delta));
 		
 		tickHitbox();
 		
@@ -105,16 +106,19 @@ public class Enemy extends Entity
 		bulletColor = new Color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 	}
 
-	public void setScript(String s)
+	public void setScript(String s, int index)
 	{
 		if (!s.equals(Keyword.NIL.getValue()))
 		{
 			scriptName = s;
 			globals.get("dofile").call(LuaValue.valueOf("user_assets/lua/" + s)); // initialize
-			script = globals.get("tick");
+			if (scripts.size >= index + 1)
+				scripts.set(index, globals.get("tick"));
+			else
+				scripts.add(globals.get("tick"));
 		}
 		else
-			script = null;
+			scripts.set(index, null);
 	}
 	
 	/*

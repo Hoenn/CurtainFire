@@ -2,9 +2,9 @@
 
 construct Butterfree_1.png Butterfree_2.png 0.2f 200 end
 --play cry (needs implementation)
-shoot flower1.lua end
+shoot flower1.lua 0 end
 wait 10 end
-shoot 360div10.lua end
+shoot 360div10.lua 0 end
 -- move commands are percentage of x and y (out of 100)
 move 25 def 3.0 swing end
 move 75 def 6.0 swing end
