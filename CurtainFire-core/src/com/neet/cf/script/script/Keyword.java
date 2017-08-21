@@ -7,6 +7,7 @@ public enum Keyword
 	WAIT("wait", 1),
 	REMOVEALLSCRIPTS("removeallscripts", 0),
 	SHOOT("shoot", 3),
+	PUSHSHOOT("pushshoot", 1),
 	ON("on", 0),
 	OFF("off", 0),
 	END("end", 0),

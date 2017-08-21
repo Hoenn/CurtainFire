@@ -70,6 +70,17 @@ public class ScriptRunner
 				e.printStackTrace();
 			}
 		}
+		else if (firstToken.equals(Keyword.PUSHSHOOT.getValue()))
+		{
+			try
+			{
+				pushShoot(tokens, lineNumber);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
 		else
 			System.out.println(Error.INCORRECT_KEYWORD.getText() + (lineNumber + 1)); //TODO print list of usable keywords
 	}
@@ -294,6 +305,23 @@ public class ScriptRunner
 		if (tokens.size == Keyword.REMOVEALLSCRIPTS.getArgLength())
 		{
 			scriptController.getEnemy().removeAllScripts();
+		}
+		else
+		{
+			System.out.println(Error.INCORRECT_ARG_NUM.getText() + (lineNumber + 1));
+			busy = true; //stops execution of script until user fixes error
+		}
+		
+		scriptController.getScriptParser().incrementLineNumber();
+	}
+	
+	private void pushShoot(Array<String> tokens, int lineNumber)
+	{
+		if (tokens.size == Keyword.PUSHSHOOT.getArgLength())
+		{
+			scriptController.getEnemy().setScript(tokens.first(), 
+					scriptController.getEnemy().getScripts().size, 
+					Keyword.ON.getValue(), lineNumber); //TODO support multiple enemies
 		}
 		else
 		{

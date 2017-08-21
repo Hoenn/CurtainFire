@@ -13,11 +13,9 @@ wait 1.0 end
 
 --endloop end
 
-shoot sludgebomb.lua 0 on end
-wait 2 end
-shoot sludgebomb.lua 1 on end
-wait 2 end
-shoot sludgebomb.lua 2 on end
-wait 2 end
+loop 5 end
+pushshoot sludgebomb.lua end
+wait 1 end
+endloop end
 
 removeallscripts end --sets all scripts to null

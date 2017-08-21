@@ -28,7 +28,6 @@ public class Enemy extends Entity
 {
 	private Globals globals;
 	private Array<LuaValue> scripts;
-	private String scriptName;
 	
 	private Rectangle hitbox;
 	
@@ -45,7 +44,6 @@ public class Enemy extends Entity
 		globals = JsePlatform.standardGlobals();
 		
 		scripts = new Array<LuaValue>();
-		scriptName = null;
 		
 		hitbox = new Rectangle();
 		hitboxColor = Color.BLUE;
@@ -117,7 +115,6 @@ public class Enemy extends Entity
 	{
 		if (sw.equals(Keyword.ON.getValue()))
 		{
-			scriptName = s;
 			globals.get("dofile").call(LuaValue.valueOf("user_assets/lua/" + s)); // initialize
 			try	
 			{
@@ -251,5 +248,10 @@ public class Enemy extends Entity
 	public Rectangle getHitbox()
 	{
 		return hitbox;
+	}
+	
+	public Array<LuaValue> getScripts()
+	{
+		return scripts;
 	}
 }
