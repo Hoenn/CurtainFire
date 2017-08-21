@@ -65,7 +65,9 @@ public class Enemy extends Entity
 			script = scripts.get(i);
 			
 			if (script != null)
-				script.call(CoerceJavaToLua.coerce(this), LuaValue.valueOf(delta));
+				script.call(CoerceJavaToLua.coerce(this), 
+						LuaValue.valueOf(delta), 
+						CoerceJavaToLua.coerce(BattleScreen.player));
 		}
 		
 		tickHitbox();

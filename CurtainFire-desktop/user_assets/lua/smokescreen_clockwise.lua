@@ -6,7 +6,7 @@ local cAngle = 0;
 local sAngle = 0;
 local scAngle = 3;
 
-function tick(enemy, delta)
+function tick(enemy, delta, player)
     if bulletTimer> 0.10 then
         for i=1, numBullets, 1 do
             if i % 3 == 0 then 

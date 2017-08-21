@@ -5,7 +5,7 @@ local num = 25;
 local angle = 0;
 local changeAngle = 360 / num;
 
-function tick(enemy, delta)
+function tick(enemy, delta, player)
     --Spawn n bullets on top of eachother    
     if doOnce then
         for i = 1, num, 1 do
