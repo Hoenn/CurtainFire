@@ -118,13 +118,14 @@ public class Enemy extends Entity
 		{
 			scriptName = s;
 			globals.get("dofile").call(LuaValue.valueOf("user_assets/lua/" + s)); // initialize
-			if (scripts.size == index + 1)
+			try	
+			{
 				scripts.set(index, globals.get("tick"));
-			else if (scripts.size > index + 1)
-				while ((index + 1) < scripts.size)
-					scripts.add(null);
-			else
+			}
+			catch (IndexOutOfBoundsException e)
+			{
 				scripts.add(globals.get("tick"));
+			}
 		}
 		else
 			scripts.set(index, null);
