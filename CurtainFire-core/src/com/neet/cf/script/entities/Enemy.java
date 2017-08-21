@@ -60,8 +60,14 @@ public class Enemy extends Entity
 		if (!pause)
 			super.act(delta);
 		//passes Enemy and delta into lua script tick function every frame
+		LuaValue script;
 		for (int i = 0; i < scripts.size; i++)
-			scripts.get(i).call(CoerceJavaToLua.coerce(this), LuaValue.valueOf(delta));
+		{
+			script = scripts.get(i);
+			
+			if (script != null)
+				script.call(CoerceJavaToLua.coerce(this), LuaValue.valueOf(delta));
+		}
 		
 		tickHitbox();
 		
@@ -112,8 +118,15 @@ public class Enemy extends Entity
 		{
 			scriptName = s;
 			globals.get("dofile").call(LuaValue.valueOf("user_assets/lua/" + s)); // initialize
-			if (scripts.size >= index + 1)
+			if (scripts.size == index + 1)
 				scripts.set(index, globals.get("tick"));
+			else if (scripts.size > index + 1)
+			{
+				while ((index + 1) < scripts.size)
+				{
+					scripts.add(null);
+				}
+			}
 			else
 				scripts.add(globals.get("tick"));
 		}

@@ -88,7 +88,7 @@ public class ScriptRunner
 					Integer.parseInt(tokens.get(3))
 				);
 			}
-			catch(NumberFormatException e)
+			catch (NumberFormatException e)
 			{
 				System.out.println(Error.INCORRECT_ARG.getText() + (lineNumber + 1));
 				busy = true; //stops execution of script until user fixes error
