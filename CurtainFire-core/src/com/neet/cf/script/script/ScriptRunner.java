@@ -57,6 +57,8 @@ public class ScriptRunner
 			endLoop(tokens, lineNumber);
 		else if (firstToken.equals(Keyword.PRINT.getValue()))
 			print(tokens, lineNumber);
+		else if (firstToken.equals(Keyword.REMOVEALLSCRIPTS.getValue()))
+			removeAllScripts(tokens, lineNumber);
 		else if (firstToken.equals(Keyword.SHOOT.getValue()))
 		{
 			try
@@ -282,6 +284,21 @@ public class ScriptRunner
 		if (tokens.size == Keyword.PRINT.getArgLength())
 		{
 			System.out.println(tokens.first());
+		}
+		
+		scriptController.getScriptParser().incrementLineNumber();
+	}
+	
+	private void removeAllScripts(Array<String> tokens, int lineNumber)
+	{
+		if (tokens.size == Keyword.REMOVEALLSCRIPTS.getArgLength())
+		{
+			scriptController.getEnemy().removeAllScripts();
+		}
+		else
+		{
+			System.out.println(Error.INCORRECT_ARG_NUM.getText() + (lineNumber + 1));
+			busy = true; //stops execution of script until user fixes error
 		}
 		
 		scriptController.getScriptParser().incrementLineNumber();

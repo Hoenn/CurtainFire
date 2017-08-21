@@ -5,6 +5,7 @@ public enum Keyword
 	CONSTRUCT("construct", 4),
 	MOVE("move", 4),
 	WAIT("wait", 1),
+	REMOVEALLSCRIPTS("removeallscripts", 0),
 	SHOOT("shoot", 3),
 	ON("on", 0),
 	OFF("off", 0),

@@ -141,6 +141,11 @@ public class Enemy extends Entity
 		}
 	}
 	
+	public void removeAllScripts()
+	{
+		scripts.clear();
+	}
+	
 	/*
 	 * Places a bullet at the center of the enemy
 	 */
