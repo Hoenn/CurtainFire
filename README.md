@@ -166,9 +166,11 @@ Example: `rand50` passes a value between -50 and 50 to move by from the enemy's 
 
 ### `loop`
 
-```loop iteration
+```
+loop iteration
 print code would be in here
-endloop end ```
+endloop end 
+```
 
 `loop` runs only the code between `loop` and `endloop` `iteration` number of times.
 
