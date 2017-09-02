@@ -66,3 +66,122 @@ This layer is rendered last so put tiles here that the player should be drawn un
 
 ### Tileset
 The best way to extend the tileset is to just modify `tileset.png` with your new tile images. The tiles are 16x16px.
+
+# CFL Docs
+
+## Summary
+
+CFL scripts are attached to a trainer battle in CurtainFire. They control the construction and direction of actors on the screen. They work in tandem with `lua` scripts which describe bullet behavior to provide fast, iterative, and most importantly run-time safe development. Each command in a CFL script must be on its own separate line.
+
+## Example Script
+
+This is the code from `butterfree.cfl` located in `CurtainFire-desktop/user_assets/`
+
+```
+construct Butterfree_1.png Butterfree_2.png 0.2f 200 end
+shoot flower1.lua 0 on end
+wait 10 end
+shoot 360div10.lua 0 on end
+-- move commands are percentage of x and y (out of 100)
+move 25 def 3.0 swing end
+move 75 def 6.0 swing end
+move def def 3.0 swing end
+```
+
+## Keywords
+
+### `construct`
+
+`construct image1 image2 animationSpeed hitpoints end`
+
+`construct` is required to be the first line of any script.
+
+*Image* `image1`: First animation frame image, should be located in `CurtainFire-desktop/user_assets/enemy`
+
+*Image* `image2`: Second animation frame image, should be located in `CurtainFire-desktop/user_assets/enemy`
+
+*float* `animationSpeed`: A floating point number that is the time between each frame
+
+*int* `hitpoints`: Enemy health
+
+###  `move`
+
+`move xPos yPos time interpolationFunction end`
+
+`move` moves the current position of the constructed enemy. 
+
+*float* `xPos`: The percentage x position to move to (0 - 100)
+    
+*float* `yPos`: The percentage y position to move to (0 - 100)
+
+*float* `time`: The time elapsed duration travel between the current and target position, a floating point
+
+*string* `interpolationFunction`: Uses Libgdx's [interpolation keywords](https://github.com/libgdx/libgdx/wiki/Interpolation) in order to utilize libgdx interpolated movement. Use `linear` if no interpolation function desired
+
+#### Special Arguments
+
+`rand(float)`: Can be passed in inplace of `xPos` or `yPos`
+
+Example: `rand50` passes a value between -50 and 50 to move by from the enemy's current position
+
+`def`: Can be passed in inplace of `xPos` or `yPos`
+
+`def` moves the enemy back to the x or y position that it spawns in by default. (Center-Top of screen)
+
+### `wait`
+
+`wait seconds end`
+
+`wait` halts on current line for the desired amount of time
+
+*float* `seconds`: The amount of time to wait
+
+### `shoot`
+
+`shoot lua_file.lua index state end`
+
+`shoot` begins the execution of a lua script used to create bullet patterns
+
+*int* `index`: index into array that holds each declared lua script.
+
+*"on"|"off"* `state`: *"on"* adds or sets a script file at `index` and *"off"* removes a script at `index`
+
+### `pushshoot`
+
+`pushshoot lua_file.lua end`
+
+`pushshoot`: begins the execution of a lua script used to create bullet patterns. (Adds to the end of the array that holds each currently running lua script)
+
+### `removeallscripts`
+
+`removeallscripts end` 
+
+`removeallscripts`: Every lua script that is currently running will terminate and be removed, clearing the array holding all lua scripts declared by either `shoot` or `pushshoot`.
+
+### `print`
+
+`print "example"`
+
+`print`: prints all text after the command on the same line into the java console. Useful for debugging.
+
+### `loop`
+
+```loop iteration
+print code would be in here
+endloop end ```
+
+`loop` runs only the code between `loop` and `endloop` `iteration` number of times.
+
+*int* `iteration`: number of iterations that following code will repeat
+
+
+
+### Comments
+
+`--` is the identifier to begin a line of comments
+
+`-*` comment block start
+
+`*-` comment block end
+
+Comment block start and end must be on a sepearte line from the code they are enclosing.
