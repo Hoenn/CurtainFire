@@ -186,4 +186,4 @@ endloop end
 
 `*-` comment block end
 
-Comment block start and end must be on a seperate line from the code they are enclosing.
+Comment block start and end must be on a separate line from the code they are enclosing.
