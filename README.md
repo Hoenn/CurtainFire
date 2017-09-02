@@ -150,7 +150,7 @@ Example: `rand50` passes a value between -50 and 50 to move by from the enemy's 
 
 `pushshoot lua_file.lua end`
 
-`pushshoot`: begins the execution of a lua script used to create bullet patterns. (Adds to the end of the array that holds each currently running lua script)
+`pushshoot`: begins the execution of a lua script used to create bullet patterns. (Adds to the end of the array that holds each currently running lua script). Looks for lua files in user_assets/lua.
 
 ### `removeallscripts`
 
@@ -187,3 +187,29 @@ endloop end
 `*-` comment block end
 
 Comment block start and end must be on a separate line from the code they are enclosing.
+
+# Lua
+
+```
+local bulletTimer = 0;
+
+local num = 10; 
+local changeangle1 = 360 / num;
+local angle1 = 60;
+
+--reference com.neet.cf.script.entities.Enemy and com.neet.cf.script.entities.Player for usable functions
+function tick(enemy, delta, player) --each lua script requires tick(enemy, delta, player) function
+    if bulletTimer > 0.20 then
+        for i=1, num, 1 do
+            enemy:shoot(10, angle1, 250, 1); --radius, angle, speed, index
+            angle1 = angle1 + changeangle1;
+        end
+        angle1 = 60;
+        bulletTimer = 0;
+    end
+    bulletTimer = bulletTimer + delta;
+end
+```
+tick is called every frame of gameplay.
+
+Lua scripts share variable name space if multiple scripts are running at the same time.
