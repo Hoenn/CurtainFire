@@ -190,7 +190,7 @@ Comment block start and end must be on a separate line from the code they are en
 
 # Lua
 
-```
+```lua
 local bulletTimer = 0;
 
 local num = 10; 
