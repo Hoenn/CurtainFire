@@ -188,7 +188,7 @@ endloop end
 
 Comment block start and end must be on a separate line from the code they are enclosing.
 
-# Lua
+# Lua Scripting for Bullet Patterns
 
 ```lua
 local bulletTimer = 0;
@@ -210,6 +210,13 @@ function tick(enemy, delta, player) --each lua script requires tick(enemy, delta
     bulletTimer = bulletTimer + delta;
 end
 ```
-tick is called every frame of gameplay.
+
+A bullet script interacts with information from the gameworld using a tick function with the header
+
+`function tick(enemy, delta, player)`
+
+within this method you can get position information about the player and call the various overloaded `shoot` methods from the `Enemy.java` class
+
+The `tick` function is called every frame of gameplay.
 
 Lua scripts share variable name space if multiple scripts are running at the same time.
