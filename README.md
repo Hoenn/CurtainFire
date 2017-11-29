@@ -14,7 +14,7 @@ LuaJ: http://www.luaj.org/luaj/3.0/README.html
 
 `$ git clone https://github.com/Hoenn/CurtainFire.git`
 
-You should make a fork of this repository and clone that instead of you're uninterested in contributing to this project (no pressure!)
+You should make a fork of this repository and clone that instead if you're interested in contributing to this project (no pressure!)
 
 ### Workspace
 
